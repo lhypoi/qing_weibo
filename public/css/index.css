@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #050d19;
+}
+a, a:focus, a:hover {
+  color: #fff;
+}
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bg {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #000;
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+}
+.bg canvas {
+  width: 100%;
+  height: 100%;
+}
+#main {
+  padding: 0;
+  margin: 0 auto;
+  height: 100%;
+  width: 1000px;
+  color: #fff;
+  position: relative;
+}
+#main .title {
+  height: 60px;
+  box-shadow: 1px 1px 6px #ccc;
+  background-color: #050d19;
+  margin-bottom: 20px;
+}
+#main h1 {
+  line-height: 60px;
+  text-indent: 20px;
+}
+#main .tab_user {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+#main .tab_user a.dropdown-toggle {
+  line-height: 60px;
+  font-size: 16px;
+}
+#main .tab_user .dropdown-menu {
+  text-align: center;
+}
+.filePicker {
+  width: 160px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  color: #fff;
+  background: #00b7ee;
+  margin-left: 15px;
+}
+.filePicker input[type="file"] {
+  position: relative;
+  top: -49px;
+  left: -15px;
+  width: 160px;
+  height: 44px;
+  opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 0;
+}
+#main .tab_user .register_user_pic_see img {
+  max-width: 100%;
+}
+.modal-content {
+  background-color: #536177;
+}
+#main .weibo_content {
+  box-shadow: 1px 1px 6px #ccc;
+  background-color: #050d19;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+#main .weibo_content .tab-content .search_list {
+  margin: 0px 0 20px 0;
+  background-color: #fff;
+  padding: 0 10px;
+}
+#main .weibo_content .tab-content .search_list li {
+  border-bottom: 1px solid #ccc;
+  color: #000;
+  padding: 5px;
+}
+#main .weibo_content .tab-content .search_list li:hover {
+  background-color: #536177;
+  color: #fff;
+  cursor: pointer;
+}
+#main .weibo_content .tab-content img {
+  max-width: 100%;
+}
+#main .weibo_content .menu_box {
+  margin-top: 10px;
+}
+#main .weibo_content .menu_box .menu_tab {
+  background-color: #536177;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.3333333;
+  padding: 10px 16px;
+}
+.triangle_border_ne {
+  width: 0;
+  height: 0;
+  border-width: 30px 0px 30px 30px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  position: absolute;
+  left: -15px;
+  top: 0px;
+}
+.weibo_list {
+  box-shadow: 1px 1px 6px #ccc;
+  background-color: #050d19;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.weibo_box li {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+.weibo_box li .w_img {
+  width: 64px;
+  height: 64px;
+}
+.weibo_box li .content_box {
+  background-color: #fff;
+  box-shadow: 1px 1px 6px #ccc;
+  padding-top: 15px;
+  padding-bottom: 12px;
+  text-indent: 20px;
+  color: #000;
+}
+.weibo_box li .content_box a {
+  color: #000;
+}
+.weibo_box li .w-opt {
+  height: 19px;
+  margin: 20px 0 0;
+  line-height: 19px;
+}
+.weibo_box li .c_img {
+  width: 32px;
+  height: 32px;
+}
+.commont_box .commet {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.tab_user img {
+  height: 40px;
+}
+.commont_box {
+  display: none;
+}
+.commont_li {
+  width: 95%;
+  margin: 10px auto;
+  padding: 0px 16px;
+}
+.weibo_list .weibo_box .info-box {
+  display: none;
+}
+.weibo_box {
+  position: relative;
+}
+.info-box {
+  position: absolute;
+  top: -45px;
+  left: 108px;
+  width: 600px;
+  height: 150px;
+  background-color: rgba(83, 97, 119, 0.95);
+  z-index: 999;
+}
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #536177;
+  float: left;
+  margin: 63px 0 0 -15px;
+}
+li .photo_weibo {
+  width: 90%;
+  margin: 18px auto;
+}
+.content_box .content img {
+  max-width: 40%;
+  max-height: 50%;
+}
