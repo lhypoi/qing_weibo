@@ -1,0 +1,19 @@
+﻿<li commont_id="{$commet_data.id}">
+    <div class="row">
+        <div class="col-lg-1">
+            <img src="{$user_data.user_pic}" alt="" class="c_img" />
+        </div>
+        <div class="col-lg-11">
+            <span style="color:#5bc0de">{$user_data.user_nickname}:</span>
+            {$commet_data.commet_content}
+        <div class="w-opt clearfix">
+            <div class="optb pull-right">
+                <span style="color: #ccc;">{date('Y-m-d H:i:s', $commet_data.commet_time)}</span>
+                {if $user_data.id == $smarty.session.uid}
+                    <a href="#modal_comment" data-toggle="modal" class="delete_comment" data-num={$user_data.id} >删除</a>
+                {/if}
+            </div>
+        </div>
+        </div>
+    </div>
+</li>
