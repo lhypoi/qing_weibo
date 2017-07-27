@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 class baseControl{
     private $smarty;
-    
+
     function __construct() {
         $this->smarty = new Smarty();
         $this->smarty->template_dir = "view";
     }
-    
+
     public function model($model_name) {
         require_once "model/$model_name.php";
         return new $model_name("mysql:dbhost=localhost;dbname=mweibo;charset=utf8","root","",true);
@@ -21,7 +21,6 @@ class baseControl{
     public function fetch($html) {
         return $this->smarty->fetch($html);
     }
-    
     public function run() {
         $control = isset($_REQUEST['control']) ? $_REQUEST['control'] : "weibo";
         $control_name = $control.'Control';
