@@ -40,7 +40,7 @@ class weiboControl extends baseControl{
         $html = $this->fetch("weibo_li.html");
         returnjson(1, "",$html,"",$weibo_data);
     }
-
+    //发布微博
     public function sendWeibo(){
         $new_content['weibo_content'] =  $_POST['weibo_content'];
         $new_content['type'] = $_POST['type'];
@@ -67,14 +67,14 @@ class weiboControl extends baseControl{
             $this->assign("weibo_data", $weibo_data);
 
             // html编码统一返回null
-            $html = $this->fetch("weibo_li.html");
+        $html = $this->fetch("weibo_li.html");
 
-            echo json_encode(
-                array(
-                    "status"=>1,
-                    "msg"=>'发布成功',
-                    "html"=>$html,
-                    "num"=>$error_array['num']
+        echo json_encode(
+            array(
+                "status"=>1,
+                "msg"=>'发布成功',
+                "html"=>$html,
+                "num"=>$error_array['num']
                 )
             );
         }else{
@@ -83,9 +83,32 @@ class weiboControl extends baseControl{
                     "status"=>0,
                     "msg"=>'发布失败',
                     "error_info"=>$error_array['info'][2]
-                )
-            );
+                    )
+                );
         }
+    }
+
+    //删除微博
+    public function delete()
+    {
+         // 获取微博id
+         // 删除这条微博信息，删除它的评论。文件 unlink
+         $weibo_id = $_POST['id'];
+         $table='weibo_detail';
+
+         // 查询评论表该微博是否有评论信息
+         $commot_list = $this->model("comment")->getCommontByWid($weibo_id);
+
+         if (!empty( $commot_list)) {
+             foreach ($commot_list as $key => $value) {
+                $this->model("comment")->delComment($value['id']);
+             }
+         }
+
+
+         $this->model("weibo")->delInfo($table,$weibo_id);
+
+         echo returnJson("1","删除成功");exit();
     }
 }
 

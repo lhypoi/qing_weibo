@@ -24,6 +24,7 @@ class userControl extends baseControl{
         if($result) {
             $uid = $result[0]['id'];
             $_SESSION['uid'] = $uid;
+
             returnjson(1, "登录成功", "", "", $uid);
         } else {
             returnjson(0, "登录失败");

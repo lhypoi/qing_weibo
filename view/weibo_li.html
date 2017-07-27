@@ -1,5 +1,5 @@
 {foreach $weibo_data as $item}
-<li weibo-id="{$item.id}" class="animated slideInDown">
+<li weibo-id="{$item.id}" class="animated slideInDown list_{$item.id}">
     <div class="row">
         <div class="col-lg-2 head_box" style="text-align: center;">
             <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" class="w_img">

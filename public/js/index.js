@@ -219,15 +219,6 @@ $(function() {
         }
     })
 
-    //删除微博
-    function delWeibo(){
-        let weibo_id=$(".weibo_list").closest("li").attr('weibo-id');
-        $.post("index.php?control=weibo&action=delete",{weibo_id},function  (rtnData) {
-        $("#modal_box").modal('hide');
-            // 隐藏当前微博节点
-            $(".list_"+weibo_id).hide();
-        })
-    }
 
     // 更新微博
     // 发布评论
@@ -286,7 +277,7 @@ $(function() {
             $('#tab3 input').hide();
         }
     });
-
+    //头像滑过
     var infoTarget;
     $('.weibo_box').on("mouseenter",'.head_box', function(e) {
     	console.log(3)

@@ -22,5 +22,10 @@
             $result = $this->delInfo('weibo_commet', $comment_id);
             return $result;
         }
+
+        function getCommontByWid($weibo_id)
+        { 
+            return $this->select("select * from weibo_commet where weibo_id=$weibo_id ");
+        }
     }
- ?>
+    ?>
