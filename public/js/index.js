@@ -139,7 +139,7 @@ $(function() {
         }
     });
 
-    
+
     //发布微博
     $('.menu_box input[type=button]').click(function() {
         if (!haslogin()) {
@@ -149,7 +149,7 @@ $(function() {
         let type = $('.menu_box input[type=hidden]').val();
         if (type == "short_content") {
             $.ajax({
-                url: "weibo.php",
+                url: "index.php?control=weibo&action=sendWeibo",
                 type: "POST",
                 data: {
                     weibo_content: $('textarea').eq(0).val(),
@@ -219,6 +219,16 @@ $(function() {
         }
     })
 
+    //删除微博
+    function delWeibo(){
+        let weibo_id=$(".weibo_list").closest("li").attr('weibo-id');
+        $.post("index.php?control=weibo&action=delete",{weibo_id},function  (rtnData) {
+        $("#modal_box").modal('hide');
+            // 隐藏当前微博节点
+            $(".list_"+weibo_id).hide();
+        })
+    }
+
     // 更新微博
     // 发布评论
     // 删除评论
@@ -243,11 +253,10 @@ $(function() {
                 return;
             };
             $.ajax({
-                url: "commont.php",
+                url: "index.php?control=comment&action=add",
                 type: "POST",
                 data: {
                     commet_content: $(this_elm).parent().prev().find('input').val(),
-                    type: 'add',
                     weibo_id
                 },
                 success: function(data) {
@@ -287,13 +296,13 @@ $(function() {
     }).on("mouseleave",'.head_box', function() {
         infoTarget.parent().find('.info-box').toggle(300);
     });
-    
+
     //判断是否是登陆状态
     if(haslogin()) {
     	$.ajax({
     		type: "POST",
-    		url: "index.php?control=user&action=check", 
-    		data: {id: localStorage.getItem('uid')}, 
+    		url: "index.php?control=user&action=check",
+    		data: {id: localStorage.getItem('uid')},
     		success: function(data) {
     			data = $.parseJSON(data);
                 if (data['status'] == 1) {

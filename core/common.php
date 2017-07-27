@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function returnjson ($status, $msg, $html='',$err='', $other='') {
     echo json_encode(
@@ -13,3 +13,4 @@ function returnjson ($status, $msg, $html='',$err='', $other='') {
 }
 
 ?>
+
