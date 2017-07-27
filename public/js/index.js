@@ -243,7 +243,7 @@ $(function() {
                 return;
             };
             $.ajax({
-                url: "index.php?control=commentControl&action=add",
+                url: "index.php?control=comment&action=add",
                 type: "POST",
                 data: {
                     commet_content: $(this_elm).parent().prev().find('input').val(),

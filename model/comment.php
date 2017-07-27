@@ -8,15 +8,12 @@
 
         public function addComment($comment_data)
         {
-            $id  = $this->addInfo($comment_data);
+            $result  = $this->addInfo('weibo_commet', $comment_data);
+            $id = $result['id'];
             if ($id > 0) {
-                $comment_data = getInfo('weibo_commet','id='.$id);
-                $user_data = getInfo('weibo_user','id='.$commet_data[0]['user_id']);
-
-                $this->smarty->assign("commet_data", $commet_data[0]);
-                $this->smarty->assign("user_data",$user_data[0]);
-                $html = $this->smarty->fetch("commet_li.html");
-                returnjson(1,'微博发布成功',$html);
+                $comment_data = $this->getInfo('weibo_commet','id='.$id);
+                $user_data = $this->getInfo('weibo_user','id='.$comment_data[0]['user_id']);
+                return array('comment_data'=>$comment_data[0], 'user_data'=>$user_data[0]);
             }
         }
     }
