@@ -8,6 +8,21 @@ class pdoClass {
         $this->pdo = new PDO($dbhost, $dbuser, $dbpwd);
     }
     
+    function exec($sql)
+    {
+         $num = $this->pdo->exec($sql);
+
+         if( $this->pdo->errorCode() != "00000"){
+            if ($this->debug == true) {
+                var_dump($this->pdo->errorInfo());
+            }else{
+                return $this->pdo->errorInfo();
+            }
+         }else{
+                return $num;
+         }
+    }
+
     function getInfo($table, $condition, $selectFields='*', $order='') {
         $sql = "SELECT $selectFields FROM $table WHERE $condition $order";
         $pdoStream = $this->pdo->prepare($sql);
@@ -15,6 +30,11 @@ class pdoClass {
         return $pdoStream->fetchAll();
     }
     
+    function getInsertId()
+    {
+         return $this->pdo->lastInsertId();
+    }
+
     function select($sql) {
         $pstate = $this->pdo->prepare($sql);
         $pstate->execute();
@@ -41,7 +61,7 @@ class pdoClass {
             }
             $split_char = ",";
         }
-        $this->pdo->exec("INSERT INTO $table ($k_str) VALUES ($v_str)");
+        echo $this->pdo->exec("INSERT INTO $table ($k_str) VALUES ($v_str)");
         return array(
             'code' => $this->pdo->errorCode(),
             'info' => $this->pdo->errorInfo(),
