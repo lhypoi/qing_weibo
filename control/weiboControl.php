@@ -23,6 +23,23 @@ class weiboControl extends baseControl{
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
     }
+    
+    public function get() {
+        $pageStart = $_POST['pageList'];
+        $page = $pageStart.",10";
+        $weibo_model = $this->model("weibo");
+        $weibo_data = $weibo_model->getWeiboList($page);
+        foreach ($weibo_data as $key => $value) {
+            $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
+            $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
+            foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
+                $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
+            }
+        }
+        $this->assign("weibo_data", $weibo_data);
+        $html = $this->fetch("weibo_li.html");
+        returnjson(1, "",$html,"",$weibo_data);
+    }
 }
 
 ?>

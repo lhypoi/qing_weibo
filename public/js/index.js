@@ -232,7 +232,7 @@ $(function() {
             $(this_elm).closest("li").find('.commont_box').slideToggle();
             var comment_box = this_elm.parent().parent().parent().parent().siblings('.comment_row').find('.commont_box');
         	if(comment_box.css('display') != 'block') {
-        		alert('a');
+//        		alert('a');
         	}
             return false;
         } else if (this_elm.hasClass('commet_send')) {
@@ -280,6 +280,7 @@ $(function() {
 
     var infoTarget;
     $('.weibo_box').on("mouseenter",'.head_box', function(e) {
+    	console.log(3)
         infoTarget = $(e.target);
         let touxiang_box=infoTarget.parent().find('.info-box');
         touxiang_box.toggle(600);
@@ -301,6 +302,29 @@ $(function() {
     		}
     	});
     }
+    
+    //异步加载微博列表
+    var page = 1;
+    var pageList = 0;
+    $(window).scroll(function() {
+    	if($(window).scrollTop() == $(document).height() - $(window).height()) {
+    		if(haslogin()) {
+    			pageList = page * 10;
+    			$.ajax({
+    	    		type: "POST",
+    	    		url: "index.php?control=weibo&action=get", 
+    	    		data: {pageList}, 
+    	    		success: function(data) {
+    	    			data = $.parseJSON(data);
+    	                if (data['status'] == 1) {
+    	                    $('.weibo_box').eq(0).append(data['html']);
+    	                }
+    	    		}
+    	    	});
+    			page += 1;
+    		}
+    	}
+    })
 })
 
 // 判断是否登录
