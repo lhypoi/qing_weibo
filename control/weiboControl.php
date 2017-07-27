@@ -53,14 +53,18 @@ class weiboControl extends baseControl{
         
         $error_array = $this->model('weibo')->setContent($new_content);
 
-        if ($error_array['num'] >0){
+        if ($error_array['num'] > 0){
             
-            $this->assign("uid",$_SESSION['uid']);
-            $this->assign("user_info",$_SESSION['user_info']);
-
-
-            $new_content['id'] = $error_array['id'];
-            $this->assign("weibo_data",$new_content);
+            $weibo_model = $this->model("weibo");
+            $weibo_data = $weibo_model->getWeiboList(1);
+            foreach ($weibo_data as $key => $value) {
+                $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
+                $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
+                foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
+                    $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
+                }
+            }
+            $this->assign("weibo_data", $weibo_data);
 
             // html编码统一返回null
             $html = $this->fetch("weibo_li.html");
