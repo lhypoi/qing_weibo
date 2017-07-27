@@ -153,7 +153,7 @@ $(function() {
                 type: "POST",
                 data: {
                     weibo_content: $('textarea').eq(0).val(),
-                    type
+                    tagname_arr
                 },
                 success: function(data) {
                     data = $.parseJSON(data);
@@ -167,7 +167,7 @@ $(function() {
             var fd = new FormData();
             fd.append('weibo_content', $('textarea').eq(1).val());
             fd.append('pic_file', $('#pic_file').get(0).files[0]);
-            fd.append('type', type);
+            fd.append('tagname_arr', tagname_arr);
             $.ajax({
                 url: "weibo.php",
                 type: "POST",
@@ -185,7 +185,7 @@ $(function() {
         } else if (type == "music") {
             var fd = new FormData();
             fd.append('music_file', $('#music_file').get(0).files[0]);
-            fd.append('type', type);
+            fd.append('tagname_arr', tagname_arr);
             $.ajax({
                 url: "weibo.php",
                 type: "POST",
@@ -202,7 +202,7 @@ $(function() {
         } else if (type == "video") {
             var fd = new FormData();
             fd.append('video_file', $('#video_file').get(0).files[0]);
-            fd.append('type', type);
+            fd.append('tagname_arr', tagname_arr);
             $.ajax({
                 url: "weibo.php",
                 type: "POST",
@@ -217,6 +217,7 @@ $(function() {
                 }
             });
         }
+        
     })
 
     //删除微博
@@ -337,6 +338,34 @@ $(function() {
     	    	});
     			page += 1;
     		}
+    	}
+    })
+    
+    //添加标签
+    var tagname_arr = [];
+    $('#tag').on('keyup', function(e) {
+    	if(e.keyCode == 13) {
+    		if(tagname_arr.length >= 5) {
+    			$(this).siblings('.warning').css('display','block');
+    		}else{
+	    		tagname_arr.push($(this).val());
+	    		var _html = '';
+	    		for(var i = 0; i < tagname_arr.length; i ++) {
+	    			_html += '#'+tagname_arr[i]+' ';
+	    		}
+	    		$(this).siblings('.tags').html(_html);
+	    		$(this).val('');
+    		}
+    	}else if(e.keyCode == 8) {
+    		if($(this).val() == '') {
+    			tagname_arr.splice(tagname_arr.length-1, 1);
+    			var _html = '';
+	    		for(var i = 0; i < tagname_arr.length; i ++) {
+	    			_html += '#'+tagname_arr[i]+' ';
+	    		}
+	    		$(this).siblings('.tags').html(_html);
+    		}
+    		$(this).val('');
     	}
     })
 })

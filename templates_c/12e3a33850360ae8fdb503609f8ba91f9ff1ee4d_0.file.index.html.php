@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-27 11:51:56
+/* Smarty version 3.1.30, created on 2017-07-27 14:32:16
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5979d3dca30407_09628779',
+  'unifunc' => 'content_5979f970c93085_33538146',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501156313,
+      1 => 1501165897,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5979d3dca30407_09628779 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5979f970c93085_33538146 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -223,6 +223,11 @@ function content_5979d3dca30407_09628779 (Smarty_Internal_Template $_smarty_tpl)
                     <input type="file" id="video_file">
                 </div>
             </div>
+            <div class="row tag_box">
+            	<div class="tags"></div>
+            	<input type="text" placeholder="请添加标签，按回车确定" id="tag" />
+            	<span class="warning">最多添加5个标签</span>
+            </div>
             <!-- 切换栏和发布按钮 -->
             <div class="row menu_box">
                 <div class="col-lg-9">
@@ -274,7 +279,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 ?>
                             <li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 " class="animated slideInDown">
-                                <div class="row">
+                                <div class="row clearfix">
                                     <div class="col-lg-2 head_box" style="text-align: center;">
                                         <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" class="w_img">
@@ -345,6 +350,10 @@ $_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
                                             <?php }?>
                                         </div>
                                         <div class="w-opt clearfix">
+                                        	<div class="optb pull-left">
+                                        		<a>#标签&nbsp;</a>
+                                        		<a>#标签&nbsp;</a>
+                                        	</div>
                                             <div class="optb pull-right">
                                                 <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
 </span>
@@ -352,12 +361,12 @@ $_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
                                                     <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">删除</a>
                                                 <?php }?>
-                                                <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
-)</a>
                                                 <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
                                                     <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
                                                 <?php }?>
+                                                <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+)</a>
                                             </div>
                                         </div>
                                     </div>

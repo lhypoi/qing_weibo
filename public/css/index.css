@@ -135,6 +135,7 @@ ul, li {
 .weibo_box li {
   border-bottom: 1px solid #ccc;
   margin-bottom: 15px;
+	padding-bottom:15px;
 }
 .weibo_box li .w_img {
   width: 64px;
@@ -206,4 +207,43 @@ li .photo_weibo {
 .content_box .content img {
   max-width: 40%;
   max-height: 50%;
+}
+
+/*±Í«©CSS*/
+.tag_box{
+	width:50%;
+	height:30px;
+	background-color:#fff;
+	margin:10px 0 0 0;
+	border-radius:5px;
+}
+.tags{
+	float:Left;
+	color:#999;
+	height:30px;
+	line-height:30px;
+	text-indent:5px;
+}
+#tag{
+	width:35%;
+	height:30px;
+	border:none;
+	border-radius:5px;
+	text-indent:5px;
+	outline:none;
+	color:#999;
+	float:left;
+}
+.warning{
+	color:#f00;
+	display:none;
+	height:30px;
+	line-height:30px;
+	float:right;
+	margin-right:5px;
+}
+.weibo_box li .content_box .pull-left a{
+	color:#ccc;
+	font-size:12px;
+	cursor:pointer;
 }
