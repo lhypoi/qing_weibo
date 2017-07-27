@@ -139,7 +139,7 @@ $(function() {
         }
     });
 
-    
+
     //发布微博
     $('.menu_box input[type=button]').click(function() {
         if (!haslogin()) {
@@ -243,11 +243,10 @@ $(function() {
                 return;
             };
             $.ajax({
-                url: "commont.php",
+                url: "index.php?control=commentControl&action=add",
                 type: "POST",
                 data: {
                     commet_content: $(this_elm).parent().prev().find('input').val(),
-                    type: 'add',
                     weibo_id
                 },
                 success: function(data) {
@@ -286,13 +285,13 @@ $(function() {
     }).on("mouseleave",'.head_box', function() {
         infoTarget.parent().find('.info-box').toggle(300);
     });
-    
+
     //判断是否是登陆状态
     if(haslogin()) {
     	$.ajax({
     		type: "POST",
-    		url: "index.php?control=user&action=check", 
-    		data: {id: localStorage.getItem('uid')}, 
+    		url: "index.php?control=user&action=check",
+    		data: {id: localStorage.getItem('uid')},
     		success: function(data) {
     			data = $.parseJSON(data);
                 if (data['status'] == 1) {
