@@ -239,18 +239,25 @@ $(function() {
         let this_elm = $(event.target);
         // 评论下拉框
         if (this_elm.hasClass('commet_btn')) {
-            $(this_elm).closest("li").find('.commont_box').slideToggle();
             var comment_box = this_elm.parent().parent().parent().parent().siblings('.comment_row').find('.commont_box');
         	if(comment_box.css('display') != 'block') {
-//        		alert('a');
+        		var article_id = this_elm.attr('data-num');
+	    		$.ajax({
+	    			type: "POST",
+	                url: 'index.php?control=comment&action=getComment',
+	                data: {article_id: article_id},
+	                success: function(rtnData) {
+	                	let rtnObject = JSON.parse(rtnData);
+	                    comment_box.find('.commont_list').html(rtnObject.html);
+	                }
+	    		});
         	}
-            return false;
+        	$(this_elm).closest("li").find('.commont_box').slideToggle();
         } else if (this_elm.hasClass('commet_send')) {
             // 评论发送
             let weibo_id = $(this_elm).closest("li").attr('weibo-id');
             if (!haslogin()) {
                 alert('请先登陆');
-                return;
             };
             $.ajax({
                 url: "index.php?control=comment&action=add",
@@ -262,12 +269,11 @@ $(function() {
                 success: function(data) {
                     data = $.parseJSON(data);
                     if (data['status'] == 1) {
-                        $('.commont_list').append(data['html']);
+                        $('.commont_list').eq(0).prepend(data['html']);
                         $(this_elm).parent().prev().find('input').val('');
                     }
                 }
             });
-            return false;
         } else if (this_elm.hasClass('edit_weibo')) {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
@@ -289,7 +295,6 @@ $(function() {
 
     var infoTarget;
     $('.weibo_box').on("mouseenter",'.head_box', function(e) {
-    	console.log(3)
         infoTarget = $(e.target);
         let touxiang_box=infoTarget.parent().find('.info-box');
         touxiang_box.toggle(600);

@@ -286,7 +286,7 @@
                                                 {if $item.user_data.id == $smarty.session.uid}
                                                     <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="{$item.id}">删除</a>
                                                 {/if}
-                                                <a href="" class="commet_btn">评论({count($item.commet_data)})</a>
+                                                <a href="" class="commet_btn" data-num="{$item.id}">评论({count($item.commet_data)})</a>
                                                 {if $item.user_data.id == $smarty.session.uid}
                                                     <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
                                                 {/if}
@@ -305,28 +305,7 @@
                                             </div>
                                         </div>
                                         <ul class="commont_list">
-                                            {foreach from=$item.commet_data item=$item2}
-                                                <li commont_id="{$item2.id}">
-                                                    <div class="row">
-                                                        <div class="col-lg-1">
-                                                            <img src="{$item2.user_data.user_pic|default:'./public/img/default.png'}" alt="" class="c_img" />
-                                                        </div>
-                                                        <div class="col-lg-11">
-                                                            <span style="color:#5bc0de">{$item2.user_data.user_nickname}:</span>
-                                                            {$item2.commet_content}
-	                                                        <div class="w-opt clearfix">
-	                                                            <div class="optb pull-right">
-	                                                                <span style="color: #ccc;">{date('Y-m-d H:i:s', $item2.commet_time)}</span>
-	                                                                {if $item2.user_data.id == $smarty.session.uid}
-	                                                                	<input type="hidden" value="{$item2.weibo_id}" />
-	                                                                    <a href="#modal_comment" data-toggle="modal" class="delete_comment" data-num="{$item2.id}">删除</a>
-	                                                                {/if}
-	                                                            </div>
-	                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            {/foreach}
+                                            
                                         </ul>
                                     </div>
                                 </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-27 03:51:34
+/* Smarty version 3.1.30, created on 2017-07-27 11:51:56
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59796346e6be98_36750349',
+  'unifunc' => 'content_5979d3dca30407_09628779',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501127424,
+      1 => 1501156313,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59796346e6be98_36750349 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5979d3dca30407_09628779 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -352,7 +352,8 @@ $_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
                                                     <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">删除</a>
                                                 <?php }?>
-                                                <a href="" class="commet_btn">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+                                                <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
 )</a>
                                                 <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
                                                     <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
@@ -372,44 +373,7 @@ $_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
                                             </div>
                                         </div>
                                         <ul class="commont_list">
-                                            <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['commet_data'], 'item2');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['item2']->value) {
-?>
-                                                <li commont_id="<?php echo $_smarty_tpl->tpl_vars['item2']->value['id'];?>
-">
-                                                    <div class="row">
-                                                        <div class="col-lg-1">
-                                                            <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item2']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" alt="" class="c_img" />
-                                                        </div>
-                                                        <div class="col-lg-11">
-                                                            <span style="color:#5bc0de"><?php echo $_smarty_tpl->tpl_vars['item2']->value['user_data']['user_nickname'];?>
-:</span>
-                                                            <?php echo $_smarty_tpl->tpl_vars['item2']->value['commet_content'];?>
-
-	                                                        <div class="w-opt clearfix">
-	                                                            <div class="optb pull-right">
-	                                                                <span style="color: #ccc;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item2']->value['commet_time']);?>
-</span>
-	                                                                <?php if ($_smarty_tpl->tpl_vars['item2']->value['user_data']['id'] == $_SESSION['uid']) {?>
-	                                                                	<input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['item2']->value['weibo_id'];?>
-" />
-	                                                                    <a href="#modal_comment" data-toggle="modal" class="delete_comment" data-num="<?php echo $_smarty_tpl->tpl_vars['item2']->value['id'];?>
-">删除</a>
-	                                                                <?php }?>
-	                                                            </div>
-	                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
-?>
-
+                                            
                                         </ul>
                                     </div>
                                 </div>

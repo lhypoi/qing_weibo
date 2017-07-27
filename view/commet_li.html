@@ -1,19 +1,22 @@
-﻿<li commont_id="{$commet_data.id}">
-    <div class="row">
-        <div class="col-lg-1">
-            <img src="{$user_data.user_pic}" alt="" class="c_img" />
-        </div>
-        <div class="col-lg-11">
-            <span style="color:#5bc0de">{$user_data.user_nickname}:</span>
-            {$commet_data.commet_content}
-        <div class="w-opt clearfix">
-            <div class="optb pull-right">
-                <span style="color: #ccc;">{date('Y-m-d H:i:s', $commet_data.commet_time)}</span>
-                {if $user_data.id == $smarty.session.uid}
-                    <a href="#modal_comment" data-toggle="modal" class="delete_comment" data-num={$user_data.id} >删除</a>
-                {/if}
+﻿{foreach $item as $value}
+    <li commont_id="{$value.id}" class="animated slideInDown">
+        <div class="row">
+            <div class="col-lg-1">
+                <img src="{$value.user_pic}" alt="" class="c_img" />
+            </div>
+            <div class="col-lg-11">
+                <span style="color:#5bc0de">{$value.user_nickname}:</span>
+                {$value.commet_content}
+                <div class="w-opt clearfix">
+                    <div class="optb pull-right">
+                        <span style="color: #ccc;">{date('Y-m-d H:i:s', $value.commet_time)}</span>
+                        {if $value.user_id == $smarty.session.uid}
+                            <input type="hidden" value="{$item2.weibo_id}" />
+                            <a href="#modal_comment" data-toggle="modal" class="delete_comment" data-num="{$value.id}">删除</a>
+                        {/if}
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
-</li>
+    </li>
+{/foreach}
