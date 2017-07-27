@@ -28,7 +28,7 @@ $(function() {
     $('#record-del-confirm').on('click', function() {
     	$.ajax({
 			type: "POST",
-            url: 'weibo.php',
+            url: 'index.php?control=weibo&action=delete',
             data: {id: record_id, type: 'del'},
             success: function(rtnData) {
             	let rtnObject = JSON.parse(rtnData);

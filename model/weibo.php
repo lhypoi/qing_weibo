@@ -36,7 +36,6 @@ class weibo extends pdoClass{
             'id' => $this->getInsertId()
         );
     }
-
 }
 
 ?>
