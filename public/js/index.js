@@ -139,14 +139,7 @@ $(function() {
         }
     });
 
-    // 判断是否登录
-    function haslogin() {
-        if (localStorage.getItem('uid') > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
     //发布微博
     $('.menu_box input[type=button]').click(function() {
         if (!haslogin()) {
@@ -260,11 +253,10 @@ $(function() {
                 return;
             };
             $.ajax({
-                url: "commont.php",
+                url: "index.php?control=comment&action=add",
                 type: "POST",
                 data: {
                     commet_content: $(this_elm).parent().prev().find('input').val(),
-                    type: 'add',
                     weibo_id
                 },
                 success: function(data) {
@@ -303,7 +295,31 @@ $(function() {
     }).on("mouseleave",'.head_box', function() {
         infoTarget.parent().find('.info-box').toggle(300);
     });
+
+    //判断是否是登陆状态
+    if(haslogin()) {
+    	$.ajax({
+    		type: "POST",
+    		url: "index.php?control=user&action=check",
+    		data: {id: localStorage.getItem('uid')},
+    		success: function(data) {
+    			data = $.parseJSON(data);
+                if (data['status'] == 1) {
+                    $('#accountmenu').html(data['html']);
+                }
+    		}
+    	});
+    }
 })
+
+// 判断是否登录
+function haslogin() {
+    if (localStorage.getItem('uid') > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 // 登录注册退出修改信息
 function do_register() {
@@ -314,7 +330,7 @@ function do_register() {
     // fd.append('user_pic', $('#register_user_pic').get(0).files[0]);
     fd.append('type', 'register');
     $.ajax({
-        url: "user.php",
+        url: "index.php?control=user&action=reg",
         type: "POST",
         contentType: false,
         processData: false,
@@ -322,7 +338,7 @@ function do_register() {
         success: function(data) {
             data = $.parseJSON(data);
             if (data['status'] == 1) {
-                localStorage.setItem("uid", data['msg']);
+                localStorage.setItem("uid", data['other']);
                 location.reload();
             } else {
                 alert(data['msg']);
@@ -334,15 +350,11 @@ function do_register() {
 
 function do_quit() {
     $.ajax({
-        url: "user.php",
+        url: "index.php?control=user&action=logout",
         type: "POST",
-        data: {
-            type: 'logout'
-        },
         success: function(data) {
             data = $.parseJSON(data);
             if (data['status'] == 1) {
-                alert(data['msg']);
                 localStorage.removeItem('uid');
                 location.reload();
             }
@@ -352,7 +364,7 @@ function do_quit() {
 
 function do_login() {
     $.ajax({
-        url: "user.php",
+        url: "index.php?control=user&action=log",
         type: "POST",
         data: {
             user_name: $('#login_user_name').val(),
@@ -362,7 +374,7 @@ function do_login() {
         success: function(data) {
             data = $.parseJSON(data);
             if (data['status'] == 1) {
-                localStorage.setItem("uid", data['msg']);
+                localStorage.setItem("uid", data['other']);
                 location.reload();
             } else {
                 alert(data['msg']);

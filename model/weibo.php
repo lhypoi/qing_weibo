@@ -18,6 +18,7 @@ class weibo extends pdoClass{
         $sql = "SELECT * FROM weibo_commet WHERE weibo_id=$weibo_id ORDER BY id DESC";
         return $this->select($sql);
     }
+<<<<<<< HEAD
 
     //添加内容
     public function setContent($new_content){
@@ -36,6 +37,10 @@ class weibo extends pdoClass{
             'id' => $this->getInsertId()
         );
     }
+=======
+    
+    
+>>>>>>> 350b8448e8ac326ee6eb75fc2ca7780d1ee1c901
 }
 
 ?>

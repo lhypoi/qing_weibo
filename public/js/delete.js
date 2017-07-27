@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 $(function() {
 	var record_id; //删除的微博的ID
@@ -23,7 +23,7 @@ $(function() {
     		del_row = _this;
     	}
 	})
-	
+
 	//删除确认和取消
     $('#record-del-confirm').on('click', function() {
     	$.ajax({
@@ -44,7 +44,7 @@ $(function() {
 	$('#comment-del-confirm').on('click', function() {
     	$.ajax({
 			type: "POST",
-            url: 'commont.php',
+            url: 'index.php?control=comment&action=del',
             data: {comment_id: c_id, article_id: a_id, type: 'del'},
             success: function(rtnData) {
             	let rtnObject = JSON.parse(rtnData);
