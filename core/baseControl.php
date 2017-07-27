@@ -15,6 +15,12 @@ class baseControl{
     public function display($html) {
         $this->smarty->display($html);
     }
+
+    // 返回smarty编译好的html
+    public function fetch($html)
+    {
+        return $this->smarty->fetch($html);
+    }
     public function assign($name, $value) {
         $this->smarty->assign($name, $value);
     }

@@ -18,6 +18,24 @@ class weibo extends pdoClass{
         $sql = "SELECT * FROM weibo_commet WHERE weibo_id=$weibo_id ORDER BY id DESC";
         return $this->select($sql);
     }
+
+    //添加内容
+    public function setContent($new_content){
+         $weibo_content=$new_content['weibo_content'];
+        $type=$new_content['type'];
+        $create_time=$new_content['create_time'];
+
+        $uid = $new_content['uid'];
+        // mysql添加
+        $insert_sql = "insert into weibo_detail (weibo_content,create_time,type,user_id) values ('$weibo_content',$create_time,'$type',$uid)";
+
+        // 执行一条语句
+        $num = $this->exec($insert_sql);
+        return  array(
+            'num' => $num,
+            'id' => $this->getInsertId()
+        );
+    }
 }
 
 ?>
