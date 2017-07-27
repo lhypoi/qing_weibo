@@ -16,5 +16,11 @@
                 return array('comment_data'=>$comment_data[0], 'user_data'=>$user_data[0]);
             }
         }
+
+        public function delComment($comment_id)
+        {
+            $result = $this->delInfo('weibo_commet', $comment_id);
+            return $result;
+        }
     }
  ?>

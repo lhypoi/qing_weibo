@@ -18,6 +18,14 @@
             $html = $this->fetch("commet_li.html");
             returnjson(1,'微博发布成功',$html);
         }
+
+        public function del()
+        {
+            $result = $this->model('comment')->delComment($_POST['comment_id']);
+            if ($result > 0) {
+                returnjson(1,'评论删除成功');
+            }
+        }
     }
 
  ?>
