@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-26 15:08:53
+/* Smarty version 3.1.30, created on 2017-07-27 03:51:34
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5978b085e8da55_64784410',
+  'unifunc' => 'content_59796346e6be98_36750349',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501081661,
+      1 => 1501127424,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5978b085e8da55_64784410 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59796346e6be98_36750349 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,7 @@ function content_5978b085e8da55_64784410 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="dropdown user_state pull-left" id="accountmenu">
                     
                     <?php if ($_SESSION['uid'] > 0) {?>
-                    <img src="<?php echo $_smarty_tpl->tpl_vars['user_pic']->value;?>
+                    <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['user_pic']->value)===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php echo $_smarty_tpl->tpl_vars['user_nickname']->value;?>
@@ -276,7 +276,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 " class="animated slideInDown">
                                 <div class="row">
                                     <div class="col-lg-2 head_box" style="text-align: center;">
-                                        <img src="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'];?>
+                                        <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" class="w_img">
                                         <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 </p>
@@ -363,6 +363,14 @@ $_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
                                 </div>
                                 <div class="row comment_row">
                                     <div class="col-lg-10 col-lg-offset-2 commont_box">
+                                    	<div class="row commet">
+                                            <div class="col-lg-10">
+                                                <input type="text" name="commet_content" class="form-control">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input type="button" class="btn btn-info commet_send" value="发布">
+                                            </div>
+                                        </div>
                                         <ul class="commont_list">
                                             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['commet_data'], 'item2');
@@ -373,7 +381,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item2']->value) {
 ">
                                                     <div class="row">
                                                         <div class="col-lg-1">
-                                                            <img src="<?php echo $_smarty_tpl->tpl_vars['item2']->value['user_data']['user_pic'];?>
+                                                            <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item2']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" class="c_img" />
                                                         </div>
                                                         <div class="col-lg-11">
@@ -403,14 +411,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
                                         </ul>
-                                        <div class="row commet">
-                                            <div class="col-lg-10">
-                                                <input type="text" name="commet_content" class="form-control">
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input type="button" class="btn btn-info commet_send" value="发布">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </li>

@@ -18,6 +18,8 @@ class weibo extends pdoClass{
         $sql = "SELECT * FROM weibo_commet WHERE weibo_id=$weibo_id ORDER BY id DESC";
         return $this->select($sql);
     }
+    
+    
 }
 
 ?>

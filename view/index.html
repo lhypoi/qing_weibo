@@ -26,7 +26,7 @@
                 <div class="dropdown user_state pull-left" id="accountmenu">
                     {* 已登录 *}
                     {if $smarty.session.uid > 0}
-                    <img src="{$user_pic}" alt="">
+                    <img src="{$user_pic|default:'./public/img/default.png'}" alt="">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {$user_nickname} <b class="caret"></b>
                     </a>
@@ -237,7 +237,7 @@
                             <li weibo-id="{$item.id}" class="animated slideInDown">
                                 <div class="row">
                                     <div class="col-lg-2 head_box" style="text-align: center;">
-                                        <img src="{$item.user_data.user_pic}" alt="" class="w_img">
+                                        <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" class="w_img">
                                         <p>{$item.user_data.user_nickname}</p>
                                         <div class="info-box">
                                             <div class="arrow-left"></div>
@@ -296,12 +296,20 @@
                                 </div>
                                 <div class="row comment_row">
                                     <div class="col-lg-10 col-lg-offset-2 commont_box">
+                                    	<div class="row commet">
+                                            <div class="col-lg-10">
+                                                <input type="text" name="commet_content" class="form-control">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input type="button" class="btn btn-info commet_send" value="发布">
+                                            </div>
+                                        </div>
                                         <ul class="commont_list">
                                             {foreach from=$item.commet_data item=$item2}
                                                 <li commont_id="{$item2.id}">
                                                     <div class="row">
                                                         <div class="col-lg-1">
-                                                            <img src="{$item2.user_data.user_pic}" alt="" class="c_img" />
+                                                            <img src="{$item2.user_data.user_pic|default:'./public/img/default.png'}" alt="" class="c_img" />
                                                         </div>
                                                         <div class="col-lg-11">
                                                             <span style="color:#5bc0de">{$item2.user_data.user_nickname}:</span>
@@ -320,14 +328,6 @@
                                                 </li>
                                             {/foreach}
                                         </ul>
-                                        <div class="row commet">
-                                            <div class="col-lg-10">
-                                                <input type="text" name="commet_content" class="form-control">
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input type="button" class="btn btn-info commet_send" value="发布">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </li>

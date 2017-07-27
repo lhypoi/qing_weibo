@@ -18,6 +18,9 @@ class baseControl{
     public function assign($name, $value) {
         $this->smarty->assign($name, $value);
     }
+    public function fetch($html) {
+        return $this->smarty->fetch($html);
+    }
     
     public function run() {
         $control = isset($_REQUEST['control']) ? $_REQUEST['control'] : "weibo";

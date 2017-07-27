@@ -1,0 +1,13 @@
+﻿<img src="{$item.user_pic|default:'./public/img/default.png'}" alt="">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    {$item.user_nickname} <b class="caret"></b>
+</a>
+<ul class="dropdown-menu">
+    <li>
+        <a href="#edit_pic_box" data-toggle="modal">修改头像</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="#quit_box" data-toggle="modal">退出</a>
+    </li>
+</ul>

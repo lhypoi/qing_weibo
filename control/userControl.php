@@ -2,34 +2,46 @@
 
 class userControl extends baseControl{
     public function reg() {
-        $_POST['date'] = time();
-        $exist = $this->model("user")->find("SELECT username FROM weibo_user WHERE username='{$_POST['username']}'");
+        $exist = $this->model("user")->getUserExist($_POST['user_name']);
         if($exist) {
-            echo json_encode(
-                array(
-                    "status" => 0,
-                    "msg" => "该用户已存在"
-                )
-            );
+            returnjson(0, "该用户已存在");
         }else {
-            $result = $this->model("user")->addInfo("weibo_user", $_POST);
+            $result = $this->model("user")->reg($_POST);
             if($result['code'] == '00000') {
-                $_SESSION['user'] = $_POST['username'];
-                echo json_encode(
-                    array(
-                        "status" => 1,
-                        "msg" => "注册成功",
-                    )
-                );
+                $uid = $result['id'];
+                $_SESSION['uid'] =$uid;
+                returnjson(1, "注册成功","","",$uid);
             } else {
-                echo json_encode(
-                    array(
-                        "status" => 0,
-                        "msg" => "注册失败"
-                    )
-                );
+                returnjson(1, "注册失败");
             }
         }
+    }
+    
+    public function log() {
+        $username = $_POST['user_name'];
+        $pwd = $_POST['user_pwd'];
+        $result = $this->model("user")->getUserInfo($username, $pwd);
+        if($result) {
+            $uid = $result[0]['id'];
+            $_SESSION['uid'] =$uid;
+            returnjson(1, "登录成功", "", "", $uid);
+        } else {
+            returnjson(0, "登录失败");
+        }
+    }
+    
+    public function logout() {
+        unset($_SESSION['uid']);
+        returnjson(1, '退出用户成功');
+    }
+    
+    public function check() {
+        $id = $_POST['id'];
+        $_SESSION['uid'] =$id;
+        $result = $this->model("user")->getUserLog($id);
+        $this->assign("item", $result);
+        $html = $this->fetch("login_state.html");
+        returnjson(1, "", $html);
     }
 }
 
