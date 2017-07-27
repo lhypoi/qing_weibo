@@ -61,7 +61,7 @@ class pdoClass {
             }
             $split_char = ",";
         }
-        echo $this->pdo->exec("INSERT INTO $table ($k_str) VALUES ($v_str)");
+        $this->pdo->exec("INSERT INTO $table ($k_str) VALUES ($v_str)");
         return array(
             'code' => $this->pdo->errorCode(),
             'info' => $this->pdo->errorInfo(),
