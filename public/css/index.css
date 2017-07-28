@@ -140,6 +140,7 @@ ul, li {
 .weibo_box li .w_img {
   width: 64px;
   height: 64px;
+  margin: 1px;
 }
 .weibo_box li .content_box {
   background-color: #fff;

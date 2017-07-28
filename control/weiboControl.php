@@ -110,6 +110,17 @@ class weiboControl extends baseControl{
 
          echo returnJson("1","删除成功");exit();
     }
+
+    public function headSelect($value='')
+    {
+        $uid=$_POST['$user_id'];
+        $weibo_model = $this->model("weibo");
+        $weibo_data = $weibo_model->getLastInfo($uid);
+        foreach ($weibo_data as $key => $value) {
+            $weibo_data[$key]['time']=date('Y-m-d H:i:s',$weibo_data[$key]['create_time']);
+        }
+        echo json_encode($weibo_data);
+    }
 }
 
 ?>

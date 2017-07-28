@@ -276,6 +276,7 @@ $(function() {
     $('.search_list').click(function(event) {
         let this_elm = $(event.target);
         let music_id = $(this_elm).attr('data-id');
+        
         if (music_id) {
             $('#tab3').prepend(`
                 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=${music_id}&auto=0&height=66"></iframe>
@@ -289,10 +290,35 @@ $(function() {
     $('.weibo_box').on("mouseenter",'.head_box', function(e) {
         infoTarget = $(e.target);
         let touxiang_box=infoTarget.parent().find('.info-box');
+        $user_id=infoTarget.find('.w_img').attr('data-id');
+        // console.log($user_id);
         touxiang_box.toggle(600);
+        $.ajax({
+            url: "index.php?control=weibo&action=headSelect",
+            type: "POST",
+            data: {
+                $user_id
+            },
+            success: function(data) {
+                data = $.parseJSON(data);
+                    let p_html = ""
+                    data.forEach(item=>{
+                        p_html+= "<li '>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
+                        
+                    })
+                    $('.road_list').html(p_html);
+            }
+        });
     }).on("mouseleave",'.head_box', function() {
         infoTarget.parent().find('.info-box').toggle(300);
     });
+    $(".info-box").on("mouseover",function  () {
+        $(".head_show_box").modal('show');
+    })
+
+    $(".info-box").on("mouseout",function  () {
+        $(".head_show_box").modal('hide');
+    })
 
     //判断是否是登陆状态
     if(haslogin()) {
