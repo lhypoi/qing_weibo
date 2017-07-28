@@ -273,6 +273,23 @@ $(function() {
         } else if (this_elm.hasClass('edit_weibo')) {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
+        } else if (this_elm.hasClass('more')) { //异步加载评论
+        	var comment = this_elm.attr('data-page');
+            var commentList = 0;
+        	commentList = comment * 5;
+        	var article_id = this_elm.attr('data-id');
+        	$.ajax({
+	    		type: "POST",
+	    		url: "index.php?control=comment&action=getComment",
+	    		data: {article_id, commentList, comment},
+	    		success: function(data) {
+	    			data = $.parseJSON(data);
+	                if (data['status'] == 1) {
+	                    this_elm.parent().parent().append(data['html']);
+	                    this_elm.remove();
+	                }
+	    		}
+	    	});
         }
     })
 
@@ -324,22 +341,22 @@ $(function() {
         // $user_id=infoTarget.find('.w_img').attr('data-id');
         console.log($(this).parent().parent().offset())
         touxiang_box.toggle(600).css("left",$(this).offset().left-313);
-        $.ajax({
-            url: "index.php?control=weibo&action=tagSelect",
-            type: "POST",
-            data: {
-                $tag_id
-            },
-            success: function(data) {
-                data = $.parseJSON(data);
-                    let p_html = ""
-                    data.forEach(item=>{
-                        p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
+        // $.ajax({
+        //     url: "index.php?control=weibo&action=tagSelect",
+        //     type: "POST",
+        //     data: {
+        //         $tag_id
+        //     },
+        //     success: function(data) {
+        //         data = $.parseJSON(data);
+        //             let p_html = ""
+        //             data.forEach(item=>{
+        //                 p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
                         
-                    })
-                    $('.road_list').html(p_html);
-            }
-        });
+        //             })
+        //             $('.road_list').html(p_html);
+        //     }
+        // });
     }).on("mouseleave",'.tag', function() {
         infoTarget.parent().find('.tag_info_box').toggle(300);
     });

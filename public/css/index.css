@@ -177,6 +177,13 @@ ul, li {
   margin: 10px auto;
   padding: 0px 16px;
 }
+.commont_list a.more{
+	text-align:center;
+	display:block;
+	width:80%;
+	margin:0 auto;
+	cursor:pointer;
+}
 .weibo_list .weibo_box .info-box {
   display: none;
 }
