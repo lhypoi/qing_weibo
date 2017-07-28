@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-27 19:12:40
+/* Smarty version 3.1.30, created on 2017-07-28 08:20:57
   from "D:\wamp64\www\first\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597a3b2862fce2_82220562',
+  'unifunc' => 'content_597af3e984b071_88127994',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61998928e63355ffd92ae15cd7024edc928802e2' => 
     array (
       0 => 'D:\\wamp64\\www\\first\\qing_weibo\\view\\index.html',
-      1 => 1501182757,
+      1 => 1501230046,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597a3b2862fce2_82220562 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597af3e984b071_88127994 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -224,9 +224,9 @@ function content_597a3b2862fce2_82220562 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
             <div class="row tag_box">
-            	<div class="tags"></div>
-            	<input type="text" placeholder="请添加标签，按回车确定" id="tag" />
-            	<span class="warning">最多添加5个标签</span>
+                <div class="tags"></div>
+                <input type="text" placeholder="请添加标签，按回车确定" id="tag" />
+                <span class="warning">最多添加5个标签</span>
             </div>
             <!-- 切换栏和发布按钮 -->
             <div class="row menu_box">
@@ -278,7 +278,8 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
 ?>
                             <li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-" class="animated slideInDown">
+" class="animated slideInDown list_<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">
                                 <div class="row clearfix">
                                     <div class="col-lg-2 head_box" style="text-align: center;">
                                         <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
@@ -292,7 +293,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 的最近微博</a>
 
                                             <ul class="road_list">
-	                                        </ul>
+                                            </ul>
 
                                         </div>
                                     </div>
@@ -319,10 +320,38 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                                             <?php }?>
                                         </div>
                                         <div class="w-opt clearfix">
-                                        	<div class="optb pull-left">
-                                        		<a>#标签&nbsp;</a>
-                                        		<a>#标签&nbsp;</a>
-                                        	</div>
+                                            <div class="optb pull-left">
+
+                                                <div class="tag_info_box">
+                                                    <ul class="road_tag">
+                                                        <li>
+                                                            <a href="#" class="tag_content">标签微博</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="tag_content">标签微博</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="tag_content">标签微博</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="arrow_down"></div>
+                                                </div>
+
+                                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
+?>
+                                                    <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+" class="tag">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
+&nbsp;</a>
+                                                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+                                            </div>
                                             <div class="optb pull-right">
                                                 <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
 </span>
@@ -342,7 +371,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                                 </div>
                                 <div class="row comment_row">
                                     <div class="col-lg-10 col-lg-offset-2 commont_box">
-                                    	<div class="row commet">
+                                        <div class="row commet">
                                             <div class="col-lg-10">
                                                 <input type="text" name="commet_content" class="form-control">
                                             </div>
@@ -351,7 +380,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                                             </div>
                                         </div>
                                         <ul class="commont_list">
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
@@ -379,33 +408,33 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                         </div>
                     </div>
                     <!-- 删除微博 -->
-		            <div class="modal" id="modal-del">
-		                <div class="modal-dialog">
-		                    <div class="modal-content">
-		                        <div class="modal-header">删除信息</div>
-		                        <div class="modal-body">确定删除这条信息吗？</div>
-		                        <div class="modal-footer">
-		                        	<input type="hidden" id="record-num" value="">
-		                            <button class="btn btn-default" data-dismiss="modal">取消</button>
-		                            <button class="btn btn-primary" data-dismiss="modal" id="record-del-confirm">确定</button>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		            <!-- 删除评论 -->
-		            <div class="modal" id="modal_comment">
-		                <div class="modal-dialog">
-		                    <div class="modal-content">
-		                        <div class="modal-header">删除评论</div>
-		                        <div class="modal-body">确定删除这条评论吗？</div>
-		                        <div class="modal-footer">
-		                        	<input type="hidden" value="" id="comment-del-num" />
-		                            <button class="btn btn-default" data-dismiss="modal" id="comment-del-cancel">取消</button>
-		                            <button class="btn btn-primary" data-dismiss="modal" id="comment-del-confirm">确定</button>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
+                    <div class="modal" id="modal-del">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">删除信息</div>
+                                <div class="modal-body">确定删除这条信息吗？</div>
+                                <div class="modal-footer">
+                                    <input type="hidden" id="record-num" value="">
+                                    <button class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button class="btn btn-primary" data-dismiss="modal" id="record-del-confirm">确定</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 删除评论 -->
+                    <div class="modal" id="modal_comment">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">删除评论</div>
+                                <div class="modal-body">确定删除这条评论吗？</div>
+                                <div class="modal-footer">
+                                    <input type="hidden" value="" id="comment-del-num" />
+                                    <button class="btn btn-default" data-dismiss="modal" id="comment-del-cancel">取消</button>
+                                    <button class="btn btn-primary" data-dismiss="modal" id="comment-del-confirm">确定</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-3">
                     广告

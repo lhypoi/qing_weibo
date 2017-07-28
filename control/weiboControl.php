@@ -24,7 +24,6 @@ class weiboControl extends baseControl{
         }
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
-        print_r($weibo_data);
     }
 
     public function get() {
@@ -139,6 +138,21 @@ class weiboControl extends baseControl{
             $weibo_data[$key]['time']=date('Y-m-d H:i:s',$weibo_data[$key]['create_time']);
         }
         echo json_encode($weibo_data);
+    }
+
+    // public function tagSelect($value='')
+    // {
+    //     # code...
+    // }
+
+    public function editWeibo()
+    {
+        $result = $this->model('weibo')->edit();
+        if ($result == 1) {
+            returnjson('1','编辑成功');
+        } else {
+            returnjson('0','编辑失败');
+        }
     }
 }
 

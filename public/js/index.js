@@ -300,7 +300,7 @@ $(function() {
     $('.search_list').click(function(event) {
         let this_elm = $(event.target);
         let music_id = $(this_elm).attr('data-id');
-        
+
         if (music_id) {
             $('#tab3').prepend(`
                 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=${music_id}&auto=0&height=66"></iframe>
@@ -327,8 +327,8 @@ $(function() {
                 data = $.parseJSON(data);
                     let p_html = ""
                     data.forEach(item=>{
-                        p_html+= "<li '>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
-                        
+                        p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
+
                     })
                     $('.road_list').html(p_html);
             }
@@ -336,13 +336,39 @@ $(function() {
     }).on("mouseleave",'.head_box', function() {
         infoTarget.parent().find('.info-box').toggle(300);
     });
-    $(".info-box").on("mouseover",function  () {
-        $(".head_show_box").modal('show');
-    })
 
-    $(".info-box").on("mouseout",function  () {
-        $(".head_show_box").modal('hide');
-    })
+    //滑过标签显示
+    $('.optb').on("mouseenter",'.tag', function(e) {
+        infoTarget = $(e.target);
+        let touxiang_box=infoTarget.parent().find('.tag_info_box');
+        // $user_id=infoTarget.find('.w_img').attr('data-id');
+        console.log($(this).parent().parent().offset())
+        touxiang_box.toggle(600).css("left",$(this).offset().left-313);
+        // $.ajax({
+        //     url: "index.php?control=weibo&action=tagSelect",
+        //     type: "POST",
+        //     data: {
+        //         $tag_id
+        //     },
+        //     success: function(data) {
+        //         data = $.parseJSON(data);
+        //             let p_html = ""
+        //             data.forEach(item=>{
+        //                 p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
+
+        //             })
+        //             $('.road_list').html(p_html);
+        //     }
+        // });
+    }).on("mouseleave",'.tag', function() {
+        infoTarget.parent().find('.tag_info_box').toggle(300);
+    });
+    //进入标签显示
+    // $(".tag_info_box").on("mouseenter",function  () {
+    //     $(".tag_info_box").show()
+    // }).on("mouseleave",function  () {
+    //     $(".tag_info_box").hide()
+    // })
 
     //判断是否是登陆状态
     if(haslogin()) {
@@ -479,7 +505,7 @@ function do_edit() {
 // 编辑文本类微博
 function do_edit_weibo() {
     $.ajax({
-        url: "weibo.php",
+        url: "index.php?control=weibo&action=editWeibo",
         type: "POST",
         data: {
             weibo_content: $('#edit_weibo_modal textarea').val(),
