@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 10:47:44
+/* Smarty version 3.1.30, created on 2017-07-28 13:28:21
   from "D:\wamp64\www\20170718\lesson9\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597aa5d00cd073_73401682',
+  'unifunc' => 'content_597acb75a04b48_90334814',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ccc7882bbfbaa41d0fe8bd2b5d6fab59a298e9e2' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\index.html',
-      1 => 1501210056,
+      1 => 1501215916,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597aa5d00cd073_73401682 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597acb75a04b48_90334814 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -283,7 +283,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                                 <div class="row clearfix">
                                     <div class="col-lg-2 head_box" style="text-align: center;">
                                         <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" alt="" class="w_img">
+" alt="" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
+" class="w_img">
                                         <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 </p>
                                         <div class="info-box">
@@ -292,38 +293,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 的最近微博</a>
 
                                             <ul class="road_list">
-
-	                                            <?php
-$__section_loop_0_saved = isset($_smarty_tpl->tpl_vars['__smarty_section_loop']) ? $_smarty_tpl->tpl_vars['__smarty_section_loop'] : false;
-$_smarty_tpl->tpl_vars['__smarty_section_loop'] = new Smarty_Variable(array());
-if (true) {
-for ($__section_loop_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_loop']->value['index'] = 0; $__section_loop_0_iteration <= 3; $__section_loop_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_loop']->value['index']++){
-?>
-	                                            <li class="photo_weibo">
-	                                            <?php if ($_smarty_tpl->tpl_vars['item']->value['type'] == 'short_content') {?>
-	                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
-
-	                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'pic_text') {?>
-	                                                <img src="<?php echo $_smarty_tpl->tpl_vars['item']->value['pic'];?>
-" alt="" class="w-img" style="max-width:40%;max-height:50%">
-	                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
-
-	                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'music') {?>
-	                                                <audio src="<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
-" controls></audio>
-	                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'vedio') {?>
-	                                                <video src="<?php echo $_smarty_tpl->tpl_vars['item']->value['video'];?>
-" controls></video>
-	                                            <?php }?>
-
-	                                            </li>
-	                                            <?php
-}
-}
-if ($__section_loop_0_saved) {
-$_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
-}
-?>
 	                                        </ul>
 
                                         </div>
