@@ -231,7 +231,6 @@ $(function() {
 
     // 事件委托绑定评论下拉框，评论增删功能
     $('.weibo_list').click(function(event) {
-    	event.preventDefault();
         let this_elm = $(event.target);
         // 评论下拉框
         if (this_elm.hasClass('commet_btn')) {
@@ -249,6 +248,7 @@ $(function() {
 	    		});
         	}
         	$(this_elm).closest("li").find('.commont_box').slideToggle();
+        	return false;
         } else if (this_elm.hasClass('commet_send')) {
             // 评论发送
             let weibo_id = $(this_elm).closest("li").attr('weibo-id');
@@ -270,9 +270,11 @@ $(function() {
                     }
                 }
             });
+            return false;
         } else if (this_elm.hasClass('edit_weibo')) {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
+            return false;
         } else if (this_elm.hasClass('more')) { //异步加载评论
         	var comment = this_elm.attr('data-page');
             var commentList = 0;
@@ -290,6 +292,7 @@ $(function() {
 	                }
 	    		}
 	    	});
+        	return false;
         }
     })
 
