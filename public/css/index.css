@@ -188,7 +188,7 @@ ul, li {
   top: -45px;
   left: 108px;
   width: 600px;
-  height: 150px;
+  height: 168px;
   background-color: rgba(83, 97, 119, 0.95);
   z-index: 999;
 }
@@ -201,9 +201,9 @@ ul, li {
   float: left;
   margin: 63px 0 0 -15px;
 }
-li .photo_weibo {
+.photo_weibo {
   width: 90%;
-  margin: 18px auto;
+  margin: 0px auto;
 }
 .content_box .content img {
   max-width: 40%;
@@ -247,4 +247,44 @@ li .photo_weibo {
 	color:#ccc;
 	font-size:12px;
 	cursor:pointer;
+}
+
+/*.tag{
+  position: relative;
+}*/
+
+.tag_info_box{
+  width: 339px;
+  height: 126px;
+  background-color: #efeeee;
+  position: absolute;
+  bottom: 38px;
+  left: 0px;
+}
+.arrow_down{
+  width: 0px;
+  height:0px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #efeeee transparent transparent transparent;
+  float: left;
+  margin: 11px 0 0 20px;
+}
+.road_tag li{
+  float: left;
+  height: 100px;
+}
+.road_tag li a{
+  text-decoration: none;
+  display: block;
+  width: 100px;
+  height: 100%;
+  margin: 8px 6px;
+  background-color: #fff;
+}
+.road_tag li a.tag_content{
+  color: #000;
+}
+.w-opt .optb .tag_info_box{
+  display: none;
 }

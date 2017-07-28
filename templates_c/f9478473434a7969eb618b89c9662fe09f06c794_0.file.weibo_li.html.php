@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-27 17:22:08
+/* Smarty version 3.1.30, created on 2017-07-28 01:14:29
   from "D:\wamp64\www\first\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597a2140210858_27170874',
+  'unifunc' => 'content_597a8ff5cfb844_89249210',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f9478473434a7969eb618b89c9662fe09f06c794' => 
     array (
       0 => 'D:\\wamp64\\www\\first\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501176117,
+      1 => 1501203956,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597a2140210858_27170874 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597a8ff5cfb844_89249210 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
@@ -28,7 +28,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 <li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 " class="animated slideInDown list_<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">
-    <div class="row">
+    <div class="row clearfix">
         <div class="col-lg-2 head_box" style="text-align: center;">
             <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" class="w_img" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
@@ -66,6 +66,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
                 <?php }?>
             </div>
             <div class="w-opt clearfix">
+            	<div class="optb pull-left">
+               		<a>#标签&nbsp;</a>
+               		<a>#标签&nbsp;</a>
+               	</div>
                 <div class="optb pull-right">
                     <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
 </span>
@@ -73,11 +77,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
                         <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">删除</a>
                     <?php }?>
-                    <a href="" class="commet_btn">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
-)</a>
                     <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
                         <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
                     <?php }?>
+                    <a href="" class="commet_btn">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+)</a>
                 </div>
             </div>
         </div>

@@ -37,20 +37,12 @@ class weibo extends pdoClass{
         );
     }
 
-<<<<<<< HEAD
+
     public function getLastInfo($uid)
     {
 
         $sql ="select * from weibo_detail where user_id=$uid order by id desc limit 3";
          return $this->select($sql); 
-
-
-=======
-    public function getCommontByWid($weibo_id)
-    {
-        $result = $this->select('select * form weibo_commet where weibo_id = $weibo_id');
-        return $result;
->>>>>>> 2e4c602473b23930c6637acd7bbb694f05338db1
     }
 }
 
