@@ -265,7 +265,7 @@ $(function() {
                 success: function(data) {
                     data = $.parseJSON(data);
                     if (data['status'] == 1) {
-                        $('.commont_list').eq(0).prepend(data['html']);
+                        $('li[weibo-id='+weibo_id+'] .commont_list').eq(0).prepend(data['html']);
                         $(this_elm).parent().prev().find('input').val('');
                     }
                 }
