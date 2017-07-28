@@ -20,3 +20,8 @@
         </div>
     </li>
 {/foreach}
+{if $more == 1}
+    <div class="row">
+	    <a class="more" data-id="{$value.weibo_id}" data-page="{$page}">点击加载更多</a>
+    </div>
+{/if}

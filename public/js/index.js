@@ -273,6 +273,23 @@ $(function() {
         } else if (this_elm.hasClass('edit_weibo')) {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
+        } else if (this_elm.hasClass('more')) { //异步加载评论
+        	var comment = this_elm.attr('data-page');
+            var commentList = 0;
+        	commentList = comment * 5;
+        	var article_id = this_elm.attr('data-id');
+        	$.ajax({
+	    		type: "POST",
+	    		url: "index.php?control=comment&action=getComment",
+	    		data: {article_id, commentList, comment},
+	    		success: function(data) {
+	    			data = $.parseJSON(data);
+	                if (data['status'] == 1) {
+	                    this_elm.parent().parent().append(data['html']);
+	                    this_elm.remove();
+	                }
+	    		}
+	    	});
         }
     })
 
