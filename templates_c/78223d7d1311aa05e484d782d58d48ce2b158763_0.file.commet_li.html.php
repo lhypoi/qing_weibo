@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-27 11:59:14
+/* Smarty version 3.1.30, created on 2017-07-28 03:15:16
   from "C:\wamp\www\qing_weibo\view\commet_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5979d592b79d62_14733015',
+  'unifunc' => 'content_597aac44d52931_70213739',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78223d7d1311aa05e484d782d58d48ce2b158763' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\commet_li.html',
-      1 => 1501156728,
+      1 => 1501211345,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5979d592b79d62_14733015 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597aac44d52931_70213739 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value, 'value');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['value']->value) {
@@ -56,5 +56,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['value']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+<?php if ($_smarty_tpl->tpl_vars['more']->value == 1) {?>
+    <div class="row">
+	    <a class="more" data-id="<?php echo $_smarty_tpl->tpl_vars['value']->value['weibo_id'];?>
+" data-page="<?php echo $_smarty_tpl->tpl_vars['page']->value;?>
+">点击加载更多</a>
+    </div>
+<?php }
 }
 }

@@ -30,7 +30,7 @@ class comment extends pdoClass{
         return $result;
     }
 
-    public function getComment($weibo_id) {
+    public function getComment($weibo_id, $page="0,5") {
         $sql = "SELECT
                     commet.id,
                     commet.commet_content,
@@ -40,13 +40,19 @@ class comment extends pdoClass{
                     user.user_name,
                     user.user_nickname,
                     user.user_pic
-                 FROM
+                FROM
                     weibo_commet commet
                 INNER JOIN
                     weibo_user user
-                ON (commet.user_id=user.id AND commet.weibo_id=$weibo_id)
-                ORDER BY commet.id DESC";
+                ON (commet.user_id=user.id AND commet.weibo_id=$weibo_id) 
+                ORDER BY commet.id DESC LIMIT $page";
         return $this->select($sql);
+    }
+    
+    //统计某条微博的评论总数
+    public function getTotalComment($weibo_id) {
+        $sql = "SELECT count(*) FROM weibo_commet WHERE weibo_id=$weibo_id";
+        return $this->find($sql);
     }
 
     public function getCommontByWid($weibo_id)

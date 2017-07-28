@@ -140,6 +140,7 @@ ul, li {
 .weibo_box li .w_img {
   width: 64px;
   height: 64px;
+  margin: 1px;
 }
 .weibo_box li .content_box {
   background-color: #fff;
@@ -175,6 +176,13 @@ ul, li {
   width: 95%;
   margin: 10px auto;
   padding: 0px 16px;
+}
+.commont_list a.more{
+	text-align:center;
+	display:block;
+	width:80%;
+	margin:0 auto;
+	cursor:pointer;
 }
 .weibo_list .weibo_box .info-box {
   display: none;
