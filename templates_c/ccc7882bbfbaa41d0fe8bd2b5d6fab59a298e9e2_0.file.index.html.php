@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 08:50:27
+/* Smarty version 3.1.30, created on 2017-07-28 10:47:44
   from "D:\wamp64\www\20170718\lesson9\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597a8a5389f555_57216019',
+  'unifunc' => 'content_597aa5d00cd073_73401682',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ccc7882bbfbaa41d0fe8bd2b5d6fab59a298e9e2' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\index.html',
-      1 => 1501203025,
+      1 => 1501210056,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597a8a5389f555_57216019 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597aa5d00cd073_73401682 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -352,8 +352,20 @@ $_smarty_tpl->tpl_vars['__smarty_section_loop'] = $__section_loop_0_saved;
                                         </div>
                                         <div class="w-opt clearfix">
                                         	<div class="optb pull-left">
-                                        		<a>#标签&nbsp;</a>
-                                        		<a>#标签&nbsp;</a>
+                                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
+?>
+                                                    <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
+&nbsp;</a>
+                                                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
                                         	</div>
                                             <div class="optb pull-right">
                                                 <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
