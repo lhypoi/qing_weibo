@@ -153,7 +153,8 @@ $(function() {
                 type: "POST",
                 data: {
                     weibo_content: $('textarea').eq(0).val(),
-                    tagname_arr
+                    tagname_arr,
+                    type
                 },
                 success: function(data) {
                     data = $.parseJSON(data);
@@ -168,6 +169,7 @@ $(function() {
             fd.append('weibo_content', $('textarea').eq(1).val());
             fd.append('pic_file', $('#pic_file').get(0).files[0]);
             fd.append('tagname_arr', tagname_arr);
+            fd.append('type', type);
             $.ajax({
                 url: "weibo.php",
                 type: "POST",
@@ -185,6 +187,7 @@ $(function() {
         } else if (type == "music") {
             var fd = new FormData();
             fd.append('music_file', $('#music_file').get(0).files[0]);
+            fd.append('type', type);
             fd.append('tagname_arr', tagname_arr);
             $.ajax({
                 url: "weibo.php",
@@ -202,6 +205,7 @@ $(function() {
         } else if (type == "video") {
             var fd = new FormData();
             fd.append('video_file', $('#video_file').get(0).files[0]);
+            fd.append('type', type);
             fd.append('tagname_arr', tagname_arr);
             $.ajax({
                 url: "weibo.php",
@@ -217,7 +221,7 @@ $(function() {
                 }
             });
         }
-        
+
     })
 
 
@@ -334,7 +338,7 @@ $(function() {
     		}
     	});
     }
-    
+
     //异步加载微博列表
     var page = 1;
     var pageList = 0;
@@ -344,8 +348,8 @@ $(function() {
     			pageList = page * 10;
     			$.ajax({
     	    		type: "POST",
-    	    		url: "index.php?control=weibo&action=get", 
-    	    		data: {pageList}, 
+    	    		url: "index.php?control=weibo&action=get",
+    	    		data: {pageList},
     	    		success: function(data) {
     	    			data = $.parseJSON(data);
     	                if (data['status'] == 1) {
@@ -357,7 +361,7 @@ $(function() {
     		}
     	}
     })
-    
+
     //添加标签
     var tagname_arr = [];
     $('#tag').on('keyup', function(e) {

@@ -1,12 +1,44 @@
+<?php
+/* Smarty version 3.1.30, created on 2017-07-27 19:12:40
+  from "D:\wamp64\www\first\qing_weibo\view\index.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_597a3b2862fce2_82220562',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '61998928e63355ffd92ae15cd7024edc928802e2' => 
+    array (
+      0 => 'D:\\wamp64\\www\\first\\qing_weibo\\view\\index.html',
+      1 => 1501182757,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_597a3b2862fce2_82220562 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>微....博的？！</title>
-    <script type="text/javascript" src="./public/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./public/js/index.js?0.0.2"></script>
-    <script type="text/javascript" src="./public/js/delete.js"></script>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/jquery-3.1.0.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
+>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
     <link rel="stylesheet" type="text/css" href="./public/css/animate.css"></head>
@@ -24,11 +56,13 @@
             <!-- 用户信息 -->
             <div class="tab_user clearfix">
                 <div class="dropdown user_state pull-left" id="accountmenu">
-                    {* 已登录 *}
-                    {if $smarty.session.uid > 0}
-                    <img src="{$user_pic|default:'./public/img/default.png'}" alt="">
+                    
+                    <?php if ($_SESSION['uid'] > 0) {?>
+                    <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['user_pic']->value)===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
+" alt="">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {$user_nickname} <b class="caret"></b>
+                        <?php echo $_smarty_tpl->tpl_vars['user_nickname']->value;?>
+ <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -39,8 +73,8 @@
                             <a href="#quit_box" data-toggle="modal">退出</a>
                         </li>
                     </ul>
-                    {* 未登录 *}
-                    {else}
+                    
+                    <?php } else { ?>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         当前状态：游客 <b class="caret"></b>
                     </a>
@@ -53,9 +87,9 @@
                             <a href="#register_box" data-toggle="modal">注册</a>
                         </li>
                     </ul>
-                    {/if}
+                    <?php }?>
                 </div>
-                {* 登陆模态框 *}
+                
                 <div class="modal" id="login_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -81,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                {* 注册模态框 *}
+                
                 <div class="modal" id="register_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -126,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                {* 修改头像模态框 *}
+                
                 <div class="modal" id="edit_pic_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -148,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                {* 退出当前用户模态框 *}
+                
                 <div class="modal" id="quit_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -179,7 +213,7 @@
                     <div class="pic_file_see"></div>
                 </div>
                 <div class="tab-pane fade" id="tab3">
-                    {* <input type="file" id="music_file"> *}
+                    
                     <input type="text" name="" class="search_music form-control" placeholder="请用歌名、专辑、艺术家搜索" oninput="search_music(this)">
                     <ul class="search_list">
                     </ul>
@@ -238,19 +272,24 @@
             <div class="row">
                 <div class="col-lg-9">
                     <ul class="weibo_box">
-                        {foreach from=$weibo_data item=$item key=$key}
-<<<<<<< HEAD
-                            <li weibo-id="{$item.id}" class="animated slideInDown">
-=======
-                            <li weibo-id="{$item.id}" class="animated slideInDown list_{$item.id}">
->>>>>>> 2e4c602473b23930c6637acd7bbb694f05338db1
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
+?>
+                            <li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+" class="animated slideInDown">
                                 <div class="row clearfix">
                                     <div class="col-lg-2 head_box" style="text-align: center;">
-                                        <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" data-id="{$item.user_id}" class="w_img">
-                                        <p>{$item.user_data.user_nickname}</p>
+                                        <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
+" alt="" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
+" class="w_img">
+                                        <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
+</p>
                                         <div class="info-box">
                                             <div class="arrow-left"></div>
-                                            <a  class="author-name">{$item.user_data.user_nickname}的最近微博</a>
+                                            <a  class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
+的最近微博</a>
 
                                             <ul class="road_list">
 	                                        </ul>
@@ -260,18 +299,24 @@
                                     <div class="col-lg-10 content_box">
                                         <div class="triangle_border_ne"></div>
                                         <div class="content">
-                                            {if $item.type == 'short_content'}
-                                                {$item.weibo_content}
-                                            {elseif $item.type == 'pic_text'}
-                                                <img src="{$item.pic}" alt="" class="w-img">
-                                                {$item.weibo_content}
-                                            {elseif $item.type == 'music'}
-                                                <audio src="{$item.music}" controls></audio>
-                                            {elseif $item.type == 'vedio'}
-                                                <video src="{$item.video}" controls></video>
-                                            {elseif $item.type == 'long_content'}
-                                                {$item.weibo_content}
-                                            {/if}
+                                            <?php if ($_smarty_tpl->tpl_vars['item']->value['type'] == 'short_content') {?>
+                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'pic_text') {?>
+                                                <img src="<?php echo $_smarty_tpl->tpl_vars['item']->value['pic'];?>
+" alt="" class="w-img">
+                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'music') {?>
+                                                <audio src="<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
+" controls></audio>
+                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'vedio') {?>
+                                                <video src="<?php echo $_smarty_tpl->tpl_vars['item']->value['video'];?>
+" controls></video>
+                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'long_content') {?>
+                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+                                            <?php }?>
                                         </div>
                                         <div class="w-opt clearfix">
                                         	<div class="optb pull-left">
@@ -279,14 +324,18 @@
                                         		<a>#标签&nbsp;</a>
                                         	</div>
                                             <div class="optb pull-right">
-                                                <span style="color: #55a4a9;">{date('Y-m-d H:i:s', $item.create_time)}</span>
-                                                {if $item.user_data.id == $smarty.session.uid}
-                                                    <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="{$item.id}">删除</a>
-                                                {/if}
-                                                {if $item.user_data.id == $smarty.session.uid}
+                                                <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
+</span>
+                                                <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
+                                                    <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">删除</a>
+                                                <?php }?>
+                                                <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
                                                     <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
-                                                {/if}
-                                                <a href="" class="commet_btn" data-num="{$item.id}">评论({count($item.commet_data)})</a>
+                                                <?php }?>
+                                                <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+)</a>
                                             </div>
                                         </div>
                                     </div>
@@ -302,12 +351,17 @@
                                             </div>
                                         </div>
                                         <ul class="commont_list">
-
+                                            
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                        {/foreach}
+                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
                     </ul>
                     <div class="modal fade" id="edit_weibo_modal">
                         <div class="modal-dialog">
@@ -361,4 +415,5 @@
         </div>
     </div>
 </body>
-</html>
+</html><?php }
+}
