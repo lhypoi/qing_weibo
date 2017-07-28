@@ -1,7 +1,7 @@
-{include file='view/common/head.html'}
-<!-- ·¢²¼Î¢²© -->
+ï»¿{include file='view/common/head.html'}
+<!-- å‘å¸ƒå¾®åš -->
 <div class="weibo_content">
-    <!-- ÄÚÈİÇøÓò -->
+    <!-- å†…å®¹åŒºåŸŸ -->
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
             <textarea name="weibo_text" class="form-control" rows="2"></textarea>
@@ -9,14 +9,14 @@
         <div class="tab-pane fade" id="tab2">
             <textarea name="weibo_text" class="form-control" rows="2"></textarea>
             <div class="filePicker">
-                <label>µã»÷Ñ¡ÔñÎÄ¼ş</label>
+                <label>ç‚¹å‡»é€‰æ‹©æ–‡ä»¶</label>
                 <input type="file" name="" value="" class="form-control" id="pic_file">
             </div>
             <div class="pic_file_see"></div>
         </div>
         <div class="tab-pane fade" id="tab3">
             {* <input type="file" id="music_file"> *}
-            <input type="text" name="" class="search_music form-control" placeholder="ÇëÓÃ¸èÃû¡¢×¨¼­¡¢ÒÕÊõ¼ÒËÑË÷" oninput="search_music(this)">
+            <input type="text" name="" class="search_music form-control" placeholder="è¯·ç”¨æ­Œåã€ä¸“è¾‘ã€è‰ºæœ¯å®¶æœç´¢" oninput="search_music(this)">
             <ul class="search_list">
             </ul>
             <textarea name="weibo_text" class="form-control" rows="2"></textarea>
@@ -27,45 +27,45 @@
     </div>
     <div class="row tag_box">
     	<div class="tags"></div>
-    	<input type="text" placeholder="ÇëÌí¼Ó±êÇ©£¬°´»Ø³µÈ·¶¨" id="tag" />
-    	<span class="warning">×î¶àÌí¼Ó5¸ö±êÇ©</span>
+    	<input type="text" placeholder="è¯·æ·»åŠ æ ‡ç­¾ï¼ŒæŒ‰å›è½¦ç¡®å®š" id="tag" />
+    	<span class="warning">æœ€å¤šæ·»åŠ 5ä¸ªæ ‡ç­¾</span>
     </div>
-    <!-- ÇĞ»»À¸ºÍ·¢²¼°´Å¥ -->
+    <!-- åˆ‡æ¢æ å’Œå‘å¸ƒæŒ‰é’® -->
     <div class="row menu_box">
         <div class="col-lg-9">
             <div class="col-lg-2 menu_tab">
                 <a href="#tab1" data-toggle="tab">
                     <span class="glyphicon glyphicon-pencil"></span>
-                    ÎÄ×Ö
+                    æ–‡å­—
                 </a>
             </div>
             <div class="col-lg-2 menu_tab">
                 <a href="#tab2" data-toggle="tab">
                     <span class="glyphicon glyphicon-heart"></span>
-                    Í¼ÎÄ
+                    å›¾æ–‡
                 </a>
             </div>
             <div class="col-lg-2 menu_tab">
                 <a href="#tab3" data-toggle="tab">
                     <span class="glyphicon glyphicon-music"></span>
-                    ÒôÀÖ
+                    éŸ³ä¹
                 </a>
             </div>
             <div class="col-lg-2 menu_tab">
                 <a href="#tab4" data-toggle="tab">
                     <span class="glyphicon glyphicon-film"></span>
-                    ÊÓÆµ
+                    è§†é¢‘
                 </a>
             </div>
             <div class="col-lg-2 menu_tab">
                 <a href="#tab4" data-toggle="tab">
                     <span class="glyphicon glyphicon-film"></span>
-                    ³¤ÎÄÕÂ
+                    é•¿æ–‡ç« 
                 </a>
             </div>
         </div>
         <div class="col-lg-2 col-lg-offset-1">
-            <input type="button" class="btn btn-info btn-lg pull-right mt_20" value="·¢²¼">
+            <input type="button" class="btn btn-info btn-lg pull-right mt_20" value="å‘å¸ƒ">
             <input type="hidden" id="type" value="short_content">
         </div>
     </div>
@@ -82,11 +82,8 @@
                                 <p>{$item.user_data.user_nickname}</p>
                                 <div class="info-box">
                                     <div class="arrow-left"></div>
-                                    <a  class="author-name">{$item.user_data.user_nickname}µÄ×î½üÎ¢²©</a>
-
-                                    <ul class="road_list">
-                                 </ul>
-
+                                    <a  class="author-name">{$item.user_data.user_nickname}çš„æœ€è¿‘å¾®åš</a>
+                                    <ul class="road_list"></ul>
                                 </div>
                             </div>
                             <div class="col-lg-10 content_box">
@@ -107,18 +104,19 @@
                                 </div>
                                 <div class="w-opt clearfix">
                                 	<div class="optb pull-left">
-                                		<a>#±êÇ©&nbsp;</a>
-                                		<a>#±êÇ©&nbsp;</a>
+                                		{foreach from=$item.tag_data.tagid_arr item=$item2 key=$key2}
+					                        <a data-id = "{$item2}" href="index.php?control=tag&action=info&id={$item2}">#{$item.tag_data.tagname_arr[$key2]}&nbsp;</a>
+					                    {/foreach}
                                 	</div>
                                     <div class="optb pull-right">
                                         <span style="color: #55a4a9;">{date('Y-m-d H:i:s', $item.create_time)}</span>
                                         {if $item.user_data.id == $smarty.session.uid}
-                                            <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="{$item.id}">É¾³ı</a>
+                                            <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="{$item.id}">åˆ é™¤</a>
                                         {/if}
                                         {if $item.user_data.id == $smarty.session.uid}
-                                            <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">±à¼­</a>
+                                            <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">ç¼–è¾‘</a>
                                         {/if}
-                                        <a href="" class="commet_btn" data-num="{$item.id}">ÆÀÂÛ({count($item.commet_data)})</a>
+                                        <a href="" class="commet_btn" data-num="{$item.id}">è¯„è®º({count($item.commet_data)})</a>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +128,7 @@
                                         <input type="text" name="commet_content" class="form-control">
                                     </div>
                                     <div class="col-lg-2">
-                                        <input type="button" class="btn btn-info commet_send" value="·¢²¼">
+                                        <input type="button" class="btn btn-info commet_send" value="å‘å¸ƒ">
                                     </div>
                                 </div>
                                 <ul class="commont_list">
@@ -144,51 +142,51 @@
             <div class="modal fade" id="edit_weibo_modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">±à¼­Î¢²©</div>
+                        <div class="modal-header">ç¼–è¾‘å¾®åš</div>
                         <div class="modal-body">
                             <textarea class="form-control" rows="2"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-default" data-dismiss="modal">È¡Ïû</button>
-                            <button class="btn btn-info" onclick="do_edit_weibo()">È·¶¨</button>
+                            <button class="btn btn-default" data-dismiss="modal">å–æ¶ˆ</button>
+                            <button class="btn btn-info" onclick="do_edit_weibo()">ç¡®å®š</button>
                             <input type="hidden" name="">
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- É¾³ıÎ¢²© -->
+            <!-- åˆ é™¤å¾®åš -->
       <div class="modal" id="modal-del">
           <div class="modal-dialog">
               <div class="modal-content">
-                  <div class="modal-header">É¾³ıĞÅÏ¢</div>
-                  <div class="modal-body">È·¶¨É¾³ıÕâÌõĞÅÏ¢Âğ£¿</div>
+                  <div class="modal-header">åˆ é™¤ä¿¡æ¯</div>
+                  <div class="modal-body">ç¡®å®šåˆ é™¤è¿™æ¡ä¿¡æ¯å—ï¼Ÿ</div>
                   <div class="modal-footer">
                   	<input type="hidden" id="record-num" value="">
-                      <button class="btn btn-default" data-dismiss="modal">È¡Ïû</button>
-                      <button class="btn btn-primary" data-dismiss="modal" id="record-del-confirm">È·¶¨</button>
+                      <button class="btn btn-default" data-dismiss="modal">å–æ¶ˆ</button>
+                      <button class="btn btn-primary" data-dismiss="modal" id="record-del-confirm">ç¡®å®š</button>
                   </div>
               </div>
           </div>
       </div>
-      <!-- É¾³ıÆÀÂÛ -->
+      <!-- åˆ é™¤è¯„è®º -->
       <div class="modal" id="modal_comment">
           <div class="modal-dialog">
               <div class="modal-content">
-                  <div class="modal-header">É¾³ıÆÀÂÛ</div>
-                  <div class="modal-body">È·¶¨É¾³ıÕâÌõÆÀÂÛÂğ£¿</div>
+                  <div class="modal-header">åˆ é™¤è¯„è®º</div>
+                  <div class="modal-body">ç¡®å®šåˆ é™¤è¿™æ¡è¯„è®ºå—ï¼Ÿ</div>
                   <div class="modal-footer">
                   	<input type="hidden" value="" id="comment-del-num" />
-                      <button class="btn btn-default" data-dismiss="modal" id="comment-del-cancel">È¡Ïû</button>
-                      <button class="btn btn-primary" data-dismiss="modal" id="comment-del-confirm">È·¶¨</button>
+                      <button class="btn btn-default" data-dismiss="modal" id="comment-del-cancel">å–æ¶ˆ</button>
+                      <button class="btn btn-primary" data-dismiss="modal" id="comment-del-confirm">ç¡®å®š</button>
                   </div>
               </div>
           </div>
       </div>
         </div>
         <div class="col-lg-3">
-            ¹ã¸æ
+            å¹¿å‘Š
         </div>
     </div>
-
+	<script type="text/javascript" src="./public/js/load.js"></script>
 </div>
 {include file='view/common/foot.html'}

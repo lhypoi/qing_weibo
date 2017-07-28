@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class userControl extends baseControl{
     public function reg() {
@@ -16,13 +16,13 @@ class userControl extends baseControl{
             }
         }
     }
-    
+
     public function log() {
         $username = $_POST['user_name'];
         $pwd = $_POST['user_pwd'];
         $result = $this->model("user")->getUserInfo($username, $pwd);
         if($result) {
-            $uid = $result[0]['id'];
+            $uid = $result['id'];
             $_SESSION['uid'] = $uid;
 
             returnjson(1, "登录成功", "", "", $uid);
@@ -30,12 +30,12 @@ class userControl extends baseControl{
             returnjson(0, "登录失败");
         }
     }
-    
+
     public function logout() {
         unset($_SESSION['uid']);
         returnjson(1, '退出用户成功');
     }
-    
+
     public function check() {
         $id = $_POST['id'];
         $_SESSION['uid'] =$id;

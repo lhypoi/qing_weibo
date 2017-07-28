@@ -29,8 +29,9 @@
             </div>
             <div class="w-opt clearfix">
             	<div class="optb pull-left">
-               		<a>#标签&nbsp;</a>
-               		<a>#标签&nbsp;</a>
+                    {foreach from=$item.tag_data.tagid_arr item=$item2 key=$key2}
+                        <a data-id = "{$item2}" href="index.php?control=tag&action=info&id={$item2}">#{$item.tag_data.tagname_arr[$key2]}&nbsp;</a>
+                    {/foreach}
                	</div>
                 <div class="optb pull-right">
                     <span style="color: #55a4a9;">{date('Y-m-d H:i:s', $item.create_time)}</span>

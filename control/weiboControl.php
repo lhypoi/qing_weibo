@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class weiboControl extends baseControl{
     public function index() {
@@ -10,7 +10,7 @@ class weiboControl extends baseControl{
         } else {
             $_SESSION['uid'] = 0;
         }
-        
+
         $weibo_model = $this->model("weibo");
         $weibo_data = $weibo_model->getWeiboList();
         foreach ($weibo_data as $key => $value) {
@@ -18,27 +18,37 @@ class weiboControl extends baseControl{
             $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
             foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
                 $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
-            }
+            };
+
+            $weibo_data[$key]['tag_data'] = $this->model('tag')->getTagbyWeiboid($value['id']);
         }
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
+        print_r($weibo_data);
     }
-    
+
     public function get() {
         $pageStart = $_POST['pageList'];
         $page = $pageStart.",10";
         $weibo_model = $this->model("weibo");
         $weibo_data = $weibo_model->getWeiboList($page);
-        foreach ($weibo_data as $key => $value) {
-            $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
-            $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
-            foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
-                $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
+        if(empty($weibo_data)) {
+            returnjson(0, "无更多页面");
+        }else{
+            foreach ($weibo_data as $key => $value) {
+                $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
+                $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
+                foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
+                    $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
+                };
+    
+                $weibo_data[$key]['tag_data'] = $this->model('tag')->getTagbyWeiboid($value['id']);
+    
             }
+            $this->assign("weibo_data", $weibo_data);
+            $html = $this->fetch("weibo_li.html");
+            returnjson(1, "",$html,"",$weibo_data);
         }
-        $this->assign("weibo_data", $weibo_data);
-        $html = $this->fetch("weibo_li.html");
-        returnjson(1, "",$html,"",$weibo_data);
     }
     //发布微博
     public function sendWeibo(){
@@ -49,24 +59,33 @@ class weiboControl extends baseControl{
         $new_content['uid'] = $_SESSION['uid'];
         // 保存这一条微博信息
         // 问题一：内容会被覆盖
-        
-        
+
+
+
         $error_array = $this->model('weibo')->setContent($new_content);
 
         if ($error_array['num'] > 0){
-            
+
+            $tagname_arr = array();
+            $tagid_arr = array();
+            if (!empty($_POST['tagname_arr'])) {
+                $tagid_arr = $this->model('tag')->update($_POST['tagname_arr'], $error_array['id']);
+                $tagname_arr = $_POST['tagname_arr'];
+            }
+
             $weibo_model = $this->model("weibo");
             $weibo_data = $weibo_model->getWeiboList(1);
             foreach ($weibo_data as $key => $value) {
                 $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
                 $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
+                $weibo_data[$key]['tag_data'] = array('tagid_arr'=>$tagid_arr, 'tagname_arr'=>$tagname_arr);
                 foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
                     $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
                 }
             }
             $this->assign("weibo_data", $weibo_data);
 
-            // html编码统一返回null
+        // html编码统一返回null
         $html = $this->fetch("weibo_li.html");
 
         echo json_encode(
