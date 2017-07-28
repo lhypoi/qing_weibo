@@ -297,7 +297,7 @@ $(function() {
     $('.search_list').click(function(event) {
         let this_elm = $(event.target);
         let music_id = $(this_elm).attr('data-id');
-        
+
         if (music_id) {
             $('#tab3').prepend(`
                 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=${music_id}&auto=0&height=66"></iframe>
@@ -325,7 +325,7 @@ $(function() {
                     let p_html = ""
                     data.forEach(item=>{
                         p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
-                        
+
                     })
                     $('.road_list').html(p_html);
             }
@@ -352,7 +352,7 @@ $(function() {
         //             let p_html = ""
         //             data.forEach(item=>{
         //                 p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
-                        
+
         //             })
         //             $('.road_list').html(p_html);
         //     }
@@ -525,7 +525,7 @@ function do_edit() {
 // 编辑文本类微博
 function do_edit_weibo() {
     $.ajax({
-        url: "weibo.php",
+        url: "index.php?control=weibo&action=editWeibo",
         type: "POST",
         data: {
             weibo_content: $('#edit_weibo_modal textarea').val(),

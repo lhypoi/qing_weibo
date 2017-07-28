@@ -140,6 +140,16 @@ class weiboControl extends baseControl{
     // {
     //     # code...
     // }
+
+    public function editWeibo()
+    {
+        $result = $this->model('weibo')->edit();
+        if ($result == 1) {
+            returnjson('1','编辑成功');
+        } else {
+            returnjson('0','编辑失败');
+        }
+    }
 }
 
 ?>
