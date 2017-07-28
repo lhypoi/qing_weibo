@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 01:02:06
+/* Smarty version 3.1.30, created on 2017-07-28 09:10:54
   from "C:\wamp\www\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597a8d0e2175f8_58921642',
+  'unifunc' => 'content_597aff9e700722_46834422',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '08fc6d376f4c530914147539568737b11d238abd' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501203654,
+      1 => 1501232983,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597a8d0e2175f8_58921642 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597aff9e700722_46834422 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
@@ -31,14 +31,16 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
     <div class="row clearfix">
         <div class="col-lg-2 head_box" style="text-align: center;">
             <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" alt="" class="w_img">
+" alt="" class="w_img" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
+">
             <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 </p>
             <div class="info-box">
                 <div class="arrow-left"></div>
                 <a class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 最近发布过的3条微博</a>
-
+                <ul class="road_list">
+                </ul>
             </div>
         </div>
         <div class="col-lg-10 content_box">
@@ -65,8 +67,21 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
             </div>
             <div class="w-opt clearfix">
             	<div class="optb pull-left">
-               		<a>#标签&nbsp;</a>
-               		<a>#标签&nbsp;</a>
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
+?>
+                        <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+" href="index.php?control=tag&action=info&id=<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
+&nbsp;</a>
+                    <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
                	</div>
                 <div class="optb pull-right">
                     <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
