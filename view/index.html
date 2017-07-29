@@ -105,24 +105,24 @@
 						    </div>
 						    <div class="w-opt clearfix">
 						        <div class="optb pull-left">
-						
-						            <div class="tag_info_box">
-						                <ul class="road_tag">
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                </ul>
-						                <div class="arrow_down"></div>
-						            </div>
-						
 						            {foreach from=$item.tag_data.tagid_arr item=$item2 key=$key2}
+						            <div class="tags_box">
+						            	<div class="tag_info_box">
+							                <ul class="road_tag clearfix">
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                </ul>
+							                <div class="arrow_down"></div>
+							            </div>
 						                <a data-id = "{$item2}" class="tag" href="index.php?control=tag&action=info&id={$item2}">#{$item.tag_data.tagname_arr[$key2]}&nbsp;</a>
+						            </div>
 						            {/foreach}
 						        </div>
 						        <div class="optb pull-right">

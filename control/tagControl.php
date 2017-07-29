@@ -27,6 +27,16 @@ class tagControl extends baseControl {
         $this->display("tag.html");
        
     }
+    
+    public function tagSelect() {
+        $id = $_POST['tag_id'];
+        $model = $this->model("tag");
+        $weibo_id = $model->getWeiboListById($id);
+        foreach ($weibo_id as $key => $value) {
+            $result = $model->getWeiboListByTag($value['weibo_id'], "0,3");
+        }
+        returnjson(1, "","","",$result);
+    }
 }
 
 ?>

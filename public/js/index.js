@@ -110,15 +110,15 @@ $(function() {
     //     $('.register_user_pic_see .col-lg-10').empty().append('<img src=' + objecturl + '>');
     // }, false);
 
-    var fileInput2 = document.getElementById("pic_file");
-    fileInput2.addEventListener('change', function(event) {
+    var fileInput2 = $("#pic_file");
+    fileInput2.on('change', function(event) {
         var file = fileInput2.files[0];
         var objecturl = window.URL.createObjectURL(file);
         $('#main .weibo_content .tab-content .pic_file_see').empty().append('<img src=' + objecturl + '>');
     }, false);
 
-    var fileInput3 = document.getElementById("edit_pic");
-    fileInput3.addEventListener('change', function(event) {
+    var fileInput3 = $("#edit_pic");
+    fileInput3.on('change', function(event) {
         var file = fileInput3.files[0];
         var objecturl = window.URL.createObjectURL(file);
         $('.edit_pic_see').empty().append(`<img src="${objecturl}" style="max-width:100%;height:100%;max-height:200px">`);
@@ -337,30 +337,28 @@ $(function() {
     });
 
     //滑过标签显示
-    $('.optb').on("mouseenter",'.tag', function(e) {
+    $('.optb').on("mouseenter",'.tags_box', function(e) {
         infoTarget = $(e.target);
-        let touxiang_box=infoTarget.parent().find('.tag_info_box');
-        // $user_id=infoTarget.find('.w_img').attr('data-id');
-        console.log($(this).parent().parent().offset())
-        touxiang_box.toggle(600).css("left",$(this).offset().left-313);
-        // $.ajax({
-        //     url: "index.php?control=weibo&action=tagSelect",
-        //     type: "POST",
-        //     data: {
-        //         $tag_id
-        //     },
-        //     success: function(data) {
-        //         data = $.parseJSON(data);
-        //             let p_html = ""
-        //             data.forEach(item=>{
-        //                 p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
-
-        //             })
-        //             $('.road_list').html(p_html);
-        //     }
-        // });
-    }).on("mouseleave",'.tag', function() {
-        infoTarget.parent().find('.tag_info_box').toggle(300);
+        let touxiang_box=infoTarget.find('.tag_info_box');
+        touxiang_box.toggle(600).css("left",$(this).children('.tag').offset().left-360);
+        var tag_id = infoTarget.children('a').attr('data-id');
+        $.ajax({
+			url: "index.php?control=tag&action=tagSelect",
+			type: "POST",
+			data: {
+			     tag_id
+			 },
+			 success: function(data) {
+			     data = $.parseJSON(data);
+			     let p_html = ""
+				 data.other.forEach(item=>{
+				     p_html+= "<a href='index.php?control=tag&action=info&id="+tag_id+"'><li style='overflow:hidden;'>"+item.weibo_content+"</li></a>";
+				 })
+				 infoTarget.children('.tag_info_box').find('.road_tag').html(p_html);
+			 }
+        });
+    }).on("mouseleave",'.tags_box', function() {
+    	infoTarget.find('.tag_info_box').toggle(300);
     });
     //进入标签显示
     // $(".tag_info_box").on("mouseenter",function  () {

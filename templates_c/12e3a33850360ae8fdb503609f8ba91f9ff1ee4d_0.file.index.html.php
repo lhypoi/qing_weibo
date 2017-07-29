@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 09:57:33
+/* Smarty version 3.1.30, created on 2017-07-29 13:18:45
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597b0a8d523139_80537595',
+  'unifunc' => 'content_597c8b351c01b8_11263606',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501235848,
+      1 => 1501334205,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597b0a8d523139_80537595 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597c8b351c01b8_11263606 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -148,31 +148,31 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 						    </div>
 						    <div class="w-opt clearfix">
 						        <div class="optb pull-left">
-						
-						            <div class="tag_info_box">
-						                <ul class="road_tag">
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                </ul>
-						                <div class="arrow_down"></div>
-						            </div>
-						
 						            <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
 ?>
+						            <div class="tags_box">
+						            	<div class="tag_info_box">
+							                <ul class="road_tag clearfix">
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                </ul>
+							                <div class="arrow_down"></div>
+							            </div>
 						                <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 " class="tag" href="index.php?control=tag&action=info&id=<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 ">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
 &nbsp;</a>
+						            </div>
 						            <?php
 }
 }

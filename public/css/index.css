@@ -126,11 +126,12 @@ ul, li {
   left: -15px;
   top: 0px;
 }
-.weibo_list {
+ul.weibo_list {
   box-shadow: 1px 1px 6px #ccc;
   background-color: #050d19;
   margin-bottom: 20px;
   padding: 20px;
+	overflow:hidden;
 }
 .weibo_box li {
   border-bottom: 1px solid #ccc;
@@ -176,6 +177,9 @@ ul, li {
   width: 95%;
   margin: 10px auto;
   padding: 0px 16px;
+}
+.commont_list{
+	overflow:hidden;
 }
 .commont_list a.more{
 	text-align:center;
@@ -259,7 +263,11 @@ ul, li {
 /*.tag{
   position: relative;
 }*/
-
+.tags_box{
+	float:left;
+	height:19px;
+	line-height:19px;
+}
 .tag_info_box{
   width: 339px;
   height: 126px;
@@ -277,20 +285,19 @@ ul, li {
   float: left;
   margin: 11px 0 0 20px;
 }
+.road_tag{
+	height:110px;
+	border-bottom:1px solid #999;
+}
 .road_tag li{
   float: left;
   height: 100px;
-}
-.road_tag li a{
-  text-decoration: none;
-  display: block;
-  width: 100px;
-  height: 100%;
-  margin: 8px 6px;
-  background-color: #fff;
-}
-.road_tag li a.tag_content{
-  color: #000;
+	width:33%;
+	margin-left:1%;
+	border:none;
+	margin-top:5px;
+	background-color:#fff;
+	padding:5px;
 }
 .w-opt .optb .tag_info_box{
   display: none;
