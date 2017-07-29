@@ -274,7 +274,6 @@ $(function() {
         } else if (this_elm.hasClass('edit_weibo')) {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
-            return false;
         } else if (this_elm.hasClass('more')) { //异步加载评论
         	var comment = this_elm.attr('data-page');
             var commentList = 0;
