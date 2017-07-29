@@ -44,6 +44,19 @@ class userControl extends baseControl{
         $html = $this->fetch("login_state.html");
         returnjson(1, "", $html);
     }
+
+    public function edit()
+    {
+        $create_time = time();
+        $user_pic = "public/img/user/".$_SESSION['uid'].'_'.$create_time.".jpg";
+        move_uploaded_file($_FILES['user_pic']['tmp_name'], $user_pic);
+
+        $result = $this->model('user')->edit_pic(array('user_pic'=>$user_pic));
+
+        if ($result == 1) {
+            returnjson(1, "更换头像成功");
+        }
+    }
 }
 
 ?>

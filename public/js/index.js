@@ -231,11 +231,10 @@ $(function() {
 
     // 事件委托绑定评论下拉框，评论增删功能
     $('.weibo_list').click(function(event) {
-    	event.preventDefault();
         let this_elm = $(event.target);
         // 评论下拉框
         if (this_elm.hasClass('commet_btn')) {
-            var comment_box = this_elm.parent().parent().parent().parent().siblings('.comment_row').find('.commont_box');
+            var comment_box = this_elm.parent().parent().parent().siblings('.comment_row').find('.commont_box');
         	if(comment_box.css('display') != 'block') {
         		var article_id = this_elm.attr('data-num');
 	    		$.ajax({
@@ -249,6 +248,7 @@ $(function() {
 	    		});
         	}
         	$(this_elm).closest("li").find('.commont_box').slideToggle();
+        	return false;
         } else if (this_elm.hasClass('commet_send')) {
             // 评论发送
             let weibo_id = $(this_elm).closest("li").attr('weibo-id');
@@ -270,6 +270,7 @@ $(function() {
                     }
                 }
             });
+            return false;
         } else if (this_elm.hasClass('edit_weibo')) {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
@@ -290,6 +291,7 @@ $(function() {
 	                }
 	    		}
 	    	});
+        	return false;
         }
     })
 
@@ -381,29 +383,6 @@ $(function() {
     		}
     	});
     }
-
-    //异步加载微博列表
-    var page = 1;
-    var pageList = 0;
-    $(window).scroll(function() {
-    	if($(window).scrollTop() == $(document).height() - $(window).height()) {
-    		if(haslogin()) {
-    			pageList = page * 10;
-    			$.ajax({
-    	    		type: "POST",
-    	    		url: "index.php?control=weibo&action=get",
-    	    		data: {pageList},
-    	    		success: function(data) {
-    	    			data = $.parseJSON(data);
-    	                if (data['status'] == 1) {
-    	                    $('.weibo_box').eq(0).append(data['html']);
-    	                }
-    	    		}
-    	    	});
-    			page += 1;
-    		}
-    	}
-    })
 
     //添加标签
     var tagname_arr = [];
@@ -511,13 +490,17 @@ function do_edit() {
     fd.append('user_pic', $('#edit_pic').get(0).files[0]);
     fd.append('type', 'edit');
     $.ajax({
-        url: "user.php",
+        url: "index.php?control=user&action=edit",
         type: "POST",
         contentType: false,
         processData: false,
         data: fd,
         success: function(data) {
-            location.reload();
+            data = $.parseJSON(data);
+            if (data['status'] == 1) {
+                alert(data['msg']);
+                location.reload();
+            }
         }
     });
 }
