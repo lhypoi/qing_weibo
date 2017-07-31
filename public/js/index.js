@@ -33,7 +33,7 @@ $(function() {
         } else if ($(this).index() == 3) {
             $('#type').val("video");
         } else if ($(this).index() == 4) {
-            location.href = 'longcontent_enter.php';
+            location.href = 'index.php?control=longcontent&action=index';
         }
     });
 

@@ -1,10 +1,38 @@
+<?php
+/* Smarty version 3.1.30, created on 2017-07-31 16:00:09
+  from "D:\wamp64\www\20170718\lesson9\view\longcontent.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_597ee38901db42_31628892',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '1f5f7581f74ac2d26aafbaee0ea67e58df064fbb' => 
+    array (
+      0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\longcontent.html',
+      1 => 1501488006,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_597ee38901db42_31628892 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>长文章</title>
-    <script type="text/javascript" src="./public/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/jquery-3.1.0.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style type="text/css" media="screen">
         body {
@@ -58,7 +86,9 @@
 <body>
     <div class="longcontent_box">
         <form action="" method="">
-            <script id="container" name="content" type="text/plain"></script>
+            <?php echo '<script'; ?>
+ id="container" name="content" type="text/plain"><?php echo '</script'; ?>
+>
             <div class="tag_box clearfix">
                 <div class="tags"></div>
                 <input type="text" placeholder="请添加标签，按回车确定" id="tag" />
@@ -67,12 +97,19 @@
             <input type="submit" value="发布" class="btn btn-info pull-right">
         </form>
     </div>
-    <script type="text/javascript" src="public/libarary/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="public/libarary/ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript">
+    <?php echo '<script'; ?>
+ type="text/javascript" src="public/libarary/ueditor/ueditor.config.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="public/libarary/ueditor/ueditor.all.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript">
         var ue = UE.getEditor('container');
-    </script>
-    <script type="text/javascript">
+    <?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript">
         // 发布长微博
         $('.longcontent_box input[type=submit]').click(function(event) {
             if (localStorage.getItem('uid') > 0) {
@@ -133,6 +170,8 @@
                 $(this).val('');
             }
         })
-    </script>
+    <?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}
