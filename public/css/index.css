@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #050d19;
+  background-color: #636a5a;
+  background-image: url('../img/bgd.jpg')
 }
 a, a:focus, a:hover {
   color: #fff;
@@ -37,7 +38,7 @@ ul, li {
 #main .title {
   height: 60px;
   box-shadow: 1px 1px 6px #ccc;
-  background-color: #050d19;
+  background-color: #05425e;
   margin-bottom: 20px;
 }
 #main h1 {
@@ -84,7 +85,7 @@ ul, li {
 }
 #main .weibo_content {
   box-shadow: 1px 1px 6px #ccc;
-  background-color: #050d19;
+  background-color: #05425e;
   margin-bottom: 20px;
   padding: 20px;
 }
@@ -110,7 +111,7 @@ ul, li {
   margin-top: 10px;
 }
 #main .weibo_content .menu_box .menu_tab {
-  background-color: #536177;
+  background-color: #05425e;
   text-align: center;
   font-size: 18px;
   line-height: 1.3333333;
@@ -126,12 +127,12 @@ ul, li {
   left: -15px;
   top: 0px;
 }
-ul.weibo_list {
+.weibo_list {
   box-shadow: 1px 1px 6px #ccc;
-  background-color: #050d19;
   margin-bottom: 20px;
   padding: 20px;
-	overflow:hidden;
+  background-color: #05425e;
+
 }
 .weibo_box li {
   border-bottom: 1px solid #ccc;

@@ -21,13 +21,17 @@ class weibo extends pdoClass{
 
     //添加内容
     public function setContent($new_content){
-         $weibo_content=$new_content['weibo_content'];
+        $weibo_content=$new_content['weibo_content'];
         $type=$new_content['type'];
         $create_time=$new_content['create_time'];
 
         $uid = $new_content['uid'];
+
+        $pic = empty($new_content['pic']) ? '' : $new_content['pic'];
+        $music = empty($new_content['music']) ? '' : $new_content['music'];
+        $video = empty($new_content['video']) ? '' : $new_content['video'];
         // mysql添加
-        $insert_sql = "insert into weibo_detail (weibo_content,create_time,type,user_id) values ('$weibo_content',$create_time,'$type',$uid)";
+        $insert_sql = "insert into weibo_detail (weibo_content,create_time,type,user_id,pic,music,video) values ('$weibo_content',$create_time,'$type',$uid,'$pic','$music','$video')";
 
         // 执行一条语句
         $num = $this->exec($insert_sql);

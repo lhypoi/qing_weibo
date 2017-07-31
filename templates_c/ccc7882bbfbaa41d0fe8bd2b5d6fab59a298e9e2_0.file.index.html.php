@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-29 13:07:09
+/* Smarty version 3.1.30, created on 2017-07-31 00:29:42
   from "D:\wamp64\www\20170718\lesson9\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597c17fd330a65_74038660',
+  'unifunc' => 'content_597e097649b778_29445196',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ccc7882bbfbaa41d0fe8bd2b5d6fab59a298e9e2' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\index.html',
-      1 => 1501304686,
+      1 => 1501432170,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597c17fd330a65_74038660 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597e097649b778_29445196 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -49,7 +49,14 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
             <textarea name="weibo_text" class="form-control" rows="2"></textarea>
         </div>
         <div class="tab-pane fade" id="tab4">
+            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
             <input type="file" id="video_file">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-info" role="progressbar"
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                     style="width: 0%;" id="video_progress">
+                </div>
+            </div>
         </div>
     </div>
     <div class="row tag_box">
@@ -133,14 +140,18 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 						        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'pic_text') {?>
 						            <img src="<?php echo $_smarty_tpl->tpl_vars['item']->value['pic'];?>
 " alt="" class="w-img">
+                                    <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+                                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'music') {?>
+                                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
+&auto=0&height=66"></iframe>
+                                    <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+                                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'video') {?>
+                                    <video src="<?php echo $_smarty_tpl->tpl_vars['item']->value['video'];?>
+" controls width="80%"></video>
 						            <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
 
-						        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'music') {?>
-						            <audio src="<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
-" controls></audio>
-						        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'vedio') {?>
-						            <video src="<?php echo $_smarty_tpl->tpl_vars['item']->value['video'];?>
-" controls></video>
 						        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'long_content') {?>
 						            <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
 
@@ -148,31 +159,31 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 						    </div>
 						    <div class="w-opt clearfix">
 						        <div class="optb pull-left">
-						
-						            <div class="tag_info_box">
-						                <ul class="road_tag">
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                    <li>
-						                        <a href="#" class="tag_content">标签微博</a>
-						                    </li>
-						                </ul>
-						                <div class="arrow_down"></div>
-						            </div>
-						
 						            <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
 ?>
+						            <div class="tags_box">
+						            	<div class="tag_info_box">
+							                <ul class="road_tag clearfix">
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                    <li>
+							                        <a href="#" class="tag_content">标签微博</a>
+							                    </li>
+							                </ul>
+							                <div class="arrow_down"></div>
+							            </div>
 						                <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 " class="tag" href="index.php?control=tag&action=info&id=<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 ">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
 &nbsp;</a>
+						            </div>
 						            <?php
 }
 }
@@ -198,6 +209,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 						</div>
 	                    <div class="row comment_row">
 	                        <div class="col-lg-10 col-lg-offset-2 commont_box">
+
 	                            <div class="row commet">
 	                                <div class="col-lg-10">
 	                                    <input type="text" name="commet_content" class="form-control">
@@ -207,7 +219,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 	                                </div>
 	                            </div>
 	                            <ul class="commont_list">
-	
+
 	                            </ul>
 	                        </div>
 	                    </div>
