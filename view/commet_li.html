@@ -10,7 +10,7 @@
                 <div class="w-opt clearfix">
                     <div class="optb pull-right">
                         <span style="color: #ccc;">{date('Y-m-d H:i:s', $value.commet_time)}</span>
-                        {if $value.user_id == $smarty.session.uid}
+                        {if $value.user_id == $smarty.session.uid || $smarty.session.admin}
                             <input type="hidden" value="{$item2.weibo_id}" />
                             <a href="#modal_comment" data-toggle="modal" class="delete_comment" data-num="{$value.id}">删除</a>
                         {/if}

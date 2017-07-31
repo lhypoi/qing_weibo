@@ -175,6 +175,7 @@ ul, li {
 }
 .commont_box {
   display: none;
+	padding:0;
 }
 .commont_li {
   width: 95%;
@@ -196,7 +197,6 @@ ul, li {
 	margin:0 auto;
 	cursor:pointer;
 	color:#333;
-	background:#eee;
 	height:24px;
 	line-height:24px;
 }

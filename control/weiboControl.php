@@ -8,6 +8,20 @@ class weiboControl extends baseControl{
             $this->assign('user_name', $user['user_name']);
             $this->assign('user_nickname', $user['user_nickname']);
             $this->assign('user_pic', $user['user_pic']);
+            switch ($user['auth']) {
+                case 1:
+                    ;
+                break;
+                case 2:
+                    ;
+                break;
+                case 3:
+                    $_SESSION['admin'] = $user['user_name'];
+                break;
+                default:
+                    ;
+                break;
+            }
         } else {
             $_SESSION['uid'] = 0;
         }
@@ -21,6 +35,7 @@ class weiboControl extends baseControl{
         }
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
+        echo $_SESSION['admin'];
     }
 
     //异步加载获取

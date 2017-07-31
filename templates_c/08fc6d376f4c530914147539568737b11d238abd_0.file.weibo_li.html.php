@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 03:10:54
+/* Smarty version 3.1.30, created on 2017-07-31 12:35:28
   from "C:\wamp\www\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597e9fbe423ad3_23306368',
+  'unifunc' => 'content_597f2410c22c32_37005291',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '08fc6d376f4c530914147539568737b11d238abd' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501469989,
+      1 => 1501504522,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597e9fbe423ad3_23306368 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597f2410c22c32_37005291 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
@@ -37,12 +37,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 </p>
             <div class="info-box">
                 <div class="arrow-left"></div>
-                <a  class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
+                <a class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 的最近微博</a>
-
                 <ul class="road_list">
                 </ul>
-
             </div>
         </div>
         <div class="col-lg-10 content_box">
@@ -108,7 +106,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                 <div class="optb pull-right">
                     <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
 </span>
-                    <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
+                    <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid'] || $_SESSION['admin']) {?>
                     <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">删除</a>
                     <?php }?>
@@ -124,9 +122,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
     </div>
     <div class="row comment_row">
         <div class="col-lg-10 col-lg-offset-2 commont_box">
-            <ul class="commont_list">
-
-            </ul>
             <div class="row commet">
                 <div class="col-lg-10">
                     <input type="text" name="commet_content" class="form-control">
@@ -135,7 +130,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                     <input type="button" class="btn btn-info commet_send" value="发布">
                 </div>
             </div>
+            <ul class="commont_list">
 
+            </ul>
         </div>
     </div>
 </li>

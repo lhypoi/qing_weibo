@@ -6,11 +6,9 @@
             <p>{$item.user_data.user_nickname}</p>
             <div class="info-box">
                 <div class="arrow-left"></div>
-                <a  class="author-name">{$item.user_data.user_nickname}的最近微博</a>
-
+                <a class="author-name">{$item.user_data.user_nickname}的最近微博</a>
                 <ul class="road_list">
                 </ul>
-
             </div>
         </div>
         <div class="col-lg-10 content_box">
@@ -55,7 +53,7 @@
                 </div>
                 <div class="optb pull-right">
                     <span style="color: #55a4a9;">{date('Y-m-d H:i:s', $item.create_time)}</span>
-                    {if $item.user_data.id == $smarty.session.uid}
+                    {if $item.user_data.id == $smarty.session.uid || $smarty.session.admin}
                     <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="{$item.id}">删除</a>
                     {/if}
                     {if $item.user_data.id == $smarty.session.uid}
@@ -68,9 +66,6 @@
     </div>
     <div class="row comment_row">
         <div class="col-lg-10 col-lg-offset-2 commont_box">
-            <ul class="commont_list">
-
-            </ul>
             <div class="row commet">
                 <div class="col-lg-10">
                     <input type="text" name="commet_content" class="form-control">
@@ -79,7 +74,9 @@
                     <input type="button" class="btn btn-info commet_send" value="发布">
                 </div>
             </div>
+            <ul class="commont_list">
 
+            </ul>
         </div>
     </div>
 </li>
