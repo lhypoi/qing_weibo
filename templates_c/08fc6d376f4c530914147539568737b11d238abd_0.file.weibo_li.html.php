@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 09:57:35
+/* Smarty version 3.1.30, created on 2017-07-31 02:29:34
   from "C:\wamp\www\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597b0a8f44d2b5_41873450',
+  'unifunc' => 'content_597e960e324849_75706364',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '08fc6d376f4c530914147539568737b11d238abd' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501235801,
+      1 => 1501467784,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597b0a8f44d2b5_41873450 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597e960e324849_75706364 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
@@ -69,32 +69,32 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
             </div>
             <div class="w-opt clearfix">
                 <div class="optb pull-left">
-
-                    <div class="tag_info_box">
-                        <ul class="road_tag">
-                            <li>
-                                <a href="#" class="tag_content">标签微博</a>
-                            </li>
-                            <li>
-                                <a href="#" class="tag_content">标签微博</a>
-                            </li>
-                            <li>
-                                <a href="#" class="tag_content">标签微博</a>
-                            </li>
-                        </ul>
-                        <div class="arrow_down"></div>
-                    </div>
-
-                    <?php
+					<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
 ?>
-                    <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+		            <div class="tags_box">
+		            	<div class="tag_info_box">
+			                <ul class="road_tag clearfix">
+			                    <li>
+			                        <a href="#" class="tag_content">标签微博</a>
+			                    </li>
+			                    <li>
+			                        <a href="#" class="tag_content">标签微博</a>
+			                    </li>
+			                    <li>
+			                        <a href="#" class="tag_content">标签微博</a>
+			                    </li>
+			                </ul>
+			                <div class="arrow_down"></div>
+			            </div>
+		                <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 " class="tag" href="index.php?control=tag&action=info&id=<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 ">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
 &nbsp;</a>
-                    <?php
+		            </div>
+		            <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
@@ -112,7 +112,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                     <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
                     <?php }?>
                     <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+">评论(<?php echo $_smarty_tpl->tpl_vars['item']->value['commet_data'];?>
 )</a>
                 </div>
             </div>

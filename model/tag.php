@@ -56,9 +56,10 @@ class tag extends pdoClass
     }
 
     //获取评论
-    public function getWeiboComment($weibo_id) {
-        $sql = "SELECT * FROM weibo_commet WHERE weibo_id=$weibo_id ORDER BY id DESC";
-        return $this->select($sql);
+    public function getWeiboCommentTotal($weibo_id) {
+        $sql = "SELECT count(*) FROM weibo_commet WHERE weibo_id=$weibo_id";
+        $result = $this->find($sql);
+        return $result[0];
     }
 }
  ?>

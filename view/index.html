@@ -133,7 +133,7 @@
 						            {if $item.user_data.id == $smarty.session.uid}
 						                <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
 						            {/if}
-						            <a href="" class="commet_btn" data-num="{$item.id}">评论({count($item.commet_data)})</a>
+						            <a href="" class="commet_btn" data-num="{$item.id}">评论({$item.commet_data})</a>
 						        </div>
 						    </div>
 						</div>

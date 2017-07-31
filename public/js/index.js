@@ -384,18 +384,23 @@ $(function() {
 
     //添加标签
     var tagname_arr = [];
-    $('#tag').on('keyup', function(e) {
+    $('#tag').on('keydown', function(e) {
     	if(e.keyCode == 13) {
-    		if(tagname_arr.length >= 5) {
-    			$(this).siblings('.warning').css('display','block');
-    		}else{
-	    		tagname_arr.push($(this).val());
-	    		var _html = '';
-	    		for(var i = 0; i < tagname_arr.length; i ++) {
-	    			_html += '#'+tagname_arr[i]+' ';
-	    		}
-	    		$(this).siblings('.tags').html(_html);
-	    		$(this).val('');
+    		if($(this).val() == '') {
+    			$(this).siblings('.warning').css('display','block').html('标签不能为空');
+    		}else {
+    			if(tagname_arr.length >= 5) {
+        			$(this).siblings('.warning').css('display','block');
+        		}else{
+        			$(this).siblings('.warning').css('display','none');
+    	    		tagname_arr.push($(this).val());
+    	    		var _html = '';
+    	    		for(var i = 0; i < tagname_arr.length; i ++) {
+    	    			_html += '#'+tagname_arr[i]+' ';
+    	    		}
+    	    		$(this).siblings('.tags').html(_html);
+    	    		$(this).val('');
+        		}
     		}
     	}else if(e.keyCode == 8) {
     		if($(this).val() == '') {
@@ -406,6 +411,7 @@ $(function() {
 	    		}
 	    		$(this).siblings('.tags').html(_html);
     		}
+    		$(this).siblings('.warning').css('display','none');
     		$(this).val('');
     	}
     })
