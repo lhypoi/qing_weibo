@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 02:29:34
+/* Smarty version 3.1.30, created on 2017-07-31 03:10:54
   from "C:\wamp\www\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597e960e324849_75706364',
+  'unifunc' => 'content_597e9fbe423ad3_23306368',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '08fc6d376f4c530914147539568737b11d238abd' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501467784,
+      1 => 1501469989,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597e960e324849_75706364 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597e9fbe423ad3_23306368 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
@@ -57,11 +57,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                 <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
 
                 <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'music') {?>
-                <audio src="<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
-" controls></audio>
-                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'vedio') {?>
+                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
+&auto=0&height=66"></iframe>
+                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'video') {?>
                 <video src="<?php echo $_smarty_tpl->tpl_vars['item']->value['video'];?>
-" controls></video>
+" controls width="80%"></video>
+                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
                 <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'long_content') {?>
                 <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
 
@@ -120,6 +124,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
     </div>
     <div class="row comment_row">
         <div class="col-lg-10 col-lg-offset-2 commont_box">
+            <ul class="commont_list">
+
+            </ul>
             <div class="row commet">
                 <div class="col-lg-10">
                     <input type="text" name="commet_content" class="form-control">
@@ -128,9 +135,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                     <input type="button" class="btn btn-info commet_send" value="发布">
                 </div>
             </div>
-            <ul class="commont_list">
 
-            </ul>
         </div>
     </div>
 </li>

@@ -52,8 +52,23 @@ class weiboControl extends baseControl{
         $new_content['uid'] = $_SESSION['uid'];
         // 保存这一条微博信息
         // 问题一：内容会被覆盖
+        $new_content['music'] = isset($_POST['music_file']) ? $_POST['music_file'] : '';
 
+        if (isset($_FILES['pic_file'])) {
+            $pic = "public/img/".$_SESSION['uid'].'_'.$new_content['create_time'].".jpg";
+            move_uploaded_file($_FILES['pic_file']['tmp_name'], $pic);
+            $new_content['pic'] = $pic;
+        } else {
+            $new_content['pic'] = '';
+        }
 
+        if (isset($_FILES['video_file'])) {
+            $video = "public/video/".$_SESSION['uid'].'_'.$new_content['create_time'].".mp4";
+            move_uploaded_file($_FILES['video_file']['tmp_name'], $video);
+            $new_content['video'] = $video;
+        } else {
+            $new_content['video'] = '';
+        }
 
         $error_array = $this->model('weibo')->setContent($new_content);
 

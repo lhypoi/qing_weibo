@@ -1,106 +1,4 @@
 $(function() {
-    // 存在的问题：无法根据高度增长改变动画的高度
-    function bg(width, height) {
-        var canvas = document.getElementById('canvas'),
-            ctx = canvas.getContext('2d'),
-            w = canvas.width = window.innerWidth,
-            h = canvas.height = window.innerHeight,
-            hue = 217,
-            stars = [],
-            count = 0,
-            maxStars = 1300; //星星数量
-
-        var canvas2 = document.createElement('canvas'),
-            ctx2 = canvas2.getContext('2d');
-        canvas2.width = 100;
-        canvas2.height = 100;
-        var half = canvas2.width / 2,
-            gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
-        gradient2.addColorStop(0.025, '#CCC');
-        gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
-        gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
-        gradient2.addColorStop(1, 'transparent');
-
-        ctx2.fillStyle = gradient2;
-        ctx2.beginPath();
-        ctx2.arc(half, half, half, 0, Math.PI * 2);
-        ctx2.fill();
-
-        // End cache
-
-        function random(min, max) {
-            if (arguments.length < 2) {
-                max = min;
-                min = 0;
-            }
-
-            if (min > max) {
-                var hold = max;
-                max = min;
-                min = hold;
-            }
-
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        function maxOrbit(x, y) {
-            var max = Math.max(x, y),
-                diameter = Math.round(Math.sqrt(max * max + max * max));
-            return diameter / 2;
-            //星星移动范围，值越大范围越小，
-        }
-
-        var Star = function() {
-
-            this.orbitRadius = random(maxOrbit(w, h));
-            this.radius = random(60, this.orbitRadius) / 8;
-            //星星大小
-            this.orbitX = w / 2;
-            this.orbitY = h / 2;
-            this.timePassed = random(0, maxStars);
-            this.speed = random(this.orbitRadius) / 50000;
-            //星星移动速度
-            this.alpha = random(2, 10) / 10;
-
-            count++;
-            stars[count] = this;
-        }
-
-        Star.prototype.draw = function() {
-            var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
-                y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
-                twinkle = random(10);
-
-            if (twinkle === 1 && this.alpha > 0) {
-                this.alpha -= 0.05;
-            } else if (twinkle === 2 && this.alpha < 1) {
-                this.alpha += 0.05;
-            }
-
-            ctx.globalAlpha = this.alpha;
-            ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
-            this.timePassed += this.speed;
-        }
-
-        for (var i = 0; i < maxStars; i++) {
-            new Star();
-        }
-
-        function animation() {
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.globalAlpha = 0.5; //尾巴
-            ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
-            ctx.fillRect(0, 0, w, h)
-
-            ctx.globalCompositeOperation = 'lighter';
-            for (var i = 1, l = stars.length; i < l; i++) {
-                stars[i].draw();
-            };
-            // window.requestAnimationFrame(animation);
-        }
-        animation();
-    }
-    bg();
 
     // 图片预览,绑定注册，编辑头像，发图微博
     // var fileInput = document.getElementById("register_user_pic");
@@ -112,17 +10,17 @@ $(function() {
 
     var fileInput2 = $("#pic_file");
     fileInput2.on('change', function(event) {
-        var file = fileInput2.files[0];
+        var file = fileInput2[0].files[0];
         var objecturl = window.URL.createObjectURL(file);
         $('#main .weibo_content .tab-content .pic_file_see').empty().append('<img src=' + objecturl + '>');
-    }, false);
+    });
 
     var fileInput3 = $("#edit_pic");
     fileInput3.on('change', function(event) {
-        var file = fileInput3.files[0];
+        var file = fileInput3[0].files[0];
         var objecturl = window.URL.createObjectURL(file);
         $('.edit_pic_see').empty().append(`<img src="${objecturl}" style="max-width:100%;height:100%;max-height:200px">`);
-    }, false);
+    });
 
     // 切换菜单栏改变隐藏的值,微博类型
     $('.menu_box .menu_tab').click(function() {
@@ -168,10 +66,12 @@ $(function() {
             var fd = new FormData();
             fd.append('weibo_content', $('textarea').eq(1).val());
             fd.append('pic_file', $('#pic_file').get(0).files[0]);
-            fd.append('tagname_arr', tagname_arr);
+            $.each(tagname_arr, function(key, val) {
+                fd.append('tagname_arr[]', val);
+            });
             fd.append('type', type);
             $.ajax({
-                url: "weibo.php",
+                url: "index.php?control=weibo&action=sendWeibo",
                 type: "POST",
                 contentType: false,
                 processData: false,
@@ -186,11 +86,15 @@ $(function() {
             });
         } else if (type == "music") {
             var fd = new FormData();
-            fd.append('music_file', $('#music_file').get(0).files[0]);
+            // fd.append('music_file', $('#music_file').get(0).files[0]);
+            fd.append('weibo_content', $('textarea').eq(2).val());
+            fd.append('music_file', /id\=([0-9]*)/.exec($('#tab3 iframe').attr('src'))[1]);
             fd.append('type', type);
-            fd.append('tagname_arr', tagname_arr);
+            $.each(tagname_arr, function(key, val) {
+                fd.append('tagname_arr[]', val);
+            });
             $.ajax({
-                url: "weibo.php",
+                url: "index.php?control=weibo&action=sendWeibo",
                 type: "POST",
                 contentType: false,
                 processData: false,
@@ -204,18 +108,43 @@ $(function() {
             });
         } else if (type == "video") {
             var fd = new FormData();
+            fd.append('weibo_content', $('textarea').eq(3).val());
             fd.append('video_file', $('#video_file').get(0).files[0]);
             fd.append('type', type);
-            fd.append('tagname_arr', tagname_arr);
+            $.each(tagname_arr, function(key, val) {
+                fd.append('tagname_arr[]', val);
+            });
+            var xhr=new XMLHttpRequest(); xhr.upload.onprogress=function(e){};
+            var xhrOnProgress = function(fun) {
+                xhrOnProgress.onprogress = fun; //绑定监听
+                //使用闭包实现监听绑
+                return function() {
+                    //通过$.ajaxSettings.xhr();获得XMLHttpRequest对象
+                    var xhr = $.ajaxSettings.xhr();
+                    //判断监听函数是否为函数
+                    if (typeof xhrOnProgress.onprogress !== 'function')
+                        return xhr;
+                    //如果有监听函数并且xhr对象支持绑定时就把监听函数绑定上去
+                    if (xhrOnProgress.onprogress && xhr.upload) {
+                        xhr.upload.onprogress = xhrOnProgress.onprogress;
+                    }
+                    return xhr;
+                }
+            }
             $.ajax({
-                url: "weibo.php",
+                url: "index.php?control=weibo&action=sendWeibo",
                 type: "POST",
+                xhr:xhrOnProgress(function(e){
+                    var percent=e.loaded / e.total;//计算百分比
+                    $('#video_progress').attr('style', 'width:'+(percent * 100)+'%');
+                  }),
                 contentType: false,
                 processData: false,
                 data: fd,
                 success: function(data) {
                     data = $.parseJSON(data);
                     if (data['status'] == 1) {
+                        $('#video_progress').attr('style', 'width:0%');
                         $('.weibo_box').prepend(data['html']);
                     }
                 }
@@ -235,20 +164,22 @@ $(function() {
         // 评论下拉框
         if (this_elm.hasClass('commet_btn')) {
             var comment_box = this_elm.parent().parent().parent().siblings('.comment_row').find('.commont_box');
-        	if(comment_box.css('display') != 'block') {
-        		var article_id = this_elm.attr('data-num');
-	    		$.ajax({
-	    			type: "POST",
-	                url: 'index.php?control=comment&action=getComment',
-	                data: {article_id: article_id},
-	                success: function(rtnData) {
-	                	let rtnObject = JSON.parse(rtnData);
-	                    comment_box.find('.commont_list').html(rtnObject.html);
-	                }
-	    		});
-        	}
-        	$(this_elm).closest("li").find('.commont_box').slideToggle();
-        	return false;
+            if (comment_box.css('display') != 'block') {
+                var article_id = this_elm.attr('data-num');
+                $.ajax({
+                    type: "POST",
+                    url: 'index.php?control=comment&action=getComment',
+                    data: {
+                        article_id: article_id
+                    },
+                    success: function(rtnData) {
+                        let rtnObject = JSON.parse(rtnData);
+                        comment_box.find('.commont_list').html(rtnObject.html);
+                    }
+                });
+            }
+            $(this_elm).closest("li").find('.commont_box').slideToggle();
+            return false;
         } else if (this_elm.hasClass('commet_send')) {
             // 评论发送
             let weibo_id = $(this_elm).closest("li").attr('weibo-id');
@@ -265,7 +196,7 @@ $(function() {
                 success: function(data) {
                     data = $.parseJSON(data);
                     if (data['status'] == 1) {
-                        $('li[weibo-id='+weibo_id+'] .commont_list').eq(0).prepend(data['html']);
+                        $('li[weibo-id=' + weibo_id + '] .commont_list').eq(0).prepend(data['html']);
                         $(this_elm).parent().prev().find('input').val('');
                     }
                 }
@@ -275,23 +206,27 @@ $(function() {
             $('#edit_weibo_modal textarea').val($(this_elm).parent().parent().prev().text().trim());
             $('#edit_weibo_modal input[type=hidden]').val($(this_elm).closest('li').attr('weibo-id'));
         } else if (this_elm.hasClass('more')) { //异步加载评论
-        	var comment = this_elm.attr('data-page');
+            var comment = this_elm.attr('data-page');
             var commentList = 0;
-        	commentList = comment * 5;
-        	var article_id = this_elm.attr('data-id');
-        	$.ajax({
-	    		type: "POST",
-	    		url: "index.php?control=comment&action=getComment",
-	    		data: {article_id, commentList, comment},
-	    		success: function(data) {
-	    			data = $.parseJSON(data);
-	                if (data['status'] == 1) {
-	                    this_elm.parent().parent().append(data['html']);
-	                    this_elm.remove();
-	                }
-	    		}
-	    	});
-        	return false;
+            commentList = comment * 5;
+            var article_id = this_elm.attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: "index.php?control=comment&action=getComment",
+                data: {
+                    article_id,
+                    commentList,
+                    comment
+                },
+                success: function(data) {
+                    data = $.parseJSON(data);
+                    if (data['status'] == 1) {
+                        this_elm.parent().parent().append(data['html']);
+                        this_elm.remove();
+                    }
+                }
+            });
+            return false;
         }
     })
 
@@ -310,10 +245,10 @@ $(function() {
     });
     //头像滑过
     var infoTarget;
-    $('.weibo_box').on("mouseenter",'.head_box', function(e) {
+    $('.weibo_box').on("mouseenter", '.head_box', function(e) {
         infoTarget = $(e.target);
-        let touxiang_box=infoTarget.parent().find('.info-box');
-        $user_id=infoTarget.find('.w_img').attr('data-id');
+        let touxiang_box = infoTarget.parent().find('.info-box');
+        $user_id = infoTarget.find('.w_img').attr('data-id');
         // console.log($user_id);
         touxiang_box.toggle(600);
         $.ajax({
@@ -324,15 +259,15 @@ $(function() {
             },
             success: function(data) {
                 data = $.parseJSON(data);
-                    let p_html = ""
-                    data.forEach(item=>{
-                        p_html+= "<li class='photo_weibo'>"+item.weibo_content+"&nbsp;&nbsp;"+item.time+"</li>";
+                let p_html = ""
+                data.forEach(item => {
+                    p_html += "<li class='photo_weibo'>" + item.weibo_content + "&nbsp;&nbsp;" + item.time + "</li>";
 
-                    })
-                    $('.road_list').html(p_html);
+                })
+                $('.road_list').html(p_html);
             }
         });
-    }).on("mouseleave",'.head_box', function() {
+    }).on("mouseleave", '.head_box', function() {
         infoTarget.parent().find('.info-box').toggle(300);
     });
 
@@ -340,7 +275,7 @@ $(function() {
     $('.optb').on("mouseenter",'.tag', function(e) {
         infoTarget = $(e.target);
         let touxiang_box=infoTarget.siblings('.tag_info_box');
-        touxiang_box.show(600).css("left",infoTarget.offset().left-360);
+        touxiang_box.show(600).css("left",infoTarget.offset().left-385);
         var tag_id = infoTarget.attr('data-id');
         $.ajax({
 			url: "index.php?control=tag&action=tagSelect",
@@ -368,18 +303,20 @@ $(function() {
     // })
 
     //判断是否是登陆状态
-    if(haslogin()) {
-    	$.ajax({
-    		type: "POST",
-    		url: "index.php?control=user&action=check",
-    		data: {id: localStorage.getItem('uid')},
-    		success: function(data) {
-    			data = $.parseJSON(data);
+    if (haslogin()) {
+        $.ajax({
+            type: "POST",
+            url: "index.php?control=user&action=check",
+            data: {
+                id: localStorage.getItem('uid')
+            },
+            success: function(data) {
+                data = $.parseJSON(data);
                 if (data['status'] == 1) {
                     $('#accountmenu').html(data['html']);
                 }
-    		}
-    	});
+            }
+        });
     }
 
     //添加标签

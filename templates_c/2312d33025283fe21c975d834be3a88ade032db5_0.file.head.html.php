@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 06:51:17
+/* Smarty version 3.1.30, created on 2017-07-31 03:01:52
   from "C:\wamp\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597adee504a325_67572476',
+  'unifunc' => 'content_597e9da033f514_87937670',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2312d33025283fe21c975d834be3a88ade032db5' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501224647,
+      1 => 1501469989,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597adee504a325_67572476 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597e9da033f514_87937670 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +30,11 @@ function content_597adee504a325_67572476 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/jquery-3.1.0.min.js"><?php echo '</script'; ?>
 >
-    <?php echo '<script'; ?>
+    <!-- <?php echo '<script'; ?>
  type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+> -->
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
@@ -39,20 +42,19 @@ function content_597adee504a325_67572476 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
 >
-    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
     <link rel="stylesheet" type="text/css" href="./public/css/animate.css"></head>
 <body>
     <!-- 背景 -->
-    <div class="bg">
-        <canvas id="canvas"></canvas>
-    </div>
+    
     <!-- 微博 -->
     <div id="main">
         <!-- 头部 -->
         <div class="title">
             <!-- 标题 -->
-            <h1>月色真美啊</h1>
+            <h1>轻博客</h1>
             <!-- 用户信息 -->
             <div class="tab_user clearfix">
                 <div class="dropdown user_state pull-left" id="accountmenu">
