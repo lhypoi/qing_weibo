@@ -132,7 +132,6 @@ ul, li {
   margin-bottom: 20px;
   padding: 20px;
   background-color: #05425e;
-
 }
 .weibo_box li {
   border-bottom: 1px solid #ccc;
@@ -154,6 +153,9 @@ ul, li {
 }
 .weibo_box li .content_box a {
   color: #000;
+}
+.weibo_box li .content_box .content{
+	min-height:100px;
 }
 .weibo_box li .w-opt {
   height: 19px;
@@ -180,10 +182,12 @@ ul, li {
   padding: 0px 16px;
 }
 .commont_list{
-	padding:10px;
 	overflow:hidden;
 	background-color:#fff;
 	color:#333;
+}
+.commont_list li{
+	padding:10px;
 }
 .commont_list a.more{
 	text-align:center;
@@ -268,6 +272,17 @@ ul, li {
 .weibo_box li .content_box .pull-left a{
 	color:#ccc;
 	font-size:12px;
+	cursor:pointer;
+}
+
+#tab3{
+	position:relative;
+}
+#tab3 span{
+	position:absolute;
+	top:0;
+	left:330px;
+	display:block;
 	cursor:pointer;
 }
 

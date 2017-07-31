@@ -234,23 +234,29 @@ $(function() {
     $('.search_list').click(function(event) {
         let this_elm = $(event.target);
         let music_id = $(this_elm).attr('data-id');
-
         if (music_id) {
             $('#tab3').prepend(`
                 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=${music_id}&auto=0&height=66"></iframe>
+            	<span class="glyphicon glyphicon-remove-circle"></span>
                 `);
             $('.search_list').empty();
+            $('#tab3 input').val('');
             $('#tab3 input').hide();
         }
     });
+    $('#tab3').on('click', '.glyphicon', function() {
+    	$('#tab3 iframe').remove();
+    	$('#tab3 input').css('display', 'block');
+    })
+    
+    
     //头像滑过
-    var infoTarget;
-    $('.weibo_box').on("mouseenter", '.head_box', function(e) {
+    $('.weibo_box').on("mouseenter", 'img', function(e) {
         infoTarget = $(e.target);
-        let touxiang_box = infoTarget.parent().find('.info-box');
-        $user_id = infoTarget.find('.w_img').attr('data-id');
+        let touxiang_box = infoTarget.parent().parent().find('.info-box');
+        $user_id = infoTarget.parent().find('.w_img').attr('data-id');
         // console.log($user_id);
-        touxiang_box.toggle(600);
+        touxiang_box.show(600);
         $.ajax({
             url: "index.php?control=weibo&action=headSelect",
             type: "POST",
@@ -268,7 +274,7 @@ $(function() {
             }
         });
     }).on("mouseleave", '.head_box', function() {
-        infoTarget.parent().find('.info-box').toggle(300);
+        infoTarget.parent().parent().find('.info-box').hide(300);
     });
 
     //滑过标签显示

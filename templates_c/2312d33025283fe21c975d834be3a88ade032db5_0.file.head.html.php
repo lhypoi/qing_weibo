@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 03:01:52
+/* Smarty version 3.1.30, created on 2017-07-31 09:35:35
   from "C:\wamp\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597e9da033f514_87937670',
+  'unifunc' => 'content_597ef9e7c9b6c2_80458134',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2312d33025283fe21c975d834be3a88ade032db5' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501469989,
+      1 => 1501493699,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597e9da033f514_87937670 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597ef9e7c9b6c2_80458134 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,22 +30,23 @@ function content_597e9da033f514_87937670 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/jquery-3.1.0.min.js"><?php echo '</script'; ?>
 >
-    <!-- <?php echo '<script'; ?>
- type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
-> -->
     <?php echo '<script'; ?>
- type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
+    <!-- <?php echo '<script'; ?>
+ type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+> -->
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
 >
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/animate.css"></head>
+    <link rel="stylesheet" type="text/css" href="./public/css/animate.css">
+</head>
 <body>
     <!-- 背景 -->
     

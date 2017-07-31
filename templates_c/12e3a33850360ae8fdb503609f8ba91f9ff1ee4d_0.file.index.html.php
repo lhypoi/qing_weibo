@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 03:01:52
+/* Smarty version 3.1.30, created on 2017-07-31 07:00:38
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597e9da00def56_01128241',
+  'unifunc' => 'content_597ed59616d0d7_46289433',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501469989,
+      1 => 1501484435,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597e9da00def56_01128241 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597ed59616d0d7_46289433 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
