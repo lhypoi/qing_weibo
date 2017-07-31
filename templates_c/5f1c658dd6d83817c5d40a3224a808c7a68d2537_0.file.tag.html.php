@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-29 14:08:19
+/* Smarty version 3.1.30, created on 2017-07-31 02:27:22
   from "C:\wamp\www\qing_weibo\view\tag.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597c96d31e6c05_38212918',
+  'unifunc' => 'content_597e958ae64772_40943143',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f1c658dd6d83817c5d40a3224a808c7a68d2537' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\tag.html',
-      1 => 1501337297,
+      1 => 1501468013,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597c96d31e6c05_38212918 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597e958ae64772_40943143 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -122,7 +122,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                             <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
                                         <?php }?>
                                         <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+">评论(<?php echo $_smarty_tpl->tpl_vars['item']->value['commet_data'];?>
 )</a>
                                     </div>
                                 </div>

@@ -1,6 +1,7 @@
 <?php
 
 class weiboControl extends baseControl{
+    //首页获取
     public function index() {
         if (isset($_SESSION['uid']) && $_SESSION['uid'] != 0) {
             $user = $this->model("user")->getUserLog($_SESSION['uid']);
@@ -15,17 +16,14 @@ class weiboControl extends baseControl{
         $weibo_data = $weibo_model->getWeiboList();
         foreach ($weibo_data as $key => $value) {
             $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
-            $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
-            foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
-                $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
-            };
-
+            $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboCommentTotal($value['id']);
             $weibo_data[$key]['tag_data'] = $this->model('tag')->getTagbyWeiboid($value['id']);
         }
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
     }
-
+    
+    //异步加载获取
     public function get() {
         $pageStart = $_POST['pageList'];
         $page = $pageStart.",10";
@@ -36,19 +34,15 @@ class weiboControl extends baseControl{
         }else{
             foreach ($weibo_data as $key => $value) {
                 $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
-                $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
-                foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
-                    $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
-                };
-
+                $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboCommentTotal($value['id']);
                 $weibo_data[$key]['tag_data'] = $this->model('tag')->getTagbyWeiboid($value['id']);
-
             }
             $this->assign("weibo_data", $weibo_data);
             $html = $this->fetch("weibo_li.html");
             returnjson(1, "",$html,"",$weibo_data);
         }
     }
+    
     //发布微博
     public function sendWeibo(){
         $new_content['weibo_content'] =  $_POST['weibo_content'];
@@ -91,11 +85,8 @@ class weiboControl extends baseControl{
             $weibo_data = $weibo_model->getWeiboList(1);
             foreach ($weibo_data as $key => $value) {
                 $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
-                $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboComment($value['id']);
+                $weibo_data[$key]['commet_data'] = $weibo_model->getWeiboCommentTotal($value['id']);
                 $weibo_data[$key]['tag_data'] = array('tagid_arr'=>$tagid_arr, 'tagname_arr'=>$tagname_arr);
-                foreach ($weibo_data[$key]['commet_data'] as $k => $v) {
-                    $weibo_data[$key]['commet_data'][$k]['user_data'] = $weibo_model->getWeiboUser($v['user_id']);
-                }
             }
             $this->assign("weibo_data", $weibo_data);
 

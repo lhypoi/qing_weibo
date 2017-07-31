@@ -272,28 +272,28 @@ $(function() {
     });
 
     //滑过标签显示
-    $('.optb').on("mouseenter", '.tags_box', function(e) {
+    $('.optb').on("mouseenter",'.tag', function(e) {
         infoTarget = $(e.target);
-        let touxiang_box = infoTarget.find('.tag_info_box');
-        touxiang_box.toggle(600).css("left", $(this).children('.tag').offset().left - 360);
-        var tag_id = infoTarget.children('a').attr('data-id');
+        let touxiang_box=infoTarget.siblings('.tag_info_box');
+        touxiang_box.show(600).css("left",infoTarget.offset().left-385);
+        var tag_id = infoTarget.attr('data-id');
         $.ajax({
-            url: "index.php?control=tag&action=tagSelect",
-            type: "POST",
-            data: {
-                tag_id
-            },
-            success: function(data) {
-                data = $.parseJSON(data);
-                let p_html = ""
-                data.other.forEach(item => {
-                    p_html += "<a href='index.php?control=tag&action=info&id=" + tag_id + "'><li style='overflow:hidden;'>" + item.weibo_content + "</li></a>";
-                })
-                infoTarget.children('.tag_info_box').find('.road_tag').html(p_html);
-            }
+			url: "index.php?control=tag&action=tagSelect",
+			type: "POST",
+			data: {
+			     tag_id
+			 },
+			 success: function(data) {
+			     data = $.parseJSON(data);
+			     let p_html = ""
+				 data.other.forEach(item=>{
+				     p_html+= "<a href='index.php?control=tag&action=info&id="+tag_id+"'><li style='overflow:hidden;'>"+item.weibo_content+"</li></a>";
+				 })
+				 infoTarget.siblings('.tag_info_box').find('.road_tag').html(p_html);
+			 }
         });
-    }).on("mouseleave", '.tags_box', function() {
-        infoTarget.find('.tag_info_box').toggle(300);
+    }).on("mouseleave",'.tags_box', function() {
+    	infoTarget.siblings('.tag_info_box').hide(300);
     });
     //进入标签显示
     // $(".tag_info_box").on("mouseenter",function  () {
@@ -321,30 +321,36 @@ $(function() {
 
     //添加标签
     var tagname_arr = [];
-    $('#tag').on('keyup', function(e) {
-        if (e.keyCode == 13) {
-            if (tagname_arr.length >= 5) {
-                $(this).siblings('.warning').css('display', 'block');
-            } else {
-                tagname_arr.push($(this).val());
-                var _html = '';
-                for (var i = 0; i < tagname_arr.length; i++) {
-                    _html += '#' + tagname_arr[i] + ' ';
-                }
-                $(this).siblings('.tags').html(_html);
-                $(this).val('');
-            }
-        } else if (e.keyCode == 8) {
-            if ($(this).val() == '') {
-                tagname_arr.splice(tagname_arr.length - 1, 1);
-                var _html = '';
-                for (var i = 0; i < tagname_arr.length; i++) {
-                    _html += '#' + tagname_arr[i] + ' ';
-                }
-                $(this).siblings('.tags').html(_html);
-            }
-            $(this).val('');
-        }
+    $('#tag').on('keydown', function(e) {
+    	if(e.keyCode == 13) {
+    		if($(this).val() == '') {
+    			$(this).siblings('.warning').css('display','block').html('标签不能为空');
+    		}else {
+    			if(tagname_arr.length >= 5) {
+        			$(this).siblings('.warning').css('display','block');
+        		}else{
+        			$(this).siblings('.warning').css('display','none');
+    	    		tagname_arr.push($(this).val());
+    	    		var _html = '';
+    	    		for(var i = 0; i < tagname_arr.length; i ++) {
+    	    			_html += '#'+tagname_arr[i]+' ';
+    	    		}
+    	    		$(this).siblings('.tags').html(_html);
+    	    		$(this).val('');
+        		}
+    		}
+    	}else if(e.keyCode == 8) {
+    		if($(this).val() == '') {
+    			tagname_arr.splice(tagname_arr.length-1, 1);
+    			var _html = '';
+	    		for(var i = 0; i < tagname_arr.length; i ++) {
+	    			_html += '#'+tagname_arr[i]+' ';
+	    		}
+	    		$(this).siblings('.tags').html(_html);
+    		}
+    		$(this).siblings('.warning').css('display','none');
+    		$(this).val('');
+    	}
     })
 })
 

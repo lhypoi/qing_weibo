@@ -180,7 +180,10 @@ ul, li {
   padding: 0px 16px;
 }
 .commont_list{
+	padding:10px;
 	overflow:hidden;
+	background-color:#fff;
+	color:#333;
 }
 .commont_list a.more{
 	text-align:center;
@@ -188,6 +191,13 @@ ul, li {
 	width:80%;
 	margin:0 auto;
 	cursor:pointer;
+	color:#333;
+	background:#eee;
+	height:24px;
+	line-height:24px;
+}
+.commont_list .optb a{
+	color:#333;
 }
 .weibo_list .weibo_box .info-box {
   display: none;
