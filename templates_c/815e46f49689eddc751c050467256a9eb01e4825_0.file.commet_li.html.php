@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-28 14:08:07
+/* Smarty version 3.1.30, created on 2017-07-31 16:06:40
   from "D:\wamp64\www\20170718\lesson9\view\commet_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597ad4c7919736_00403830',
+  'unifunc' => 'content_597ee5100e32a7_61571918',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '815e46f49689eddc751c050467256a9eb01e4825' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\commet_li.html',
-      1 => 1501215835,
+      1 => 1501488288,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597ad4c7919736_00403830 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597ee5100e32a7_61571918 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value, 'value');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['value']->value) {
@@ -33,7 +33,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['value']->value) {
 " alt="" class="c_img" />
             </div>
             <div class="col-lg-11">
-                <span style="color:#5bc0de"><?php echo $_smarty_tpl->tpl_vars['value']->value['user_nickname'];?>
+                <span style="color:#05425e"><?php echo $_smarty_tpl->tpl_vars['value']->value['user_nickname'];?>
 :</span>
                 <?php echo $_smarty_tpl->tpl_vars['value']->value['commet_content'];?>
 
