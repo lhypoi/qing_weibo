@@ -8,7 +8,7 @@ $(function() {
     var lock = true;
     $(window).scroll(function() {
     	if($(window).scrollTop() == $(document).height() - $(window).height()) {
-    		if(haslogin() && lock == true) {
+    		if(user.haslogin() && lock == true) {
     			var page_mark = $('#page-mark').attr('data-page');
     			var id = getUrlParam('id');
     			pageList = page * 10;

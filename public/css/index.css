@@ -294,6 +294,7 @@ ul, li {
 	float:left;
 	height:19px;
 	line-height:19px;
+	postion:relative;
 }
 .tag_info_box{
   width: 339px;
@@ -310,7 +311,9 @@ ul, li {
   border-style: solid;
   border-color: #efeeee transparent transparent transparent;
   float: left;
-  margin: 5px 0 0 120px;
+	position:absolute;
+  bottom:-20px;
+	left:130px;
 }
 .road_tag{
 	height:110px;

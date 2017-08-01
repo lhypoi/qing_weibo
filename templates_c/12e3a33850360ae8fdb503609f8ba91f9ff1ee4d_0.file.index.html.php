@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 02:17:14
+/* Smarty version 3.1.30, created on 2017-08-01 07:16:01
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597fe4aa5868e9_43768833',
+  'unifunc' => 'content_59802ab12691f7_92310672',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501553234,
+      1 => 1501571758,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597fe4aa5868e9_43768833 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59802ab12691f7_92310672 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -31,10 +31,10 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
     <!-- 内容区域 -->
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="short_content"></textarea>
         </div>
         <div class="tab-pane fade" id="tab2">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="pic_text"></textarea>
             <div class="filePicker">
                 <label>点击选择文件</label>
                 <input type="file" name="" value="" class="form-control" id="pic_file">
@@ -46,10 +46,10 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
             <input type="text" name="" class="search_music form-control" placeholder="请用歌名、专辑、艺术家搜索" oninput="search_music(this)">
             <ul class="search_list">
             </ul>
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="music"></textarea>
         </div>
         <div class="tab-pane fade" id="tab4">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="video"></textarea>
             <input type="file" id="video_file">
             <div class="progress progress-striped active">
                 <div class="progress-bar progress-bar-info" role="progressbar"
@@ -120,9 +120,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 					        <div class="col-lg-2 head_box" style="text-align: center;">
 					            <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
-" class="w_img">
+" class="img-rounded w_img">
 					            <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 </p>
+					            <!-- 会员身份显示 -->
+					            <div class="user_degree">
+					            	普通用户<img src="./public/img/ud_img1.png">
+					            </div>
 					            <div class="info-box">
 					                <div class="arrow-left"></div>
 					                <a class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
@@ -183,6 +187,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_va
 " class="tag" href="index.php?control=tag&action=info&id=<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
 ">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
 &nbsp;</a>
+
 							            </div>
 							            <?php
 }
