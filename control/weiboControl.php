@@ -43,6 +43,14 @@ class weiboControl extends baseControl{
                     $weibo_data.array_push($weibo_data, $v);
                 }
             }
+        } elseif ($page_mark == 'home') {
+            $weibo_id = $weibo_model->getWeiboidByUser($id, $page);
+            foreach ($weibo_id as $key => $value) {
+                $result = $weibo_model->getWeiboListByTag($value['weibo_id']);
+                foreach ($result as $k => $v) {
+                    $weibo_data.array_push($weibo_data, $v);
+                }
+            }
         }
 
         if(empty($weibo_data)) {
@@ -80,7 +88,7 @@ class weiboControl extends baseControl{
 
         if (isset($_FILES['video_file'])) {
             $exp_str = explode("/", $_FILES['video_file']['type']);
-            $video = "public/video/".$_SESSION['uid'].'_'.$new_content['create_time'].$exp_str[1];
+            $video = "public/video/".$_SESSION['uid'].'_'.$new_content['create_time'].'.'.$exp_str[1];
             move_uploaded_file($_FILES['video_file']['tmp_name'], $video);
             $new_content['video'] = $video;
         } else {

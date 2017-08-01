@@ -58,6 +58,24 @@ class userControl extends baseControl{
             returnjson(1, "更换头像成功");
         }
     }
+
+    // 用户主页
+    // http://localhost/20170718/lesson9/index.php?control=user&action=home&id=12
+    public function home()
+    {
+        $weibo = $this->model('weibo');
+        $tag = $this->model('tag');
+        $weibo_data = $weibo->getWeiboByUser($_REQUEST['id']);
+
+        foreach ($weibo_data as $key => $value) {
+            $weibo_data[$key]['user_data'] = $tag->getWeiboUser($value['user_id']);
+            $weibo_data[$key]['commet_data'] = $tag->getWeiboCommentTotal($value['id']);
+            $weibo_data[$key]['tag_data'] = $tag->getTagbyWeiboid($value['id']);
+        }
+
+        $this->assign("weibo_data", $weibo_data);
+        $this->display("personal.html");
+    }
 }
 
 ?>
