@@ -248,8 +248,8 @@ $(function() {
     	$('#tab3 iframe').remove();
     	$('#tab3 input').css('display', 'block');
     })
-    
-    
+
+
     //头像滑过
     $('.weibo_box').on("mouseenter", 'img', function(e) {
         infoTarget = $(e.target);
