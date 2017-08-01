@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 12:33:35
+/* Smarty version 3.1.30, created on 2017-08-01 02:17:14
   from "C:\wamp\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597f239fec42d0_85633721',
+  'unifunc' => 'content_597fe4aa5868e9_43768833',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501504410,
+      1 => 1501553234,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597f239fec42d0_85633721 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597fe4aa5868e9_43768833 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -194,7 +194,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 					                <div class="optb pull-right">
 					                    <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
 </span>
-					                    <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
+					                    <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid'] || $_SESSION['admin']) {?>
 					                    <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">删除</a>
 					                    <?php }?>
@@ -279,6 +279,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
             广告
         </div>
     </div>
+	<div id="page-mark" data-page="index"></div>
 	<?php echo '<script'; ?>
  type="text/javascript" src="./public/js/load.js"><?php echo '</script'; ?>
 >

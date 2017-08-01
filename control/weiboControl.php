@@ -41,11 +41,25 @@ class weiboControl extends baseControl{
     //异步加载获取
     public function get() {
         $pageStart = $_POST['pageList'];
+        $page_mark = $_POST['page_mark'];
+        $id = $_POST['id'];
         $page = $pageStart.",10";
         $weibo_model = $this->model("weibo");
-        $weibo_data = $weibo_model->getWeiboList($page);
+        $weibo_data = array();
+        $weibo_id = array();
+        if($page_mark == 'index') {
+            $weibo_data = $weibo_model->getWeiboList($page);
+        } elseif ($page_mark == 'tag') {
+            $weibo_id = $weibo_model->getWeiboListById($id, $page);
+            foreach ($weibo_id as $key => $value) {
+                $result = $weibo_model->getWeiboListByTag($value['weibo_id']);
+                foreach ($result as $k => $v) {
+                    $weibo_data.array_push($weibo_data, $v);
+                }
+            }
+        }
         if(empty($weibo_data)) {
-            returnjson(0, "无更多页面");
+            returnjson(0, "无更多页面","","",$weibo_id);
         }else{
             foreach ($weibo_data as $key => $value) {
                 $weibo_data[$key]['user_data'] = $weibo_model->getWeiboUser($value['user_id']);
@@ -54,7 +68,7 @@ class weiboControl extends baseControl{
             }
             $this->assign("weibo_data", $weibo_data);
             $html = $this->fetch("weibo_li.html");
-            returnjson(1, "",$html,"",$weibo_data);
+            returnjson(1, "",$html,"",$page);
         }
     }
 
@@ -194,7 +208,7 @@ class weiboControl extends baseControl{
         // 更新到数据库中
         $weibo_model = $this->model("weibo");
         $user_model = $this->model("user");
-        $new_content = [];
+        $new_content = array();
         foreach ($caijiData as $key => $value) {
             // 用户id随机从数据库中获取
             $new_content['uid'] = $this->model('user')->getRandomId();

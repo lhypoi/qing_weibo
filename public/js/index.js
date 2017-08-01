@@ -278,7 +278,7 @@ $(function() {
     });
 
     //滑过标签显示
-    $('.optb').on("mouseenter",'.tag', function(e) {
+    $('.weibo_box').on("mouseenter",'.tag', function(e) {
         infoTarget = $(e.target);
         let touxiang_box=infoTarget.siblings('.tag_info_box');
         touxiang_box.show(600).css("left",infoTarget.offset().left-385);

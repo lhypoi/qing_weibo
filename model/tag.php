@@ -38,14 +38,14 @@ class tag extends pdoClass
     }
     
     //通过标签ID获取微博ID
-    public function getWeiboListById($id) {
-        $sql = "SELECT weibo_id FROM tag_relationship WHERE tag_id = $id";
+    public function getWeiboListById($id, $page="0,10") {
+        $sql = "SELECT weibo_id FROM tag_relationship WHERE tag_id = $id ORDER BY id DESC LIMIT $page";
         return $this->select($sql);
     }
     
     //获取相关微博列表
-    public function getWeiboListByTag($weibo_id, $page="0,10") {
-        $sql = "SELECT * FROM weibo_detail WHERE id = $weibo_id ORDER BY id DESC LIMIT $page";
+    public function getWeiboListByTag($weibo_id) {
+        $sql = "SELECT * FROM weibo_detail WHERE id = $weibo_id";
         return $this->select($sql);
     }
         

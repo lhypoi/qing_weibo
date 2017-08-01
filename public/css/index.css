@@ -310,7 +310,7 @@ ul, li {
   border-style: solid;
   border-color: #efeeee transparent transparent transparent;
   float: left;
-  margin: 11px 0 0 20px;
+  margin: 5px 0 0 120px;
 }
 .road_tag{
 	height:110px;
@@ -319,7 +319,7 @@ ul, li {
 .road_tag li{
   float: left;
   height: 100px;
-	width:33%;
+	width:32%;
 	margin-left:1%;
 	border:none;
 	margin-top:5px;
