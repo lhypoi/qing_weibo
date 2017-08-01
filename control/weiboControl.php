@@ -22,7 +22,7 @@ class weiboControl extends baseControl{
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
     }
-    
+
     //异步加载获取
     public function get() {
         $pageStart = $_POST['pageList'];
@@ -42,7 +42,7 @@ class weiboControl extends baseControl{
             returnjson(1, "",$html,"",$weibo_data);
         }
     }
-    
+
     //发布微博
     public function sendWeibo(){
         $new_content['weibo_content'] =  $_POST['weibo_content'];
@@ -158,6 +158,30 @@ class weiboControl extends baseControl{
             returnjson('1','编辑成功');
         } else {
             returnjson('0','编辑失败');
+        }
+    }
+
+    // 信息采集
+    // http://localhost/20170718/lesson9/index.php?control=weibo&action=caiji
+    public function caiji()
+    {
+        // 执行node文件
+        exec("node bin/caiji.js");
+        // 获取采集信息
+        $caijiData = file_get_contents('caiji.json');
+        $caijiData = json_decode($caijiData, true);
+        // 更新到数据库中
+        $weibo_model = $this->model("weibo");
+        $user_model = $this->model("user");
+        $new_content = [];
+        foreach ($caijiData as $key => $value) {
+            // 用户id随机从数据库中获取
+            $new_content['uid'] = $this->model('user')->getRandomId();
+            $new_content['weibo_content'] = $value['caiji_txt'];
+            $new_content['type'] = 'short_content';
+            $new_content['create_time'] = time();
+            $this->model('weibo')->setContent($new_content);
+            echo "正插入第".$key."条微博<br>";
         }
     }
 }

@@ -26,6 +26,13 @@ class user extends pdoClass{
     {
         return $this->updateInfo('weibo_user', $user_pic, array('id'=>$_SESSION['uid']));
     }
+
+    // 随机返回已存在的一个ID
+    public function getRandomId()
+    {
+        $result = $this->select('select id from weibo_user order by rand() limit 1');
+        return $result[0]['id'];
+    }
 }
 
 ?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 10:04:10
+/* Smarty version 3.1.30, created on 2017-07-31 19:06:57
   from "D:\wamp64\www\20170718\lesson9\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597e901ab091b5_23645448',
+  'unifunc' => 'content_597f0f519d3891_71043387',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e285061573cc666dc4a35608ef74feee62332c74' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\common\\head.html',
-      1 => 1501466646,
+      1 => 1501499208,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597e901ab091b5_23645448 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597f0f519d3891_71043387 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,22 +30,23 @@ function content_597e901ab091b5_23645448 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/jquery-3.1.0.min.js"><?php echo '</script'; ?>
 >
-    <!-- <?php echo '<script'; ?>
- type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
-> -->
     <?php echo '<script'; ?>
- type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
+    <!-- <?php echo '<script'; ?>
+ type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+> -->
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
 >
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/animate.css"></head>
+    <link rel="stylesheet" type="text/css" href="./public/css/animate.css">
+</head>
 <body>
     <!-- 背景 -->
     
