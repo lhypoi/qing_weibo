@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 09:35:35
+/* Smarty version 3.1.30, created on 2017-08-01 03:30:18
   from "C:\wamp\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597ef9e7c9b6c2_80458134',
+  'unifunc' => 'content_597ff5caa84a84_77326338',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2312d33025283fe21c975d834be3a88ade032db5' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501493699,
+      1 => 1501558217,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597ef9e7c9b6c2_80458134 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +42,9 @@ function content_597ef9e7c9b6c2_80458134 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
 >
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
+>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
@@ -62,7 +65,7 @@ function content_597ef9e7c9b6c2_80458134 (Smarty_Internal_Template $_smarty_tpl)
                     
                     <?php if ($_SESSION['uid'] > 0) {?>
                     <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['user_pic']->value)===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" alt="">
+" alt="" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php echo $_smarty_tpl->tpl_vars['user_nickname']->value;?>
  <b class="caret"></b>

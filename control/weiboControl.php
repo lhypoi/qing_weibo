@@ -35,7 +35,6 @@ class weiboControl extends baseControl{
         }
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
-        echo $_SESSION['admin'];
     }
 
     //异步加载获取
