@@ -172,6 +172,7 @@ ul, li {
 }
 .tab_user img {
   height: 40px;
+  width: 40px;
 }
 .commont_box {
   display: none;
@@ -327,4 +328,15 @@ ul, li {
 }
 .w-opt .optb .tag_info_box{
   display: none;
+}
+.user_degree{
+    background: #fff;
+    border: solid 1px #e6e6e6;
+    width: 91px;
+    height: 28px;
+    line-height: 24px;
+    cursor: pointer;
+    position: relative;
+    margin: 0 auto;
+    color: #000;
 }

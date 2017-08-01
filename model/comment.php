@@ -57,7 +57,7 @@ class comment extends pdoClass{
 
     public function getCommontByWid($weibo_id)
     {
-        $result = $this->select('select * form weibo_commet where weibo_id = $weibo_id');
+        $result = $this->select("select * from weibo_commet where weibo_id = $weibo_id");
         return $result;
     }
 }

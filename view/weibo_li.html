@@ -2,8 +2,12 @@
 <li weibo-id="{$item.id}" class="animated slideInDown list_{$item.id}">
     <div class="row clearfix">
         <div class="col-lg-2 head_box" style="text-align: center;">
-            <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" data-id="{$item.user_id}" class="w_img">
+            <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" data-id="{$item.user_id}" class="img-rounded w_img">
             <p>{$item.user_data.user_nickname}</p>
+            <!-- 会员身份显示 -->
+            <div class="user_degree">
+                普通用户<img src="./public/img/ud_img1.png">
+            </div>
             <div class="info-box">
                 <div class="arrow-left"></div>
                 <a class="author-name">{$item.user_data.user_nickname}的最近微博</a>

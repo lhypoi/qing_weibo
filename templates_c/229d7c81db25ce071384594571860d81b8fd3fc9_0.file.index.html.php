@@ -1,4 +1,31 @@
-﻿{include file='view/common/head.html'}
+<?php
+/* Smarty version 3.1.30, created on 2017-08-01 01:12:55
+  from "D:\wamp64\www\group\qing_weibo\view\index.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_597fd5976941c4_29398645',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '229d7c81db25ce071384594571860d81b8fd3fc9' => 
+    array (
+      0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\index.html',
+      1 => 1501549960,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:view/common/head.html' => 1,
+    'file:view/common/foot.html' => 1,
+  ),
+),false)) {
+function content_597fd5976941c4_29398645 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 <!-- 发布微博 -->
 <div class="weibo_content">
     <!-- 内容区域 -->
@@ -15,7 +42,7 @@
             <div class="pic_file_see"></div>
         </div>
         <div class="tab-pane fade" id="tab3">
-            {* <input type="file" id="music_file"> *}
+            
             <input type="text" name="" class="search_music form-control" placeholder="请用歌名、专辑、艺术家搜索" oninput="search_music(this)">
             <ul class="search_list">
             </ul>
@@ -81,20 +108,30 @@
 	<div class="row">
 		<div class="col-lg-9">
 			<ul class="weibo_box">
-				{foreach from=$weibo_data item=$item key=$key}
-					<li weibo-id="{$item.id}" class="animated slideInDown list_{$item.id}">
+				<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
+?>
+					<li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+" class="animated slideInDown list_<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">
 
 					    <div class="row clearfix">
 					        <div class="col-lg-2 head_box" style="text-align: center;">
-					            <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" data-id="{$item.user_id}" class="w_img">
-					            <p>{$item.user_data.user_nickname}</p>
+					            <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
+" alt="" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
+" class="w_img">
+					            <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
+</p>
 					            <!-- 会员身份显示 -->
 					            <div class="user_degree">
 					            	普通用户<img src="./public/img/ud_img1.png">
 					            </div>
 					            <div class="info-box">
 					                <div class="arrow-left"></div>
-					                <a class="author-name">{$item.user_data.user_nickname}的最近微博</a>
+					                <a class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
+的最近微博</a>
 					                <ul class="road_list">
 					                </ul>
 					            </div>
@@ -102,24 +139,36 @@
 					        <div class="col-lg-10 content_box">
 					            <div class="triangle_border_ne"></div>
 					            <div class="content">
-					                {if $item.type == 'short_content'}
-					                {$item.weibo_content}
-					                {elseif $item.type == 'pic_text'}
-					                <img src="{$item.pic}" alt="" class="w-img">
-					                {$item.weibo_content}
-					                {elseif $item.type == 'music'}
-					                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id={$item.music}&auto=0&height=66"></iframe>
-					                {$item.weibo_content}
-					                {elseif $item.type == 'video'}
-					                <video src="{$item.video}" controls width="80%"></video>
-					                {$item.weibo_content}
-					                {elseif $item.type == 'long_content'}
-					                {$item.weibo_content}
-					                {/if}
+					                <?php if ($_smarty_tpl->tpl_vars['item']->value['type'] == 'short_content') {?>
+					                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+					                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'pic_text') {?>
+					                <img src="<?php echo $_smarty_tpl->tpl_vars['item']->value['pic'];?>
+" alt="" class="w-img">
+					                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+					                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'music') {?>
+					                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=<?php echo $_smarty_tpl->tpl_vars['item']->value['music'];?>
+&auto=0&height=66"></iframe>
+					                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+					                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'video') {?>
+					                <video src="<?php echo $_smarty_tpl->tpl_vars['item']->value['video'];?>
+" controls width="80%"></video>
+					                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+					                <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['type'] == 'long_content') {?>
+					                <?php echo $_smarty_tpl->tpl_vars['item']->value['weibo_content'];?>
+
+					                <?php }?>
 					            </div>
 					            <div class="w-opt clearfix">
 					                <div class="optb pull-left">
-										{foreach from=$item.tag_data.tagid_arr item=$item2 key=$key2}
+										<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagid_arr'], 'item2', false, 'key2');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key2']->value => $_smarty_tpl->tpl_vars['item2']->value) {
+?>
 							            <div class="tags_box">
 							            	<div class="tag_info_box">
 								                <ul class="road_tag clearfix">
@@ -135,20 +184,32 @@
 								                </ul>
 								                <div class="arrow_down"></div>
 								            </div>
-							                <a data-id = "{$item2}" class="tag" href="index.php?control=tag&action=info&id={$item2}">#{$item.tag_data.tagname_arr[$key2]}&nbsp;</a>
+							                <a data-id = "<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+" class="tag" href="index.php?control=tag&action=info&id=<?php echo $_smarty_tpl->tpl_vars['item2']->value;?>
+">#<?php echo $_smarty_tpl->tpl_vars['item']->value['tag_data']['tagname_arr'][$_smarty_tpl->tpl_vars['key2']->value];?>
+&nbsp;</a>
 
 							            </div>
-							            {/foreach}
+							            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
 					                </div>
 					                <div class="optb pull-right">
-					                    <span style="color: #55a4a9;">{date('Y-m-d H:i:s', $item.create_time)}</span>
-					                    {if $item.user_data.id == $smarty.session.uid}
-					                    <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="{$item.id}">删除</a>
-					                    {/if}
-					                    {if $item.user_data.id == $smarty.session.uid}
+					                    <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
+</span>
+					                    <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
+					                    <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">删除</a>
+					                    <?php }?>
+					                    <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
 					                    <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
-					                    {/if}
-					                    <a href="" class="commet_btn" data-num="{$item.id}">评论({$item.commet_data})</a>
+					                    <?php }?>
+					                    <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+">评论(<?php echo $_smarty_tpl->tpl_vars['item']->value['commet_data'];?>
+)</a>
 					                </div>
 					            </div>
 					        </div>
@@ -169,7 +230,12 @@
 					        </div>
 					    </div>
 					</li>
-				{/foreach}
+				<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
       		</ul>
 			<div class="modal fade" id="edit_weibo_modal">
 			    <div class="modal-dialog">
@@ -219,6 +285,10 @@
             广告
         </div>
     </div>
-	<script type="text/javascript" src="./public/js/load.js"></script>
+	<?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/load.js"><?php echo '</script'; ?>
+>
 </div>
-{include file='view/common/foot.html'}
+<?php $_smarty_tpl->_subTemplateRender("file:view/common/foot.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}

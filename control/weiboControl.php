@@ -137,13 +137,19 @@ class weiboControl extends baseControl{
 
          // 查询评论表该微博是否有评论信息
          $commot_list = $this->model("comment")->getCommontByWid($weibo_id);
-
+         
          if (!empty( $commot_list)) {
-             foreach ($commot_list as $key => $value) {
+             foreach ($commot_list as $key=>$value) {
                 $this->model("comment")->delComment($value['id']);
              }
          }
-
+         //查询是否有标签，有则删除
+         $tag_list=$this->model("tag")->getTagbyWeiboid($weibo_id);
+         if(!empty($tag_list)){
+            foreach ($tag_list as $key=>$value) {
+                $this->model("tag")->delTag($weibo_id);
+             }
+         }
 
          $this->model("weibo")->delInfo($table,$weibo_id);
 

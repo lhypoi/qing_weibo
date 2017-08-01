@@ -26,7 +26,7 @@ class tag extends pdoClass
 
     public function getTagbyWeiboid($weibo_id)
     {
-        $sql = 'select t.id,t.name from tag t inner join tag_relationship r on r.weibo_id = '.$weibo_id.' and r.tag_id = t.id';
+        $sql = "select t.id,t.name from tag t inner join tag_relationship r on r.weibo_id = ".$weibo_id." and r.tag_id = t.id";
         $result = $this->select($sql);
         $tagid_arr = array();
         $tagname_arr = array();
@@ -60,6 +60,11 @@ class tag extends pdoClass
         $sql = "SELECT count(*) FROM weibo_commet WHERE weibo_id=$weibo_id";
         $result = $this->find($sql);
         return $result[0];
+    }
+    // 删除标签
+    public function delTag($weibo_id) {
+        $result = $this->delInfo('tag_relationship', $weibo_id);
+        return $result;
     }
 }
  ?>
