@@ -26,26 +26,25 @@ class commentControl extends baseControl{
     public function getComment() {
         $article_id = $_POST['article_id'];
         $commentStart = '';
-        $comment = '';
         $result = array();
         if(isset($_POST['commentList'])) {
             $commentStart = $_POST['commentList'];
             $comment = $commentStart.",5";
             $result = $this->model("comment")->getComment($article_id, $comment);
-            $this->assign("page", 1);
+            $this->assign("page", ((int)$_POST['comment'])+1);
         } else {
             $result = $this->model("comment")->getComment($article_id);
-            $this->assign("page", (int)$_POST['commet']+1);
+            $this->assign("page", (int)$_POST['comment']+1);
         }
         $num = $this->model("comment")->getTotalComment($article_id);
-        if(count($result) < 5 || $commentStart + 5 >= $num[0]) {
+        if(count($result) < 5 || (int)$commentStart + 5 >= $num[0]) {
             $this->assign("more", 0);
         } else {
             $this->assign("more", 1);
         }
         $this->assign("item", $result);
         $html = $this->fetch("commet_li.html");
-        returnjson(1,'评论查询成功',$html,"",$commentStart);
+        returnjson(1,'评论查询成功',$html,"",$_POST['comment']);
     }
 }
 

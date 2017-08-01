@@ -172,9 +172,11 @@ ul, li {
 }
 .tab_user img {
   height: 40px;
+  width: 40px;
 }
 .commont_box {
   display: none;
+	padding:0;
 }
 .commont_li {
   width: 95%;
@@ -196,7 +198,6 @@ ul, li {
 	margin:0 auto;
 	cursor:pointer;
 	color:#333;
-	background:#eee;
 	height:24px;
 	line-height:24px;
 }
@@ -309,7 +310,7 @@ ul, li {
   border-style: solid;
   border-color: #efeeee transparent transparent transparent;
   float: left;
-  margin: 11px 0 0 20px;
+  margin: 5px 0 0 120px;
 }
 .road_tag{
 	height:110px;
@@ -318,7 +319,7 @@ ul, li {
 .road_tag li{
   float: left;
   height: 100px;
-	width:33%;
+	width:32%;
 	margin-left:1%;
 	border:none;
 	margin-top:5px;
@@ -327,4 +328,15 @@ ul, li {
 }
 .w-opt .optb .tag_info_box{
   display: none;
+}
+.user_degree{
+    background: #fff;
+    border: solid 1px #e6e6e6;
+    width: 91px;
+    height: 28px;
+    line-height: 24px;
+    cursor: pointer;
+    position: relative;
+    margin: 0 auto;
+    color: #000;
 }

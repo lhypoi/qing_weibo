@@ -163,7 +163,7 @@ $(function() {
         let this_elm = $(event.target);
         // 评论下拉框
         if (this_elm.hasClass('commet_btn')) {
-            var comment_box = this_elm.parent().parent().parent().siblings('.comment_row').find('.commont_box');
+            var comment_box = this_elm.parent().parent().parent().parent().siblings('.comment_row').find('.commont_box');
             if (comment_box.css('display') != 'block') {
                 var article_id = this_elm.attr('data-num');
                 $.ajax({
@@ -222,7 +222,7 @@ $(function() {
                     data = $.parseJSON(data);
                     if (data['status'] == 1) {
                         this_elm.parent().parent().append(data['html']);
-                        this_elm.remove();
+                        this_elm.parent().remove();
                     }
                 }
             });
@@ -278,7 +278,7 @@ $(function() {
     });
 
     //滑过标签显示
-    $('.optb').on("mouseenter",'.tag', function(e) {
+    $('.weibo_box').on("mouseenter",'.tag', function(e) {
         infoTarget = $(e.target);
         let touxiang_box=infoTarget.siblings('.tag_info_box');
         touxiang_box.show(600).css("left",infoTarget.offset().left-385);

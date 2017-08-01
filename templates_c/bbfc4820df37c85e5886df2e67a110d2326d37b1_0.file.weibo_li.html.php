@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 12:35:28
-  from "C:\wamp\www\qing_weibo\view\weibo_li.html" */
+/* Smarty version 3.1.30, created on 2017-08-01 01:13:40
+  from "D:\wamp64\www\group\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597f2410c22c32_37005291',
+  'unifunc' => 'content_597fd5c4ea98a5_61872235',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '08fc6d376f4c530914147539568737b11d238abd' => 
+    'bbfc4820df37c85e5886df2e67a110d2326d37b1' => 
     array (
-      0 => 'C:\\wamp\\www\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501504522,
+      0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\weibo_li.html',
+      1 => 1501550008,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597f2410c22c32_37005291 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597fd5c4ea98a5_61872235 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
@@ -32,9 +32,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
         <div class="col-lg-2 head_box" style="text-align: center;">
             <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
-" class="w_img">
+" class="img-rounded w_img">
             <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 </p>
+            <!-- 会员身份显示 -->
+            <div class="user_degree">
+                普通用户<img src="./public/img/ud_img1.png">
+            </div>
             <div class="info-box">
                 <div class="arrow-left"></div>
                 <a class="author-name"><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>

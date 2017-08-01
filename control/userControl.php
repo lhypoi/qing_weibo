@@ -33,6 +33,7 @@ class userControl extends baseControl{
 
     public function logout() {
         unset($_SESSION['uid']);
+        unset($_SESSION['admin']);
         returnjson(1, '退出用户成功');
     }
 
