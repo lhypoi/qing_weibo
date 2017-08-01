@@ -170,31 +170,38 @@ $(function() {
     });
 
     //滑过标签显示
+    var timer_enter = 0;
+    var timer_leave = 0;
+    var n;
     $('.weibo_box').on("mouseenter",'.tag', function(e) {
-        infoTarget = $(e.target);
-        let touxiang_box=infoTarget.siblings('.tag_info_box');
-        touxiang_box.show(600).css("left",infoTarget.offset().left-385);
-        var tag_id = infoTarget.attr('data-id');
-        $.ajax({
-			url: "index.php?control=tag&action=tagSelect",
-			type: "POST",
-			data: {
-			     tag_id
-			 },
-			 success: function(data) {
-			     data = $.parseJSON(data);
-			     let p_html = ""
-				 data.other.forEach(item=>{
-				     p_html+= "<a href='index.php?control=tag&action=info&id="+tag_id+"'><li style='overflow:hidden;'>"+item.weibo_content+"</li></a>";
-				 })
-				 infoTarget.siblings('.tag_info_box').find('.road_tag').html(p_html);
-			 }
-        });
+    	timer_enter = setTimeout(function(){
+    		infoTarget = $(e.target);
+            let touxiang_box=infoTarget.siblings('.tag_info_box');
+            timer_enter = setTimeout(function() {touxiang_box.show(500).css("left",infoTarget.offset().left-385)},500);
+            var tag_id = infoTarget.attr('data-id');
+            $.ajax({
+    			url: "index.php?control=tag&action=tagSelect",
+    			type: "POST",
+    			data: {
+    			     tag_id
+    			 },
+    			 success: function(data) {
+    			     data = $.parseJSON(data);
+    			     let p_html = ""
+    				 data.other.forEach(item=>{
+    				     p_html+= "<a href='index.php?control=tag&action=info&id="+tag_id+"'><li style='overflow:hidden;'>"+item.weibo_content+"</li></a>";
+    				 })
+    				 infoTarget.siblings('.tag_info_box').find('.road_tag').html(p_html);
+    			 }
+            });
+    	},400);
+    	
     }).on("mouseleave",'.tags_box', function() {
-        if (infoTarget != null) {
-    	   infoTarget.siblings('.tag_info_box').hide(300);
-        }
-    });
+        clearTimeout(timer_enter);
+        timer_leave = setTimeout(function() {   infoTarget.siblings('.tag_info_box').hide(500)}, 400);
+    }).on("mouseenter",'.tag_info_box', function() {
+    	clearTimeout(timer_leave);
+    })
     //进入标签显示
     // $(".tag_info_box").on("mouseenter",function  () {
     //     $(".tag_info_box").show()
