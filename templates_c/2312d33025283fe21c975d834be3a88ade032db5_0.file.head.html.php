@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 03:30:18
+/* Smarty version 3.1.30, created on 2017-08-01 07:22:34
   from "C:\wamp\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597ff5caa84a84_77326338',
+  'unifunc' => 'content_59802c3a3d2124_84881951',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2312d33025283fe21c975d834be3a88ade032db5' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501558217,
+      1 => 1501572151,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59802c3a3d2124_84881951 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,13 +37,16 @@ function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 > -->
     <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/weibo.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
 >
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
@@ -116,7 +119,7 @@ function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_login()">登陆</button>
+                                <button type="" class="btn btn-info" onclick="user.do_login()">登陆</button>
                             </div>
                         </div>
                     </div>
@@ -161,7 +164,7 @@ function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_register()">注册</button>
+                                <button type="" class="btn btn-info" onclick="user.do_register()">注册</button>
                             </div>
                         </div>
                     </div>
@@ -183,7 +186,7 @@ function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_edit()">确定</button>
+                                <button type="" class="btn btn-info" onclick="user.do_edit()">确定</button>
                             </div>
                         </div>
                     </div>
@@ -196,7 +199,7 @@ function content_597ff5caa84a84_77326338 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="modal-body">是否退出当前用户？</div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_quit()">确定</button>
+                                <button type="" class="btn btn-info" onclick="user.do_quit()">确定</button>
                             </div>
                         </div>
                     </div>
