@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-31 19:06:57
+/* Smarty version 3.1.30, created on 2017-08-01 10:58:14
   from "D:\wamp64\www\20170718\lesson9\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597f0f519d3891_71043387',
+  'unifunc' => 'content_597fee465b6726_80353579',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e285061573cc666dc4a35608ef74feee62332c74' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\common\\head.html',
-      1 => 1501499208,
+      1 => 1501556279,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597f0f519d3891_71043387 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +62,7 @@ function content_597f0f519d3891_71043387 (Smarty_Internal_Template $_smarty_tpl)
                     
                     <?php if ($_SESSION['uid'] > 0) {?>
                     <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['user_pic']->value)===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" alt="">
+" alt="" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php echo $_smarty_tpl->tpl_vars['user_nickname']->value;?>
  <b class="caret"></b>

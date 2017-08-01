@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-07-30 19:51:07
+/* Smarty version 3.1.30, created on 2017-08-01 11:04:14
   from "D:\wamp64\www\20170718\lesson9\view\tag.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597dc82b2ff106_21003146',
+  'unifunc' => 'content_597fefae968668_50629837',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1cd974bef97e8a123eeccee62d580f0a3419994d' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\tag.html',
-      1 => 1501415383,
+      1 => 1501556279,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597dc82b2ff106_21003146 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597fefae968668_50629837 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -122,7 +122,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                             <a href="#edit_weibo_modal" class="edit_weibo" data-toggle="modal">编辑</a>
                                         <?php }?>
                                         <a href="" class="commet_btn" data-num="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-">评论(<?php echo count($_smarty_tpl->tpl_vars['item']->value['commet_data']);?>
+">评论(<?php echo $_smarty_tpl->tpl_vars['item']->value['commet_data'];?>
 )</a>
                                     </div>
                                 </div>
@@ -199,7 +199,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
             广告
         </div>
     </div>
-
+    <div id="page-mark" data-page="tag"></div>
+	<?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/load.js"><?php echo '</script'; ?>
+>
 </div>
 <?php $_smarty_tpl->_subTemplateRender("file:view/common/foot.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

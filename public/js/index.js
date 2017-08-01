@@ -251,7 +251,8 @@ $(function() {
 
 
     //头像滑过
-    $('.weibo_box').on("mouseenter", 'img', function(e) {
+    var infoTarget = null;
+    $('.weibo_box').on("mouseenter", 'img.w_img', function(e) {
         infoTarget = $(e.target);
         let touxiang_box = infoTarget.parent().parent().find('.info-box');
         $user_id = infoTarget.parent().find('.w_img').attr('data-id');
@@ -274,7 +275,9 @@ $(function() {
             }
         });
     }).on("mouseleave", '.head_box', function() {
-        infoTarget.parent().parent().find('.info-box').hide(300);
+        if (infoTarget != null) {
+            infoTarget.parent().parent().find('.info-box').hide(300);
+        }
     });
 
     //滑过标签显示
@@ -299,7 +302,9 @@ $(function() {
 			 }
         });
     }).on("mouseleave",'.tags_box', function() {
-    	infoTarget.siblings('.tag_info_box').hide(300);
+        if (infoTarget != null) {
+    	   infoTarget.siblings('.tag_info_box').hide(300);
+        }
     });
     //进入标签显示
     // $(".tag_info_box").on("mouseenter",function  () {
