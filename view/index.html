@@ -85,7 +85,7 @@
 					<li weibo-id="{$item.id}" class="animated slideInDown list_{$item.id}">
 					    <div class="row clearfix">
 					        <div class="col-lg-2 head_box" style="text-align: center;">
-					            <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" data-id="{$item.user_id}" class="w_img">
+					            <img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" alt="" data-id="{$item.user_id}" class="img-rounded w_img">
 					            <p>{$item.user_data.user_nickname}</p>
 					            <!-- 会员身份显示 -->
 					            <div class="user_degree">
@@ -104,7 +104,7 @@
 					                {if $item.type == 'short_content'}
 					                {$item.weibo_content}
 					                {elseif $item.type == 'pic_text'}
-					                <img src="{$item.pic}" alt="" class="img-rounded w-img">
+					                <img src="{$item.pic}" alt="" class="w-img">
 					                {$item.weibo_content}
 					                {elseif $item.type == 'music'}
 					                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id={$item.music}&auto=0&height=66"></iframe>
