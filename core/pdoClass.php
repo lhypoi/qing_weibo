@@ -89,7 +89,9 @@ class pdoClass {
         }
         return $this->pdo->exec("UPDATE $table SET $updateStr WHERE $conStr");
     }
-    
+    function deltagInfo($sql) {
+        return $this->pdo->exec($sql);
+    }
 }
 
 ?>

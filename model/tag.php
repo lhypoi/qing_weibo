@@ -62,8 +62,9 @@ class tag extends pdoClass
         return $result[0];
     }
     // 删除标签
-    public function delTag($weibo_id) {
-        $result = $this->delInfo('tag_relationship', $weibo_id);
+    public function delTag($tag_id) {
+        $sql = "DELETE FROM  tag_relationship WHERE tag_id=$tag_id";
+        $result = $this->deltagInfo($sql);
         return $result;
     }
 }

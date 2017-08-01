@@ -8,20 +8,6 @@ class weiboControl extends baseControl{
             $this->assign('user_name', $user['user_name']);
             $this->assign('user_nickname', $user['user_nickname']);
             $this->assign('user_pic', $user['user_pic']);
-            switch ($user['auth']) {
-                case 1:
-                    ;
-                break;
-                case 2:
-                    ;
-                break;
-                case 3:
-                    $_SESSION['admin'] = $user['user_name'];
-                break;
-                default:
-                    ;
-                break;
-            }
         } else {
             $_SESSION['uid'] = 0;
         }
@@ -36,7 +22,7 @@ class weiboControl extends baseControl{
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
     }
-
+    
     //异步加载获取
     public function get() {
         $pageStart = $_POST['pageList'];
@@ -47,6 +33,7 @@ class weiboControl extends baseControl{
         $weibo_data = array();
         $weibo_id = array();
         if($page_mark == 'index') {
+
             $weibo_data = $weibo_model->getWeiboList($page);
         } elseif ($page_mark == 'tag') {
             $weibo_id = $weibo_model->getWeiboListById($id, $page);
@@ -57,6 +44,7 @@ class weiboControl extends baseControl{
                 }
             }
         }
+
         if(empty($weibo_data)) {
             returnjson(0, "无更多页面","","",$weibo_id);
         }else{
@@ -70,7 +58,7 @@ class weiboControl extends baseControl{
             returnjson(1, "",$html,"",$page);
         }
     }
-
+    
     //发布微博
     public function sendWeibo(){
         $new_content['weibo_content'] =  $_POST['weibo_content'];
@@ -157,10 +145,13 @@ class weiboControl extends baseControl{
              }
          }
          //查询是否有标签，有则删除
-         $tag_list=$this->model("tag")->getTagbyWeiboid($weibo_id);
-         if(!empty($tag_list)){
-            foreach ($tag_list as $key=>$value) {
-                $this->model("tag")->delTag($weibo_id);
+         $tag_data = array();
+         $tag_data=$this->model("tag")->getTagbyWeiboid($weibo_id);
+         // $tag_id=$tag_list['tagid_arr'];
+         // var_dump($tag_data['tagid_arr'][0]);
+         if(!empty($tag_data)){
+            for ($i=0;$i<count($tag_data['tagid_arr']);$i++) {
+                $this->model("tag")->delTag($tag_data['tagid_arr'][$i]);
              }
          }
 
@@ -195,6 +186,7 @@ class weiboControl extends baseControl{
         }
     }
 
+
     // 信息采集
     // http://localhost/20170718/lesson9/index.php?control=weibo&action=caiji
     public function caiji()
@@ -218,6 +210,7 @@ class weiboControl extends baseControl{
             echo "正插入第".$key."条微博<br>";
         }
     }
+
 }
 
 ?>

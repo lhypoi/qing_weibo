@@ -27,11 +27,13 @@ class tagControl extends baseControl {
     public function tagSelect() {
         $id = $_POST['tag_id'];
         $model = $this->model("tag");
+
         $weibo_id = $model->getWeiboListById($id, "0,3");
         $result = array();
         foreach ($weibo_id as $key => $value) {
             $value = $model->getWeiboListByTag($value['weibo_id']);
             $result.array_push($result, $value[0]);
+
         }
         returnjson(1, "","","",$result);
     }

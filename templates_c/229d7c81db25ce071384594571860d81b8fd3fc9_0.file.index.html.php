@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 01:12:55
+/* Smarty version 3.1.30, created on 2017-08-01 01:25:53
   from "D:\wamp64\www\group\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597fd5976941c4_29398645',
+  'unifunc' => 'content_597fd8a199c669_81242729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '229d7c81db25ce071384594571860d81b8fd3fc9' => 
     array (
       0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\index.html',
-      1 => 1501549960,
+      1 => 1501550751,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_597fd5976941c4_29398645 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597fd8a199c669_81242729 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -116,12 +116,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 					<li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 " class="animated slideInDown list_<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">
-
 					    <div class="row clearfix">
 					        <div class="col-lg-2 head_box" style="text-align: center;">
 					            <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="" data-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['user_id'];?>
-" class="w_img">
+" class="img-rounded w_img">
 					            <p><?php echo $_smarty_tpl->tpl_vars['item']->value['user_data']['user_nickname'];?>
 </p>
 					            <!-- 会员身份显示 -->
