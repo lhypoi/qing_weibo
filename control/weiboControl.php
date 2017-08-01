@@ -145,13 +145,10 @@ class weiboControl extends baseControl{
              }
          }
          //查询是否有标签，有则删除
-         $tag_data = array();
-         $tag_data=$this->model("tag")->getTagbyWeiboid($weibo_id);
-         // $tag_id=$tag_list['tagid_arr'];
-         // var_dump($tag_data['tagid_arr'][0]);
+         $tag_data=$this->model("tag")->getIdInRelation($weibo_id);
          if(!empty($tag_data)){
-            for ($i=0;$i<count($tag_data['tagid_arr']);$i++) {
-                $this->model("tag")->delTag($tag_data['tagid_arr'][$i]);
+            foreach ($tag_data as $key => $value){
+                $this->model("tag")->delTag($value['id']);
              }
          }
 
