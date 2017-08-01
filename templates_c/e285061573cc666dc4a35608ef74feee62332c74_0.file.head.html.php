@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 10:58:14
+/* Smarty version 3.1.30, created on 2017-08-01 11:46:24
   from "D:\wamp64\www\20170718\lesson9\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597fee465b6726_80353579',
+  'unifunc' => 'content_597ff990032632_54357913',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e285061573cc666dc4a35608ef74feee62332c74' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\common\\head.html',
-      1 => 1501556279,
+      1 => 1501559175,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl) {
+function content_597ff990032632_54357913 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +41,9 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
 >
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
