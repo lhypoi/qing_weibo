@@ -113,5 +113,19 @@ window.user = {
 	            }
 	        }
 	    });
-	},
+	}, 
+	
+	//用户主页菜单选择
+	menu_select: function(index) {
+		var menu = $('.menu ul li');
+		var list = $('.weibo_list .row .col-lg-9');
+		for(var i = 0; i < menu.length; i ++) {
+			if(menu.eq(i).children('span').hasClass('active') && i != index) {
+				menu.eq(i).children('span').removeClass('active');
+				list.eq(i).hide(500);
+			}
+		}
+		menu.eq(index).children('span').addClass('active');
+		list.eq(index).show(500);
+	}
 }

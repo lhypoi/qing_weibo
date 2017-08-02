@@ -9,15 +9,13 @@
 	<h4>{$weibo_data[0].user_data.user_nickname}</h4>
 	<span>这个人很懒，什么都没写</span>
 </div>
-<!-- 
 <div class="menu">
 	<ul class="clearfix">
-		<li>我的微博</li>
-		<li>我的相册</li>
-		<li>账号管理</li>
+		<li><span class="active" onclick="user.menu_select(0)">我的微博</span></li>
+		<li><span onclick="user.menu_select(1)">我的相册</span></li>
+		<li><span onclick="user.menu_select(2)">账号管理</span></li>
 	</ul>
 </div>
- -->
 <div class="weibo_list">
 	<div class="row">
 		<div class="col-lg-9">
@@ -112,6 +110,34 @@
 				{/foreach}
 			</ul>
 		</div>
+		<div class="col-lg-9" style="display:none;">
+			<ul class="photo_list clearfix">
+				<li>
+					<a>
+						<img src="./public/img/default.png" />
+					</a>
+				</li>
+				<li>
+					<a><img src="./public/img/default.png" /></a>
+				</li>
+				<li>
+					<a><img src="./public/img/default.png" /></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-9" style="display:none;">
+			<form class="info">
+				<div class="row">
+					<span>用户名：</span>
+					<input type="text" name="nickname" class="form-control text" />
+				</div>
+				<div class="row">
+					<span>密码：</span>
+					<input type="password" name="pwd" class="form-control text" />
+				</div>
+			</form>
+		</div>
+		<div class="col-lg-9" style="display:none;">账号管理</div>
 		<div class="col-lg-3">
             <div class="side_box follow_box">
             	<h5>关注</h5>
@@ -138,4 +164,24 @@
 </div>
 <div id="page-mark" data-page="home"></div>
 <script type="text/javascript" src="./public/js/load.js"></script>
+<script type="text/javascript">
+//调整相片大小
+var photo_list = $('.photo_list li');
+for(var i = 0; i < photo_list.length; i ++) {
+	var photo = photo_list.eq(i).children().children('img').eq(0);
+	var img = new Image();
+	img.src = photo.attr("src");
+	var width = img.width;
+	var height = img.height;
+	if((width - photo_list.eq(i).width()) > (height - photo_list.eq(i).height())) {
+		photo.css('height', '200px');
+		var rate = 200 / height;
+		photo.css('width', (width * rate) + 'px');
+	} else {
+		photo.css('width', '225px');
+		var rate = 225 / width;
+		photo.css('height', (height * rate) + 'px');
+	}
+}
+</script>
 {include file='view/common/foot.html'}

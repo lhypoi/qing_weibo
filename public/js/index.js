@@ -190,7 +190,6 @@ $(function() {
     //滑过标签显示
     var timer_enter = 0;
     var timer_leave = 0;
-    var n;
     $('.weibo_box').on("mouseenter",'.tag', function(e) {
     	timer_enter = setTimeout(function(){
     		infoTarget = $(e.target);
