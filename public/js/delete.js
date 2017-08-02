@@ -4,6 +4,7 @@
 $(function() {
 	var record_id; //删除的微博的ID
     var record_row; //删除的微博
+    var record_type;//删除微博的类型
     var a_id;  //删除评论所属的微博
     var c_id;  //删除的评论的ID
     var del_row;  //删除的评论
@@ -11,6 +12,7 @@ $(function() {
 		var _this = $(e.target);
 		//删除微博
 		if(_this.hasClass('delete_weibo')) {
+            record_type= _this.attr('data-type');
 			record_id  = _this.attr('id');
 			$('#record-num').val(record_id);
 			record_row = _this;
@@ -23,13 +25,13 @@ $(function() {
     		del_row = _this;
     	}
 	})
-
-	//删除确认和取消
+    //删除确认和取消
     $('#record-del-confirm').on('click', function() {
+
     	$.ajax({
 			type: "POST",
             url: 'index.php?control=weibo&action=delete',
-            data: {id: record_id, type: 'del'},
+            data: {id: record_id, type: record_type},
             success: function(rtnData) {
             	let rtnObject = JSON.parse(rtnData);
                 if(rtnObject.status == 1) {

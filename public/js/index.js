@@ -46,44 +46,51 @@ $(function() {
         }
         let type = $('.menu_box input[type=hidden]').val();
         if (type == "short_content") {
-            $.ajax({
-                url: "index.php?control=weibo&action=sendWeibo",
-                type: "POST",
-                data: {
-                    weibo_content: $('textarea').eq(0).val(),
-                    tagname_arr,
-                    type
-                },
-                success: function(data) {
-                    data = $.parseJSON(data);
-                    if (data['status'] == 1) {
-                        $('.weibo_box').prepend(data['html']);
-                        $('textarea').eq(0).val('');
+            panduan=noContent.content(0);
+            if(panduan){
+                $.ajax({
+                    url: "index.php?control=weibo&action=sendWeibo",
+                    type: "POST",
+                    data: {
+                        weibo_content: $('textarea').eq(0).val(),
+                        tagname_arr,
+                        type
+                    },
+                    success: function(data) {
+                        data = $.parseJSON(data);
+                        if (data['status'] == 1) {
+                            $('.weibo_box').prepend(data['html']);
+                            $('textarea').eq(0).val('');
+                        }
                     }
-                }
-            });
+                });
+            }
         } else if (type == "pic_text") {
             var fd = new FormData();
-            fd.append('weibo_content', $('textarea').eq(1).val());
-            fd.append('pic_file', $('#pic_file').get(0).files[0]);
-            $.each(tagname_arr, function(key, val) {
-                fd.append('tagname_arr[]', val);
-            });
-            fd.append('type', type);
-            $.ajax({
-                url: "index.php?control=weibo&action=sendWeibo",
-                type: "POST",
-                contentType: false,
-                processData: false,
-                data: fd,
-                success: function(data) {
-                    data = $.parseJSON(data);
-                    if (data['status'] == 1) {
-                        $('.weibo_box').prepend(data['html']);
-                        $('textarea').eq(0).val('');
+            wenzi=noContent.content(1);
+            tupian=noContent.fileContent("pic_file");
+            if(wenzi & tupian){
+                fd.append('weibo_content', $('textarea').eq(1).val());
+                fd.append('pic_file', $('#pic_file').get(0).files[0]);
+                $.each(tagname_arr, function(key, val) {
+                    fd.append('tagname_arr[]', val);
+                });
+                fd.append('type', type);
+                $.ajax({
+                    url: "index.php?control=weibo&action=sendWeibo",
+                    type: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: fd,
+                    success: function(data) {
+                        data = $.parseJSON(data);
+                        if (data['status'] == 1) {
+                            $('.weibo_box').prepend(data['html']);
+                            $('textarea').eq(0).val('');
+                        }
                     }
-                }
-            });
+                });
+            }
         } else if (type == "music") {
             var fd = new FormData();
             // fd.append('music_file', $('#music_file').get(0).files[0]);
@@ -108,55 +115,97 @@ $(function() {
             });
         } else if (type == "video") {
             var fd = new FormData();
-            fd.append('weibo_content', $('textarea').eq(3).val());
-            fd.append('video_file', $('#video_file').get(0).files[0]);
-            fd.append('type', type);
-            $.each(tagname_arr, function(key, val) {
-                fd.append('tagname_arr[]', val);
-            });
-            var xhr=new XMLHttpRequest(); xhr.upload.onprogress=function(e){};
-            var xhrOnProgress = function(fun) {
-                xhrOnProgress.onprogress = fun; //绑定监听
-                //使用闭包实现监听绑
-                return function() {
-                    //通过$.ajaxSettings.xhr();获得XMLHttpRequest对象
-                    var xhr = $.ajaxSettings.xhr();
-                    //判断监听函数是否为函数
-                    if (typeof xhrOnProgress.onprogress !== 'function')
+            wenzi=noContent.content(3);
+            tupian=noContent.fileContent("video_file");
+            if(wenzi & tupian){
+                fd.append('weibo_content', $('textarea').eq(3).val());
+                fd.append('video_file', $('#video_file').get(0).files[0]);
+                fd.append('type', type);
+                $.each(tagname_arr, function(key, val) {
+                    fd.append('tagname_arr[]', val);
+                });
+                var xhr=new XMLHttpRequest(); xhr.upload.onprogress=function(e){};
+                var xhrOnProgress = function(fun) {
+                    xhrOnProgress.onprogress = fun; //绑定监听
+                    //使用闭包实现监听绑
+                    return function() {
+                        //通过$.ajaxSettings.xhr();获得XMLHttpRequest对象
+                        var xhr = $.ajaxSettings.xhr();
+                        //判断监听函数是否为函数
+                        if (typeof xhrOnProgress.onprogress !== 'function')
+                            return xhr;
+                        //如果有监听函数并且xhr对象支持绑定时就把监听函数绑定上去
+                        if (xhrOnProgress.onprogress && xhr.upload) {
+                            xhr.upload.onprogress = xhrOnProgress.onprogress;
+                        }
                         return xhr;
-                    //如果有监听函数并且xhr对象支持绑定时就把监听函数绑定上去
-                    if (xhrOnProgress.onprogress && xhr.upload) {
-                        xhr.upload.onprogress = xhrOnProgress.onprogress;
                     }
-                    return xhr;
                 }
+                $.ajax({
+                    url: "index.php?control=weibo&action=sendWeibo",
+                    type: "POST",
+                    xhr:xhrOnProgress(function(e){
+                        var percent=e.loaded / e.total;//计算百分比
+                        $('#video_progress').attr('style', 'width:'+(percent * 100)+'%');
+                      }),
+                    contentType: false,
+                    processData: false,
+                    data: fd,
+                    success: function(data) {
+                        data = $.parseJSON(data);
+                        if (data['status'] == 1) {
+                            $('#video_progress').attr('style', 'width:0%');
+                            $('.weibo_box').prepend(data['html']);
+                        }
+                    }
+                });
             }
-            $.ajax({
-                url: "index.php?control=weibo&action=sendWeibo",
-                type: "POST",
-                xhr:xhrOnProgress(function(e){
-                    var percent=e.loaded / e.total;//计算百分比
-                    $('#video_progress').attr('style', 'width:'+(percent * 100)+'%');
-                  }),
-                contentType: false,
-                processData: false,
-                data: fd,
-                success: function(data) {
-                    data = $.parseJSON(data);
-                    if (data['status'] == 1) {
-                        $('#video_progress').attr('style', 'width:0%');
-                        $('.weibo_box').prepend(data['html']);
-                    }
-                }
-            });
         }
-
     })
 
+window.noContent={
+    str:"",
+    content:function(i){
+        str=$.trim($('textarea').eq(i).val());
+        if(str==""){
+            $('.contentError').html("内容不能为空！");
+            return false;
+        }else{
+            return true;
+        }
+    },
+    fileContent:function(tid){
+        str=$.trim($('#'+tid).get(0).files[0]);
+        if(str==""){
+            $('.contentError').html("上传内容不能为空！");
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
 
     // 更新微博
     // 发布评论
     // 删除评论
+
+    // 评论js对象封装
+    // let this_elm="";
+    // $('.weibo_list').click(function(event) {
+    //     this_elm = $(event.target);
+    //     // 评论下拉框
+    //     if (this_elm.hasClass('commet_btn')) {
+    //         comment.getComment(this_elm);
+            
+    //     }else if (this_elm.hasClass('commet_send')) {
+    //         comment.addComment();
+    //     }else if (this_elm.hasClass('edit_weibo')) {
+    //         comment.edit()
+    //     } else if (this_elm.hasClass('more')) {
+    //         comment.load();
+    //     }
+    // })
+    
 
     // 事件委托绑定评论下拉框，评论增删功能
     $('.weibo_list').click(function(event) {

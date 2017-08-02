@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 03:46:41
+/* Smarty version 3.1.30, created on 2017-08-02 00:13:24
   from "D:\wamp64\www\group\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597ff9a1992273_02049162',
+  'unifunc' => 'content_59811924b73775_99489495',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab0f25bcb11e8fc06e109dd796ecec2ff3a21d93' => 
     array (
       0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\common\\head.html',
-      1 => 1501559035,
+      1 => 1501632802,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597ff9a1992273_02049162 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59811924b73775_99489495 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@ function content_597ff9a1992273_02049162 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 > -->
     <?php echo '<script'; ?>
- type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
+ type="text/javascript" src="./public/js/index.js?0.0.5"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
@@ -45,6 +45,9 @@ function content_597ff9a1992273_02049162 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
 >
+    <!-- <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/comment.js"><?php echo '</script'; ?>
+> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">

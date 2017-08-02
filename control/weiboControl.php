@@ -107,16 +107,16 @@ class weiboControl extends baseControl{
             $this->assign("weibo_data", $weibo_data);
 
         // html编码统一返回null
-        $html = $this->fetch("weibo_li.html");
+            $html = $this->fetch("weibo_li.html");
 
-        echo json_encode(
-            array(
-                "status"=>1,
-                "msg"=>'发布成功',
-                "html"=>$html,
-                "num"=>$error_array['num']
-                )
-            );
+            echo json_encode(
+                array(
+                    "status"=>1,
+                    "msg"=>'发布成功',
+                    "html"=>$html,
+                    "num"=>$error_array['num']
+                    )
+                );
         }else{
             echo json_encode(
                 array(
@@ -133,80 +133,93 @@ class weiboControl extends baseControl{
     {
          // 获取微博id
          // 删除这条微博信息，删除它的评论。文件 unlink
-         $weibo_id = $_POST['id'];
-         $table='weibo_detail';
+        $weibo_id = $_POST['id'];
+        $table='weibo_detail';
+        $type=$_POST['type'];
+        $weibo_data=array();
 
-         // 查询评论表该微博是否有评论信息
-         $commot_list = $this->model("comment")->getCommontByWid($weibo_id);
-         
-         if (!empty( $commot_list)) {
-             foreach ($commot_list as $key=>$value) {
-                $this->model("comment")->delComment($value['id']);
-             }
-         }
-         //查询是否有标签，有则删除
-         $tag_data=$this->model("tag")->getIdInRelation($weibo_id);
-         if(!empty($tag_data)){
-            foreach ($tag_data as $key => $value){
-                $this->model("tag")->delTag($value['id']);
-             }
-         }
-
-         $this->model("weibo")->delInfo($table,$weibo_id);
-
-         echo returnJson("1","删除成功");exit();
-    }
-
-    public function headSelect($value='')
-    {
-        $uid=$_POST['$user_id'];
-        $weibo_model = $this->model("weibo");
-        $weibo_data = $weibo_model->getLastInfo($uid);
-        foreach ($weibo_data as $key => $value) {
-            $weibo_data[$key]['time']=date('Y-m-d H:i:s',$weibo_data[$key]['create_time']);
+        $result=$this->model("weibo")->getWeiboListByTag($weibo_id);
+        if($type=='pic_text'){
+            // print_r($result);
+        $file_path=$result[0]['pic'];
+            // echo $file_path;exit();
+        unlink($file_path);
+        }elseif ($type=='video') {
+            $file_path=$result[0]['video'];
+            unlink($file_path);
         }
-        echo json_encode($weibo_data);
+        
+         // 查询评论表该微博是否有评论信息
+        $commot_list = $this->model("comment")->getCommontByWid($weibo_id);
+
+        if (!empty( $commot_list)) {
+         foreach ($commot_list as $key=>$value) {
+            $this->model("comment")->delComment($value['id']);
+        }
     }
+         //查询是否有标签，有则删除
+    $tag_data=$this->model("tag")->getIdInRelation($weibo_id);
+    if(!empty($tag_data)){
+        foreach ($tag_data as $key => $value){
+            $this->model("tag")->delTag($value['id']);
+        }
+    }
+
+    $this->model("weibo")->delInfo($table,$weibo_id);
+
+    echo returnJson("1","删除成功");exit();
+}
+
+public function headSelect($value='')
+{
+    $uid=$_POST['$user_id'];
+    $weibo_model = $this->model("weibo");
+    $weibo_data = $weibo_model->getLastInfo($uid);
+    foreach ($weibo_data as $key => $value) {
+        $weibo_data[$key]['time']=date('Y-m-d H:i:s',$weibo_data[$key]['create_time']);
+    }
+    echo json_encode($weibo_data);
+}
 
     // public function tagSelect($value='')
     // {
     //     # code...
     // }
 
-    public function editWeibo()
-    {
-        $result = $this->model('weibo')->edit();
-        if ($result == 1) {
-            returnjson('1','编辑成功');
-        } else {
-            returnjson('0','编辑失败');
-        }
+public function editWeibo()
+{
+    $result = $this->model('weibo')->edit();
+    if ($result == 1) {
+        returnjson('1','编辑成功');
+    } else {
+        returnjson('0','编辑失败');
     }
+}
 
 
     // 信息采集
     // http://localhost/20170718/lesson9/index.php?control=weibo&action=caiji
-    public function caiji()
-    {
+public function caiji()
+{
         // 执行node文件
-        exec("node bin/caiji.js");
+    exec("node bin/caiji.js");
         // 获取采集信息
-        $caijiData = file_get_contents('caiji.json');
-        $caijiData = json_decode($caijiData, true);
+    $caijiData = file_get_contents('caiji.json');
+    $caijiData = json_decode($caijiData, true);
         // 更新到数据库中
-        $weibo_model = $this->model("weibo");
-        $user_model = $this->model("user");
-        $new_content = array();
-        foreach ($caijiData as $key => $value) {
+    $weibo_model = $this->model("weibo");
+    $user_model = $this->model("user");
+    $new_content = array();
+    foreach ($caijiData as $key => $value) {
             // 用户id随机从数据库中获取
-            $new_content['uid'] = $this->model('user')->getRandomId();
-            $new_content['weibo_content'] = $value['caiji_txt'];
-            $new_content['type'] = 'short_content';
-            $new_content['create_time'] = time();
-            $this->model('weibo')->setContent($new_content);
-            echo "正插入第".$key."条微博<br>";
-        }
+        $new_content['uid'] = $this->model('user')->getRandomId();
+        $new_content['weibo_content'] = $value['caiji_txt'];
+        $new_content['type'] = 'short_content';
+        $new_content['create_time'] = time();
+        $this->model('weibo')->setContent($new_content);
+        echo "正插入第".$key."条微博<br>";
     }
+}
 
 }
 

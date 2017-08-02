@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 01:17:09
+/* Smarty version 3.1.30, created on 2017-08-01 12:32:18
   from "D:\wamp64\www\group\qing_weibo\view\weibo_li.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597fd695a3c694_73583416',
+  'unifunc' => 'content_598074d2dcd8f0_98936883',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bbfc4820df37c85e5886df2e67a110d2326d37b1' => 
     array (
       0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\weibo_li.html',
-      1 => 1501550220,
+      1 => 1501590469,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597fd695a3c694_73583416 (Smarty_Internal_Template $_smarty_tpl) {
+function content_598074d2dcd8f0_98936883 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
@@ -111,7 +111,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                     <span style="color: #55a4a9;"><?php echo date('Y-m-d H:i:s',$_smarty_tpl->tpl_vars['item']->value['create_time']);?>
 </span>
                     <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid'] || $_SESSION['admin']) {?>
-                    <a href="#modal-del" data-toggle="modal" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+                    <a href="#modal-del" data-toggle="modal" data-type="<?php echo $_smarty_tpl->tpl_vars['item']->value['type'];?>
+" class="delete_weibo" id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">删除</a>
                     <?php }?>
                     <?php if ($_smarty_tpl->tpl_vars['item']->value['user_data']['id'] == $_SESSION['uid']) {?>
