@@ -40,150 +40,9 @@ $(function() {
 
     //发布微博
     $('.menu_box input[type=button]').click(function() {
-        if (!haslogin()) {
-            alert('请先登陆');
-            return;
-        }
-        let type = $('.menu_box input[type=hidden]').val();
-        if (type == "short_content") {
-            panduan=noContent.content(0);
-            if(panduan){
-                $.ajax({
-                    url: "index.php?control=weibo&action=sendWeibo",
-                    type: "POST",
-                    data: {
-                        weibo_content: $('textarea').eq(0).val(),
-                        tagname_arr,
-                        type
-                    },
-                    success: function(data) {
-                        data = $.parseJSON(data);
-                        if (data['status'] == 1) {
-                            $('.weibo_box').prepend(data['html']);
-                            $('textarea').eq(0).val('');
-                        }
-                    }
-                });
-            }
-        } else if (type == "pic_text") {
-            var fd = new FormData();
-            wenzi=noContent.content(1);
-            tupian=noContent.fileContent("pic_file");
-            if(wenzi & tupian){
-                fd.append('weibo_content', $('textarea').eq(1).val());
-                fd.append('pic_file', $('#pic_file').get(0).files[0]);
-                $.each(tagname_arr, function(key, val) {
-                    fd.append('tagname_arr[]', val);
-                });
-                fd.append('type', type);
-                $.ajax({
-                    url: "index.php?control=weibo&action=sendWeibo",
-                    type: "POST",
-                    contentType: false,
-                    processData: false,
-                    data: fd,
-                    success: function(data) {
-                        data = $.parseJSON(data);
-                        if (data['status'] == 1) {
-                            $('.weibo_box').prepend(data['html']);
-                            $('textarea').eq(0).val('');
-                        }
-                    }
-                });
-            }
-        } else if (type == "music") {
-            var fd = new FormData();
-            // fd.append('music_file', $('#music_file').get(0).files[0]);
-            fd.append('weibo_content', $('textarea').eq(2).val());
-            fd.append('music_file', /id\=([0-9]*)/.exec($('#tab3 iframe').attr('src'))[1]);
-            fd.append('type', type);
-            $.each(tagname_arr, function(key, val) {
-                fd.append('tagname_arr[]', val);
-            });
-            $.ajax({
-                url: "index.php?control=weibo&action=sendWeibo",
-                type: "POST",
-                contentType: false,
-                processData: false,
-                data: fd,
-                success: function(data) {
-                    data = $.parseJSON(data);
-                    if (data['status'] == 1) {
-                        $('.weibo_box').prepend(data['html']);
-                    }
-                }
-            });
-        } else if (type == "video") {
-            var fd = new FormData();
-            wenzi=noContent.content(3);
-            tupian=noContent.fileContent("video_file");
-            if(wenzi & tupian){
-                fd.append('weibo_content', $('textarea').eq(3).val());
-                fd.append('video_file', $('#video_file').get(0).files[0]);
-                fd.append('type', type);
-                $.each(tagname_arr, function(key, val) {
-                    fd.append('tagname_arr[]', val);
-                });
-                var xhr=new XMLHttpRequest(); xhr.upload.onprogress=function(e){};
-                var xhrOnProgress = function(fun) {
-                    xhrOnProgress.onprogress = fun; //绑定监听
-                    //使用闭包实现监听绑
-                    return function() {
-                        //通过$.ajaxSettings.xhr();获得XMLHttpRequest对象
-                        var xhr = $.ajaxSettings.xhr();
-                        //判断监听函数是否为函数
-                        if (typeof xhrOnProgress.onprogress !== 'function')
-                            return xhr;
-                        //如果有监听函数并且xhr对象支持绑定时就把监听函数绑定上去
-                        if (xhrOnProgress.onprogress && xhr.upload) {
-                            xhr.upload.onprogress = xhrOnProgress.onprogress;
-                        }
-                        return xhr;
-                    }
-                }
-                $.ajax({
-                    url: "index.php?control=weibo&action=sendWeibo",
-                    type: "POST",
-                    xhr:xhrOnProgress(function(e){
-                        var percent=e.loaded / e.total;//计算百分比
-                        $('#video_progress').attr('style', 'width:'+(percent * 100)+'%');
-                      }),
-                    contentType: false,
-                    processData: false,
-                    data: fd,
-                    success: function(data) {
-                        data = $.parseJSON(data);
-                        if (data['status'] == 1) {
-                            $('#video_progress').attr('style', 'width:0%');
-                            $('.weibo_box').prepend(data['html']);
-                        }
-                    }
-                });
-            }
-        }
+    	weibo.submit_weibo(tagname_arr);
     })
 
-window.noContent={
-    str:"",
-    content:function(i){
-        str=$.trim($('textarea').eq(i).val());
-        if(str==""){
-            $('.contentError').html("内容不能为空！");
-            return false;
-        }else{
-            return true;
-        }
-    },
-    fileContent:function(tid){
-        str=$.trim($('#'+tid).get(0).files[0]);
-        if(str==""){
-            $('.contentError').html("上传内容不能为空！");
-            return false;
-        }else{
-            return true;
-        }
-    }
-}
 
     // 更新微博
     // 发布评论
@@ -232,7 +91,7 @@ window.noContent={
         } else if (this_elm.hasClass('commet_send')) {
             // 评论发送
             let weibo_id = $(this_elm).closest("li").attr('weibo-id');
-            if (!haslogin()) {
+            if (!user.haslogin()) {
                 alert('请先登陆');
             };
             $.ajax({
@@ -298,7 +157,6 @@ window.noContent={
     	$('#tab3 input').css('display', 'block');
     })
 
-
     //头像滑过
     var infoTarget = null;
     $('.weibo_box').on("mouseenter", 'img.w_img', function(e) {
@@ -330,31 +188,38 @@ window.noContent={
     });
 
     //滑过标签显示
+    var timer_enter = 0;
+    var timer_leave = 0;
+    var n;
     $('.weibo_box').on("mouseenter",'.tag', function(e) {
-        infoTarget = $(e.target);
-        let touxiang_box=infoTarget.siblings('.tag_info_box');
-        touxiang_box.show(600).css("left",infoTarget.offset().left-385);
-        var tag_id = infoTarget.attr('data-id');
-        $.ajax({
-			url: "index.php?control=tag&action=tagSelect",
-			type: "POST",
-			data: {
-			     tag_id
-			 },
-			 success: function(data) {
-			     data = $.parseJSON(data);
-			     let p_html = ""
-				 data.other.forEach(item=>{
-				     p_html+= "<a href='index.php?control=tag&action=info&id="+tag_id+"'><li style='overflow:hidden;'>"+item.weibo_content+"</li></a>";
-				 })
-				 infoTarget.siblings('.tag_info_box').find('.road_tag').html(p_html);
-			 }
-        });
+    	timer_enter = setTimeout(function(){
+    		infoTarget = $(e.target);
+            let touxiang_box=infoTarget.siblings('.tag_info_box');
+            timer_enter = setTimeout(function() {touxiang_box.show(500).css("left",infoTarget.offset().left-385)},500);
+            var tag_id = infoTarget.attr('data-id');
+            $.ajax({
+    			url: "index.php?control=tag&action=tagSelect",
+    			type: "POST",
+    			data: {
+    			     tag_id
+    			 },
+    			 success: function(data) {
+    			     data = $.parseJSON(data);
+    			     let p_html = ""
+    				 data.other.forEach(item=>{
+    				     p_html+= "<a href='index.php?control=tag&action=info&id="+tag_id+"'><li style='overflow:hidden;'>"+item.weibo_content+"</li></a>";
+    				 })
+    				 infoTarget.siblings('.tag_info_box').find('.road_tag').html(p_html);
+    			 }
+            });
+    	},400);
+    	
     }).on("mouseleave",'.tags_box', function() {
-        if (infoTarget != null) {
-    	   infoTarget.siblings('.tag_info_box').hide(300);
-        }
-    });
+        clearTimeout(timer_enter);
+        timer_leave = setTimeout(function() {   infoTarget.siblings('.tag_info_box').hide(500)}, 400);
+    }).on("mouseenter",'.tag_info_box', function() {
+    	clearTimeout(timer_leave);
+    })
     //进入标签显示
     // $(".tag_info_box").on("mouseenter",function  () {
     //     $(".tag_info_box").show()
@@ -363,7 +228,7 @@ window.noContent={
     // })
 
     //判断是否是登陆状态
-    if (haslogin()) {
+    if (user.haslogin()) {
         $.ajax({
             type: "POST",
             url: "index.php?control=user&action=check",
@@ -414,119 +279,7 @@ window.noContent={
     })
 })
 
-// 判断是否登录
-function haslogin() {
-    if (localStorage.getItem('uid') > 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
-// 登录注册退出修改信息
-function do_register() {
-    var fd = new FormData();
-    fd.append('user_nickname', $('#register_user_nickname').val());
-    fd.append('user_name', $('#register_user_name').val());
-    fd.append('user_pwd', $('#register_user_pwd').val());
-    // fd.append('user_pic', $('#register_user_pic').get(0).files[0]);
-    fd.append('type', 'register');
-    $.ajax({
-        url: "index.php?control=user&action=reg",
-        type: "POST",
-        contentType: false,
-        processData: false,
-        data: fd,
-        success: function(data) {
-            data = $.parseJSON(data);
-            if (data['status'] == 1) {
-                localStorage.setItem("uid", data['other']);
-                location.reload();
-            } else {
-                alert(data['msg']);
-            }
-
-        }
-    });
-}
-
-function do_quit() {
-    $.ajax({
-        url: "index.php?control=user&action=logout",
-        type: "POST",
-        success: function(data) {
-            data = $.parseJSON(data);
-            if (data['status'] == 1) {
-                localStorage.removeItem('uid');
-                location.reload();
-            }
-        }
-    });
-}
-
-function do_login() {
-    $.ajax({
-        url: "index.php?control=user&action=log",
-        type: "POST",
-        data: {
-            user_name: $('#login_user_name').val(),
-            user_pwd: $('#login_user_pwd').val(),
-            type: 'login'
-        },
-        success: function(data) {
-            data = $.parseJSON(data);
-            if (data['status'] == 1) {
-                localStorage.setItem("uid", data['other']);
-                location.reload();
-            } else {
-                alert(data['msg']);
-            }
-        }
-    });
-}
-
-function do_edit() {
-    var fd = new FormData();
-    fd.append('uid', localStorage.getItem('uid'));
-    fd.append('user_pic', $('#edit_pic').get(0).files[0]);
-    fd.append('type', 'edit');
-    $.ajax({
-        url: "index.php?control=user&action=edit",
-        type: "POST",
-        contentType: false,
-        processData: false,
-        data: fd,
-        success: function(data) {
-            data = $.parseJSON(data);
-            if (data['status'] == 1) {
-                alert(data['msg']);
-                location.reload();
-            }
-        }
-    });
-}
-
-// 编辑文本类微博
-function do_edit_weibo() {
-    $.ajax({
-        url: "index.php?control=weibo&action=editWeibo",
-        type: "POST",
-        data: {
-            weibo_content: $('#edit_weibo_modal textarea').val(),
-            id: $('#edit_weibo_modal input[type=hidden]').val(),
-            type: 'edit'
-        },
-        success: function(data) {
-            data = $.parseJSON(data);
-            if (data['status'] == 1) {
-                alert(data['msg']);
-                location.reload();
-            } else {
-                alert(data['msg']);
-            }
-        }
-    });
-}
 
 // 搜索音乐
 function search_music(this_elm) {

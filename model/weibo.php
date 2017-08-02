@@ -64,16 +64,30 @@ class weibo extends pdoClass{
         return $result;
 
     }
-    
+
     //通过标签ID获取微博ID
     public function getWeiboListById($id, $page="0,10") {
         $sql = "SELECT weibo_id FROM tag_relationship WHERE tag_id = $id ORDER BY id DESC LIMIT $page";
         return $this->select($sql);
     }
-    
+
     //获取相关微博列表
     public function getWeiboListByTag($weibo_id) {
         $sql = "SELECT * FROM weibo_detail WHERE id = $weibo_id";
+        return $this->select($sql);
+    }
+
+    // 根据用户id获取用户的微博数据
+    public function getWeiboByUser($user_id, $page="0,10")
+    {
+        $sql = "select * from weibo_detail where user_id = $user_id order by id desc limit $page";
+        return $this->select($sql);
+    }
+
+    // 根据用户id获取用户的微博id
+    public function getWeiboidByUser($user_id, $page="0,10")
+    {
+        $sql = "select weibo_id from weibo_detail where user_id = $user_id order by id desc limit $page";
         return $this->select($sql);
     }
 }

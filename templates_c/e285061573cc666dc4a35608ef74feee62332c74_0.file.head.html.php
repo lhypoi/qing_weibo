@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 10:58:14
+/* Smarty version 3.1.30, created on 2017-08-01 20:33:09
   from "D:\wamp64\www\20170718\lesson9\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_597fee465b6726_80353579',
+  'unifunc' => 'content_5980750535a879_51806473',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e285061573cc666dc4a35608ef74feee62332c74' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\common\\head.html',
-      1 => 1501556279,
+      1 => 1501590780,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5980750535a879_51806473 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +36,12 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
     <!-- <?php echo '<script'; ?>
  type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 > -->
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/weibo.js"><?php echo '</script'; ?>
+>
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
 >
@@ -70,6 +76,11 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#edit_pic_box" data-toggle="modal">修改头像</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="index.php?control=user&action=home&id=<?php echo $_SESSION['uid'];?>
+" data-toggle="modal">个人主页</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -113,7 +124,7 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_login()">登陆</button>
+                                <button type="" class="btn btn-info" onclick="user.do_login()">登陆</button>
                             </div>
                         </div>
                     </div>
@@ -158,7 +169,7 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_register()">注册</button>
+                                <button type="" class="btn btn-info" onclick="user.do_register()">注册</button>
                             </div>
                         </div>
                     </div>
@@ -180,7 +191,7 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_edit()">确定</button>
+                                <button type="" class="btn btn-info" onclick="user.do_edit()">确定</button>
                             </div>
                         </div>
                     </div>
@@ -193,7 +204,7 @@ function content_597fee465b6726_80353579 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="modal-body">是否退出当前用户？</div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_quit()">确定</button>
+                                <button type="" class="btn btn-info" onclick="user.do_quit()">确定</button>
                             </div>
                         </div>
                     </div>

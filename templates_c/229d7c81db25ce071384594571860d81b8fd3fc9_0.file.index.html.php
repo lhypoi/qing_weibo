@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 23:47:40
+/* Smarty version 3.1.30, created on 2017-08-02 03:31:22
   from "D:\wamp64\www\group\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5981131c9c67e1_12843347',
+  'unifunc' => 'content_5981478a032ec0_78655096',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '229d7c81db25ce071384594571860d81b8fd3fc9' => 
     array (
       0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\index.html',
-      1 => 1501631257,
+      1 => 1501644669,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_5981131c9c67e1_12843347 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5981478a032ec0_78655096 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -31,10 +31,10 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
     <!-- 内容区域 -->
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="short_content"></textarea>
         </div>
         <div class="tab-pane fade" id="tab2">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="pic_text"></textarea>
             <div class="filePicker">
                 <label>点击选择文件</label>
                 <input type="file" name="" value="" class="form-control" id="pic_file">
@@ -46,12 +46,12 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
             <input type="text" name="" class="search_music form-control" placeholder="请用歌名、专辑、艺术家搜索" oninput="search_music(this)">
             <ul class="search_list">
             </ul>
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="music"></textarea>
         </div>
         <div class="tab-pane fade" id="tab4">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="video"></textarea>
             <input type="file" id="video_file">
-            <div class="progress progress-striped active">
+            <div class="progress progress-striped active" style="display: none;">
                 <div class="progress-bar progress-bar-info" role="progressbar"
                      aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
                      style="width: 0%;" id="video_progress">
@@ -227,7 +227,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 					                </div>
 					            </div>
 					            <ul class="commont_list">
-					
+
 					            </ul>
 					        </div>
 					    </div>

@@ -6,10 +6,12 @@
     <script type="text/javascript" src="./public/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- <script type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"></script> -->
-    <script type="text/javascript" src="./public/js/index.js?0.0.5"></script>
-    <script type="text/javascript" src="./public/js/delete.js"></script>
+
     <script type="text/javascript" src="./public/js/user.js"></script>
-    <!-- <script type="text/javascript" src="./public/js/comment.js"></script> -->
+    <script type="text/javascript" src="./public/js/weibo.js"></script>
+    <script type="text/javascript" src="./public/js/index.js?0.0.2"></script>
+    <script type="text/javascript" src="./public/js/delete.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
@@ -38,6 +40,10 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#edit_pic_box" data-toggle="modal">修改头像</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="index.php?control=user&action=home&id={$smarty.session.uid}" data-toggle="modal">个人主页</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -81,7 +87,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_login()">登陆</button>
+                                <button type="" class="btn btn-info" onclick="user.do_login()">登陆</button>
                             </div>
                         </div>
                     </div>
@@ -126,7 +132,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_register()">注册</button>
+                                <button type="" class="btn btn-info" onclick="user.do_register()">注册</button>
                             </div>
                         </div>
                     </div>
@@ -148,7 +154,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_edit()">确定</button>
+                                <button type="" class="btn btn-info" onclick="user.do_edit()">确定</button>
                             </div>
                         </div>
                     </div>
@@ -161,7 +167,7 @@
                             <div class="modal-body">是否退出当前用户？</div>
                             <div class="modal-footer">
                                 <button type="" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="" class="btn btn-info" onclick="do_quit()">确定</button>
+                                <button type="" class="btn btn-info" onclick="user.do_quit()">确定</button>
                             </div>
                         </div>
                     </div>

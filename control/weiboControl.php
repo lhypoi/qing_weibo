@@ -22,7 +22,7 @@ class weiboControl extends baseControl{
         $this->assign("weibo_data", $weibo_data);
         $this->display("index.html");
     }
-    
+
     //异步加载获取
     public function get() {
         $pageStart = $_POST['pageList'];
@@ -37,6 +37,14 @@ class weiboControl extends baseControl{
             $weibo_data = $weibo_model->getWeiboList($page);
         } elseif ($page_mark == 'tag') {
             $weibo_id = $weibo_model->getWeiboListById($id, $page);
+            foreach ($weibo_id as $key => $value) {
+                $result = $weibo_model->getWeiboListByTag($value['weibo_id']);
+                foreach ($result as $k => $v) {
+                    $weibo_data.array_push($weibo_data, $v);
+                }
+            }
+        } elseif ($page_mark == 'home') {
+            $weibo_id = $weibo_model->getWeiboidByUser($id, $page);
             foreach ($weibo_id as $key => $value) {
                 $result = $weibo_model->getWeiboListByTag($value['weibo_id']);
                 foreach ($result as $k => $v) {
@@ -58,7 +66,7 @@ class weiboControl extends baseControl{
             returnjson(1, "",$html,"",$page);
         }
     }
-    
+
     //发布微博
     public function sendWeibo(){
         $new_content['weibo_content'] =  $_POST['weibo_content'];
@@ -79,7 +87,8 @@ class weiboControl extends baseControl{
         }
 
         if (isset($_FILES['video_file'])) {
-            $video = "public/video/".$_SESSION['uid'].'_'.$new_content['create_time'].".mp4";
+            $exp_str = explode("/", $_FILES['video_file']['type']);
+            $video = "public/video/".$_SESSION['uid'].'_'.$new_content['create_time'].'.'.$exp_str[1];
             move_uploaded_file($_FILES['video_file']['tmp_name'], $video);
             $new_content['video'] = $video;
         } else {
@@ -148,15 +157,25 @@ class weiboControl extends baseControl{
             $file_path=$result[0]['video'];
             unlink($file_path);
         }
+        // elseif($type=='long_content'){
+        //     $str=$result[0]['weibo_content'];
+        //     preg_match_all('/<img.+src=\"?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/iU',$str,$match); 
+        //     // var_dump($match[1][0]);exit();
+        //     // foreach ($match[1] as $key => $value) {
+        //     //     $file_path=('/Public/upload/image/'.
+        //     // }
+        //     unlink($match[1][0]);
+        // }
         
          // 查询评论表该微博是否有评论信息
-        $commot_list = $this->model("comment")->getCommontByWid($weibo_id);
 
-        if (!empty( $commot_list)) {
-         foreach ($commot_list as $key=>$value) {
-            $this->model("comment")->delComment($value['id']);
-        }
-    }
+         $commot_list = $this->model("comment")->getCommontByWid($weibo_id);
+
+         if (!empty( $commot_list)) {
+             foreach ($commot_list as $key=>$value) {
+                $this->model("comment")->delComment($value['id']);
+             }
+         }
          //查询是否有标签，有则删除
     $tag_data=$this->model("tag")->getIdInRelation($weibo_id);
     if(!empty($tag_data)){
@@ -204,8 +223,9 @@ public function caiji()
         // 执行node文件
     exec("node bin/caiji.js");
         // 获取采集信息
-    $caijiData = file_get_contents('caiji.json');
-    $caijiData = json_decode($caijiData, true);
+
+        $caijiData = file_get_contents('bin/caiji.json');
+        $caijiData = json_decode($caijiData, true);
         // 更新到数据库中
     $weibo_model = $this->model("weibo");
     $user_model = $this->model("user");

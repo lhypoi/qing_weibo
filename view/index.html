@@ -4,10 +4,10 @@
     <!-- 内容区域 -->
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="short_content"></textarea>
         </div>
         <div class="tab-pane fade" id="tab2">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="pic_text"></textarea>
             <div class="filePicker">
                 <label>点击选择文件</label>
                 <input type="file" name="" value="" class="form-control" id="pic_file">
@@ -19,12 +19,12 @@
             <input type="text" name="" class="search_music form-control" placeholder="请用歌名、专辑、艺术家搜索" oninput="search_music(this)">
             <ul class="search_list">
             </ul>
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="music"></textarea>
         </div>
         <div class="tab-pane fade" id="tab4">
-            <textarea name="weibo_text" class="form-control" rows="2"></textarea>
+            <textarea name="weibo_text" class="form-control" rows="2" id="video"></textarea>
             <input type="file" id="video_file">
-            <div class="progress progress-striped active">
+            <div class="progress progress-striped active" style="display: none;">
                 <div class="progress-bar progress-bar-info" role="progressbar"
                      aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
                      style="width: 0%;" id="video_progress">
@@ -165,7 +165,7 @@
 					                </div>
 					            </div>
 					            <ul class="commont_list">
-					
+
 					            </ul>
 					        </div>
 					    </div>
