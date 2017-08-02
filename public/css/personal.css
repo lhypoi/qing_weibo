@@ -42,6 +42,18 @@
 }
 
 /*
+* 菜单栏
+*/
+.menu{
+	height: 40px;
+	line-height: 40px;
+}
+.menu ul li{
+	float: left;
+	width: 33%;
+}
+
+/*
  * 右边盒子
  */
 .side_box{
@@ -81,4 +93,5 @@
 }
 .side_box ul li a img{
 	width: 35px;
+	height: 35px;
 }

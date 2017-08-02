@@ -3,16 +3,26 @@
 <div class="head_img_box">
 	<div class="head_img">
 		<a>
-			<img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" />
+			<img src="{$weibo_data[0].user_data.user_pic|default:'./public/img/default.png'}" />
 		</a>
 	</div>
-	<h4>用户名</h4>
+	<h4>{$weibo_data[0].user_data.user_nickname}</h4>
 	<span>这个人很懒，什么都没写</span>
 </div>
+<!-- 
+<div class="menu">
+	<ul class="clearfix">
+		<li>我的微博</li>
+		<li>我的相册</li>
+		<li>账号管理</li>
+	</ul>
+</div>
+ -->
 <div class="weibo_list">
 	<div class="row">
 		<div class="col-lg-9">
 			<ul class="weibo_box">
+				{foreach from=$weibo_data item=$item key=$key}
 				<li weibo-id="{$item.id}" class="animated slideInDown list_{$item.id}">
 				    <div class="row clearfix">
 				        <div class="col-lg-2 head_box" style="text-align: center;">
@@ -99,6 +109,7 @@
 				        </div>
 				    </div>
 				</li>
+				{/foreach}
 			</ul>
 		</div>
 		<div class="col-lg-3">
@@ -106,26 +117,6 @@
             	<h5>关注</h5>
             	<ul class="clearfix">
             		<li>
-	            		<a>
-							<img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" />
-						</a>
-					</li>
-					<li>
-	            		<a>
-							<img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" />
-						</a>
-					</li>
-					<li>
-	            		<a>
-							<img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" />
-						</a>
-					</li>
-					<li>
-	            		<a>
-							<img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" />
-						</a>
-					</li>
-					<li>
 	            		<a>
 							<img src="{$item.user_data.user_pic|default:'./public/img/default.png'}" />
 						</a>
@@ -145,4 +136,6 @@
         </div>
     </div>
 </div>
+<div id="page-mark" data-page="home"></div>
+<script type="text/javascript" src="./public/js/load.js"></script>
 {include file='view/common/foot.html'}

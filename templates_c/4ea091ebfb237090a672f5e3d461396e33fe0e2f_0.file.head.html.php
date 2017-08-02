@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-02 00:47:29
-  from "C:\wamp\www\qing_weibo\view\common\head.html" */
+/* Smarty version 3.1.30, created on 2017-08-02 09:23:34
+  from "C:\wamp64\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59812121c0b029_86676748',
+  'unifunc' => 'content_59819a166f5b61_60921511',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '2312d33025283fe21c975d834be3a88ade032db5' => 
+    '4ea091ebfb237090a672f5e3d461396e33fe0e2f' => 
     array (
-      0 => 'C:\\wamp\\www\\qing_weibo\\view\\common\\head.html',
+      0 => 'C:\\wamp64\\www\\qing_weibo\\view\\common\\head.html',
       1 => 1501634816,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59812121c0b029_86676748 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59819a166f5b61_60921511 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">

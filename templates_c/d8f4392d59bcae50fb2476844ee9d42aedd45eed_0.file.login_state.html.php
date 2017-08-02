@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-02 00:47:31
-  from "C:\wamp\www\qing_weibo\view\login_state.html" */
+/* Smarty version 3.1.30, created on 2017-08-02 09:23:35
+  from "C:\wamp64\www\qing_weibo\view\login_state.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5981212366a0b4_35645202',
+  'unifunc' => 'content_59819a17d0b2b1_18238568',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '6f6a5ee82213e2d63c00f975e359f2e7e9541f76' => 
+    'd8f4392d59bcae50fb2476844ee9d42aedd45eed' => 
     array (
-      0 => 'C:\\wamp\\www\\qing_weibo\\view\\login_state.html',
+      0 => 'C:\\wamp64\\www\\qing_weibo\\view\\login_state.html',
       1 => 1501634484,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5981212366a0b4_35645202 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59819a17d0b2b1_18238568 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " alt="">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-02 00:47:29
-  from "C:\wamp\www\qing_weibo\view\index.html" */
+/* Smarty version 3.1.30, created on 2017-08-02 09:23:34
+  from "C:\wamp64\www\qing_weibo\view\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_598121219acc12_90245336',
+  'unifunc' => 'content_59819a165ff7a1_77621332',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '12e3a33850360ae8fdb503609f8ba91f9ff1ee4d' => 
+    'b3b5613de87ba7f814649c65bcd69aa5a12cff22' => 
     array (
-      0 => 'C:\\wamp\\www\\qing_weibo\\view\\index.html',
-      1 => 1501634484,
+      0 => 'C:\\wamp64\\www\\qing_weibo\\view\\index.html',
+      1 => 1501636784,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_598121219acc12_90245336 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59819a165ff7a1_77621332 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
