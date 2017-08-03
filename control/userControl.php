@@ -76,6 +76,30 @@ class userControl extends baseControl{
         $this->assign("weibo_data", $weibo_data);
         $this->display("personal.html");
     }
+    
+    //获取相册
+    public function getPhoto() {
+        $pageStart = $_POST['photoList'];
+        $uid = $_SESSION['uid'];
+        $page = $pageStart.",9";
+        $weibo_model = $this->model("weibo");
+        $photo_list = $weibo_model->getPhotoList($uid, $page);
+        if(empty($photo_list)) {
+            returnjson(0, "无更多页面");
+        }else {
+            $this->assign("photo_list", $photo_list);
+            $html = $this->fetch("photo_li.html");
+            returnjson(1, "获取相册成功", $html, "", $photo_list);
+        }
+    }
+    
+    //获取个人信息
+    public function getUserInfo() {
+        $result = $this->model("user")->getUserLog($_SESSION['uid']);
+        $this->assign("item", $result);
+        $html = $this->fetch("user_manage.html");
+        returnjson(1, "获取信息成功", $html);
+    }
 }
 
 ?>

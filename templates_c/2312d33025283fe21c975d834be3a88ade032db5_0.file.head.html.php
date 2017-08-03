@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 07:22:34
+/* Smarty version 3.1.30, created on 2017-08-02 00:47:29
   from "C:\wamp\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59802c3a3d2124_84881951',
+  'unifunc' => 'content_59812121c0b029_86676748',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2312d33025283fe21c975d834be3a88ade032db5' => 
     array (
       0 => 'C:\\wamp\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501572151,
+      1 => 1501634816,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59802c3a3d2124_84881951 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59812121c0b029_86676748 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +76,11 @@ function content_59802c3a3d2124_84881951 (Smarty_Internal_Template $_smarty_tpl)
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#edit_pic_box" data-toggle="modal">修改头像</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="index.php?control=user&action=home&id=<?php echo $_SESSION['uid'];?>
+" data-toggle="modal">个人主页</a>
                         </li>
                         <li class="divider"></li>
                         <li>

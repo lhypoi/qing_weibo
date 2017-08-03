@@ -33,7 +33,6 @@ class weiboControl extends baseControl{
         $weibo_data = array();
         $weibo_id = array();
         if($page_mark == 'index') {
-
             $weibo_data = $weibo_model->getWeiboList($page);
         } elseif ($page_mark == 'tag') {
             $weibo_id = $weibo_model->getWeiboListById($id, $page);
@@ -46,7 +45,7 @@ class weiboControl extends baseControl{
         } elseif ($page_mark == 'home') {
             $weibo_id = $weibo_model->getWeiboidByUser($id, $page);
             foreach ($weibo_id as $key => $value) {
-                $result = $weibo_model->getWeiboListByTag($value['weibo_id']);
+                $result = $weibo_model->getWeiboListByTag($value['id']);
                 foreach ($result as $k => $v) {
                     $weibo_data.array_push($weibo_data, $v);
                 }

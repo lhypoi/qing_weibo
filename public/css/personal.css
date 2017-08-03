@@ -42,6 +42,86 @@
 }
 
 /*
+* 菜单栏
+*/
+.menu{
+	height: 40px;
+	line-height: 40px;
+	background-color: #05425e;
+	margin-bottom: 20px;
+}
+.menu ul li{
+	float: left;
+	width: 33%;
+	text-align: center;
+}
+.menu ul li span{
+	width: 35%;
+	height: 40px;
+	line-height: 40px;
+	border: 2px solid #05425e;
+	margin: 0 auto;
+	display: block;
+	cursor: pointer;
+}
+.menu ul li span.active, 
+.menu ul li span:hover{
+	border-bottom: 2px solid #fff;
+}
+
+/*
+* 相册
+*/
+ul.photo_list{
+	background-color: #fff;
+	padding: 10px 0;
+}
+ul.photo_list li{
+	width: 225px;
+	height: 200px;
+	float: left;
+	margin-left: 10px;
+	background-color: #fff;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+ul.photo_list li a{
+	width: 225px;
+	height: 200px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+/* 
+* 账号管理
+*/
+.info{
+	width: 90%;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px 0;
+}
+.info .row{
+	margin: 10px 0;
+}
+.info .row span{
+	color: #333;
+	float: left;
+	font-size: 14px;
+	display: block;
+	width: 30%;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 10%;
+	text-align: right;
+}
+.info .row .text{
+	width: 50%;
+	float: left;
+	resize: none;
+}
+
+/*
  * 右边盒子
  */
 .side_box{
@@ -81,4 +161,5 @@
 }
 .side_box ul li a img{
 	width: 35px;
+	height: 35px;
 }

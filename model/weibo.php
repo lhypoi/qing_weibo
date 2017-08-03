@@ -87,8 +87,14 @@ class weibo extends pdoClass{
     // 根据用户id获取用户的微博id
     public function getWeiboidByUser($user_id, $page="0,10")
     {
-        $sql = "select weibo_id from weibo_detail where user_id = $user_id order by id desc limit $page";
+        $sql = "select id from weibo_detail where user_id = $user_id order by id desc limit $page";
         return $this->select($sql);
+    }
+    
+    //获取相册
+    public function getPhotoList($uid, $page = "0,9") {
+        $result = $this->select("SELECT id,pic FROM weibo_detail WHERE user_id = $uid AND pic IS NOT NULL AND pic != '' ORDER BY id DESC LIMIT $page");
+        return $result;
     }
 }
 

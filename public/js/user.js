@@ -3,6 +3,10 @@
  */
 
 window.user = {
+	photoList: 0,
+	lock_photo: true,
+	photo_page: 1,
+	
 	// 判断是否登录
 	haslogin: function() {
 	    if (localStorage.getItem('uid') > 0) {
@@ -113,5 +117,57 @@ window.user = {
 	            }
 	        }
 	    });
-	},
+	}, 
+	
+	//用户主页菜单选择
+	menu_select: function(index) {
+		var menu = $('.menu ul li');
+		var list = $('.weibo_list .row .col-lg-9');
+		for(var i = 0; i < menu.length; i ++) {
+			if(menu.eq(i).children('span').hasClass('active') && i != index) {
+				menu.eq(i).children('span').removeClass('active');
+				list.eq(i).hide(500);
+			}
+		}
+		if(index == 2) {
+			$('#page-mark').attr('data-page','');
+			$.ajax({
+				url: "index.php?control=user&action=getUserInfo",
+		        type: "POST",
+		        success: function(data) {
+		            data = $.parseJSON(data);
+		            if (data['status'] == 1) {
+		                $('.info').html(data['html']);
+		            }
+		        }
+			});
+			this.photoList = 0;
+			this.lock_photo = true;
+			this.photo_page = 1;
+		}else if(index == 1) {
+			$('#page-mark').attr('data-page','photo');
+			$.ajax({
+				url: "index.php?control=user&action=getPhoto",
+		        type: "POST",
+		        data: {photoList: 0},
+		        success: function(data) {
+		            data = $.parseJSON(data);
+		            if (data['status'] == 1) {
+		                $('.photo_list').html(data['html']);
+		            }
+		        }
+			});
+			this.photoList = 0;
+			this.lock_photo = true;
+			this.photo_page = 1;
+		}else if(index == 0) {
+			$('#page-mark').attr('data-page','home');
+			this.photoList = 0;
+			this.lock_photo = true;
+			this.photo_page = 1;
+		}
+		menu.eq(index).children('span').addClass('active');
+		list.eq(index).show(500);
+		$('#menu').val(index);
+	}
 }

@@ -1,16 +1,54 @@
+<?php
+/* Smarty version 3.1.30, created on 2017-08-03 00:56:14
+  from "C:\wamp64\www\qing_weibo\view\common\head.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_598274ae336564_85967160',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '4ea091ebfb237090a672f5e3d461396e33fe0e2f' => 
+    array (
+      0 => 'C:\\wamp64\\www\\qing_weibo\\view\\common\\head.html',
+      1 => 1501721770,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_598274ae336564_85967160 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>微....博的？！</title>
-    <script type="text/javascript" src="./public/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- <script type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"></script> -->
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/jquery-3.1.0.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+    <!-- <?php echo '<script'; ?>
+ type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+> -->
 
-    <script type="text/javascript" src="./public/js/user.js"></script>
-    <script type="text/javascript" src="./public/js/weibo.js"></script>
-    <script type="text/javascript" src="./public/js/index.js?0.0.2"></script>
-    <script type="text/javascript" src="./public/js/delete.js"></script>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/weibo.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/index.js?0.0.2"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
+>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
@@ -19,9 +57,7 @@
 </head>
 <body>
     <!-- 背景 -->
-    {* <div class="bg">
-        <canvas id="canvas"></canvas>
-    </div> *}
+    
     <!-- 微博 -->
     <div id="main">
         <!-- 头部 -->
@@ -31,11 +67,13 @@
             <!-- 用户信息 -->
             <div class="tab_user clearfix">
                 <div class="dropdown user_state pull-left" id="accountmenu">
-                    {* 已登录 *}
-                    {if $smarty.session.uid > 0}
-                    <img src="{$user_pic|default:'./public/img/default.png'}" alt="" >
+                    
+                    <?php if ($_SESSION['uid'] > 0) {?>
+                    <img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['user_pic']->value)===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
+" alt="" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {$user_nickname} <b class="caret"></b>
+                        <?php echo $_smarty_tpl->tpl_vars['user_nickname']->value;?>
+ <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -43,15 +81,16 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="index.php?control=user&action=home&id={$smarty.session.uid}" data-toggle="modal">个人主页</a>
+                            <a href="index.php?control=user&action=home&id=<?php echo $_SESSION['uid'];?>
+" data-toggle="modal">个人主页</a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#quit_box" data-toggle="modal">退出</a>
                         </li>
                     </ul>
-                    {* 未登录 *}
-                    {else}
+                    
+                    <?php } else { ?>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         当前状态：游客 <b class="caret"></b>
                     </a>
@@ -64,9 +103,9 @@
                             <a href="#register_box" data-toggle="modal">注册</a>
                         </li>
                     </ul>
-                    {/if}
+                    <?php }?>
                 </div>
-                {* 登陆模态框 *}
+                
                 <div class="modal" id="login_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -92,7 +131,7 @@
                         </div>
                     </div>
                 </div>
-                {* 注册模态框 *}
+                
                 <div class="modal" id="register_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -137,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                {* 修改头像模态框 *}
+                
                 <div class="modal" id="edit_pic_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -159,7 +198,7 @@
                         </div>
                     </div>
                 </div>
-                {* 退出当前用户模态框 *}
+                
                 <div class="modal" id="quit_box">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -173,4 +212,5 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><?php }
+}
