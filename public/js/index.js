@@ -41,6 +41,7 @@ $(function() {
     //发布微博
     $('.menu_box input[type=button]').click(function() {
     	weibo.submit_weibo(tagname_arr);
+    	tagname_arr = [];
     })
 
 

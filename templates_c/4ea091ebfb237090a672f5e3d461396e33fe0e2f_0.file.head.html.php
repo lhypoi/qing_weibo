@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-02 09:23:34
+/* Smarty version 3.1.30, created on 2017-08-03 00:56:14
   from "C:\wamp64\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59819a166f5b61_60921511',
+  'unifunc' => 'content_598274ae336564_85967160',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4ea091ebfb237090a672f5e3d461396e33fe0e2f' => 
     array (
       0 => 'C:\\wamp64\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501634816,
+      1 => 1501721770,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59819a166f5b61_60921511 (Smarty_Internal_Template $_smarty_tpl) {
+function content_598274ae336564_85967160 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +36,7 @@ function content_59819a166f5b61_60921511 (Smarty_Internal_Template $_smarty_tpl)
     <!-- <?php echo '<script'; ?>
  type="text/javascript" src="./public/libarary/Bootstrap3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
 > -->
+
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/user.js"><?php echo '</script'; ?>
 >
@@ -48,6 +49,7 @@ function content_59819a166f5b61_60921511 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/delete.js"><?php echo '</script'; ?>
 >
+
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./public/libarary/Bootstrap3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./public/css/index.css">
@@ -61,7 +63,7 @@ function content_59819a166f5b61_60921511 (Smarty_Internal_Template $_smarty_tpl)
         <!-- 头部 -->
         <div class="title">
             <!-- 标题 -->
-            <h1>轻博客</h1>
+            <h1><a href="index.php" style="text-decoration: none;">轻博客</a></h1>
             <!-- 用户信息 -->
             <div class="tab_user clearfix">
                 <div class="dropdown user_state pull-left" id="accountmenu">

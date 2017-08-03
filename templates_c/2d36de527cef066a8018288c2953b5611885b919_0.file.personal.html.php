@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-02 14:16:12
+/* Smarty version 3.1.30, created on 2017-08-03 07:44:14
   from "C:\wamp64\www\qing_weibo\view\personal.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5981deac19cb62_89253332',
+  'unifunc' => 'content_5982d44ed4b782_05583636',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d36de527cef066a8018288c2953b5611885b919' => 
     array (
       0 => 'C:\\wamp64\\www\\qing_weibo\\view\\personal.html',
-      1 => 1501683369,
+      1 => 1501744126,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_5981deac19cb62_89253332 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5982d44ed4b782_05583636 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -40,6 +40,7 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
 </div>
 <div class="menu">
 	<ul class="clearfix">
+		<input type="hidden" id="menu" value="0" />
 		<li><span class="active" onclick="user.menu_select(0)">我的微博</span></li>
 		<li><span onclick="user.menu_select(1)">我的相册</span></li>
 		<li><span onclick="user.menu_select(2)">账号管理</span></li>
@@ -180,29 +181,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 		</div>
 		<div class="col-lg-9" style="display:none;">
 			<ul class="photo_list clearfix">
-				<li>
-					<a>
-						<img src="./public/img/default.png" />
-					</a>
-				</li>
-				<li>
-					<a><img src="./public/img/default.png" /></a>
-				</li>
-				<li>
-					<a><img src="./public/img/default.png" /></a>
-				</li>
+				
 			</ul>
 		</div>
 		<div class="col-lg-9" style="display:none;">
 			<form class="info">
-				<div class="row">
-					<span>用户名：</span>
-					<input type="text" name="nickname" class="form-control text" />
-				</div>
-				<div class="row">
-					<span>密码：</span>
-					<input type="password" name="pwd" class="form-control text" />
-				</div>
 			</form>
 		</div>
 		<div class="col-lg-9" style="display:none;">账号管理</div>
@@ -235,28 +218,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 <div id="page-mark" data-page="home"></div>
 <?php echo '<script'; ?>
  type="text/javascript" src="./public/js/load.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript">
-//调整相片大小
-var photo_list = $('.photo_list li');
-for(var i = 0; i < photo_list.length; i ++) {
-	var photo = photo_list.eq(i).children().children('img').eq(0);
-	var img = new Image();
-	img.src = photo.attr("src");
-	var width = img.width;
-	var height = img.height;
-	if((width - photo_list.eq(i).width()) > (height - photo_list.eq(i).height())) {
-		photo.css('height', '200px');
-		var rate = 200 / height;
-		photo.css('width', (width * rate) + 'px');
-	} else {
-		photo.css('width', '225px');
-		var rate = 225 / width;
-		photo.css('height', (height * rate) + 'px');
-	}
-}
-<?php echo '</script'; ?>
 >
 <?php $_smarty_tpl->_subTemplateRender("file:view/common/foot.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

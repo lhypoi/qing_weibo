@@ -118,6 +118,7 @@ ul.photo_list li a{
 .info .row .text{
 	width: 50%;
 	float: left;
+	resize: none;
 }
 
 /*
