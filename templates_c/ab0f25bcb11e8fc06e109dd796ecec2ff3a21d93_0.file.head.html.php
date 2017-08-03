@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-02 02:08:03
+/* Smarty version 3.1.30, created on 2017-08-03 10:22:19
   from "D:\wamp64\www\group\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5981340363b871_54815136',
+  'unifunc' => 'content_5982f95b767116_57047996',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab0f25bcb11e8fc06e109dd796ecec2ff3a21d93' => 
     array (
       0 => 'D:\\wamp64\\www\\group\\qing_weibo\\view\\common\\head.html',
-      1 => 1501636437,
+      1 => 1501754589,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5981340363b871_54815136 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5982f95b767116_57047996 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +63,7 @@ function content_5981340363b871_54815136 (Smarty_Internal_Template $_smarty_tpl)
         <!-- 头部 -->
         <div class="title">
             <!-- 标题 -->
-            <h1>轻博客</h1>
+            <h1><a href="index.php" style="text-decoration: none;">轻博客</a></h1>
             <!-- 用户信息 -->
             <div class="tab_user clearfix">
                 <div class="dropdown user_state pull-left" id="accountmenu">

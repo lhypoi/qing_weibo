@@ -139,6 +139,7 @@ class weiboControl extends baseControl{
     //删除微博
     public function delete()
     {
+        
          // 获取微博id
          // 删除这条微博信息，删除它的评论。文件 unlink
         $weibo_id = $_POST['id'];
@@ -155,23 +156,16 @@ class weiboControl extends baseControl{
         }elseif ($type=='video') {
             $file_path=$result[0]['video'];
             unlink($file_path);
-        }
-        // elseif($type=='long_content'){
-        //     $str=$result[0]['weibo_content'];
-        //     preg_match_all('/<img.+src=\"\/?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/iU',$str,$match); 
-        //     //echo $dir_path= dirname(__FILE__);
-        //     preg_match_all('/(D:\/.+www)\?.+/i',$dir_path,$match2);
-        //     var_dump($match2[1]);
-        //     // foreach ($match[1] as $key => $value) {
-        //     //     $file_path="D:/wamp64/www".$match[1][$key];
-        //     //     var_dump($file_path);
-        //     //     unlink($file_path);
-        //     // }
-        //    // var_dump($match[1]);exit();
-        //     // var_dump($file_path);
-        //     exit();
+        }elseif($type=='long_content'){
+            $str=$result[0]['weibo_content'];
+            preg_match_all('/<img.+src=\"\/?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/iU',$str,$match);
+            foreach ($match[1] as $key => $value) {
+                $file_path=$_SERVER['DOCUMENT_ROOT'].$match[1][$key];
+                unlink($file_path);
+            }
             
-        // }
+        }
+        
         
          // 查询评论表该微博是否有评论信息
 

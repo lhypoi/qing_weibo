@@ -46,6 +46,9 @@ switch (htmlspecialchars($_GET['action'])) {
         $fieldName = $CONFIG['fileFieldName'];
         break;
 }
+// $config['pathFormat'] = dirname(dirname(dirname(dirname(__DIR__)))) .'/'.$config['pathFormat'];
+
+// $config['pathFormat'] = str_replace('\\','/',$config['pathFormat']);
 
 /* 生成上传实例对象并完成上传 */
 $up = new Uploader($fieldName, $config, $base64);
