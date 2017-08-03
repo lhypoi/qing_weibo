@@ -159,12 +159,19 @@ class weiboControl extends baseControl{
         }
         // elseif($type=='long_content'){
         //     $str=$result[0]['weibo_content'];
-        //     preg_match_all('/<img.+src=\"?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/iU',$str,$match); 
-        //     // var_dump($match[1][0]);exit();
+        //     preg_match_all('/<img.+src=\"\/?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/iU',$str,$match); 
+        //     //echo $dir_path= dirname(__FILE__);
+        //     preg_match_all('/(D:\/.+www)\?.+/i',$dir_path,$match2);
+        //     var_dump($match2[1]);
         //     // foreach ($match[1] as $key => $value) {
-        //     //     $file_path=('/Public/upload/image/'.
+        //     //     $file_path="D:/wamp64/www".$match[1][$key];
+        //     //     var_dump($file_path);
+        //     //     unlink($file_path);
         //     // }
-        //     unlink($match[1][0]);
+        //    // var_dump($match[1]);exit();
+        //     // var_dump($file_path);
+        //     exit();
+            
         // }
         
          // 查询评论表该微博是否有评论信息
