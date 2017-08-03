@@ -13,7 +13,7 @@ class user extends pdoClass{
 
     //查找用户是否存在
     public function getUserExist($username) {
-        return $this->find("SELECT id FROM weibo_user WHERE user_name=$username");
+        return $this->find("SELECT id FROM weibo_user WHERE user_name='$username'");
     }
 
     //注册添加信息

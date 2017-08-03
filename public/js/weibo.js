@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 window.weibo = {
@@ -25,7 +25,7 @@ window.weibo = {
 			}
         }
 	},
-	
+
 	ajaxDo: function(fd, xhrOnProgress) {
 		var text = $('#' + this.type).val();
 		if($.trim(text)==""){
@@ -100,24 +100,18 @@ window.weibo = {
                 }
                 return xhr;
             }
-        }
+        };
+        $.each(tagname_arr, function(key, val) {
+            fd.append('tagname_arr[]', val);
+        });
 		if (this.type == "pic_text") {
 			tof=this.fileContent("pic_file");
 			fd.append('pic_file', $('#pic_file').get(0).files[0]);
-			$.each(tagname_arr, function(key, val) {
-            	fd.append('tagname_arr[]', val);
-        	});
 		}else if (this.type == "music") {
 			fd.append('music_file', /id\=([0-9]*)/.exec($('#tab3 iframe').attr('src'))[1]);
-			$.each(tagname_arr, function(key, val) {
-                fd.append('tagname_arr[]', val);
-            });
 		}else if (this.type == "video") {
 			tof=this.fileContent("video_file");
 			fd.append('video_file', $('#video_file').get(0).files[0]);
-			$.each(tagname_arr, function(key, val) {
-                fd.append('tagname_arr[]', val);
-            });
 		}
 		if(tof){
 			this.ajaxDo(fd,xhrOnProgress);

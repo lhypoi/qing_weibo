@@ -1,12 +1,12 @@
 /**
- * 
+ *
  */
 
 window.user = {
 	photoList: 0,
 	lock_photo: true,
 	photo_page: 1,
-	
+
 	// 判断是否登录
 	haslogin: function() {
 	    if (localStorage.getItem('uid') > 0) {
@@ -36,11 +36,11 @@ window.user = {
 	            } else {
 	                alert(data['msg']);
 	            }
-	
+
 	        }
 	    });
 	},
-	
+
 	do_quit :function() {
 	    $.ajax({
 	        url: "index.php?control=user&action=logout",
@@ -54,28 +54,52 @@ window.user = {
 	        }
 	    });
 	},
-	
+
 	do_login: function() {
-	    $.ajax({
-	        url: "index.php?control=user&action=log",
-	        type: "POST",
-	        data: {
-	            user_name: $('#login_user_name').val(),
-	            user_pwd: $('#login_user_pwd').val(),
-	            type: 'login'
-	        },
-	        success: function(data) {
-	            data = $.parseJSON(data);
-	            if (data['status'] == 1) {
-	                localStorage.setItem("uid", data['other']);
-	                location.reload();
-	            } else {
-	                alert(data['msg']);
-	            }
-	        }
-	    });
+
+		var promise = new Promise(function (resolve, reject) {
+			$.ajax({
+				url: "http://localhost/20170718/tp5/public/index/home/checkCaptcha",
+				type: "POST",
+				data: {captcha: $('input[name=captcha]').val()},
+				success: function (data) {
+					if (data.status == 1) {
+						resolve();
+					} else {
+						reject(data.msg);
+					}
+				}
+			})
+		});
+
+		promise.then(function () {
+		    $.ajax({
+		        url: "index.php?control=user&action=log",
+		        type: "POST",
+		        data: {
+		            user_name: $('#login_user_name').val(),
+		            user_pwd: $('#login_user_pwd').val(),
+		            type: 'login'
+		        },
+		        success: function(data) {
+		            data = $.parseJSON(data);
+		            if (data['status'] == 1) {
+		                localStorage.setItem("uid", data['other']);
+		                location.reload();
+		            } else {
+		                alert(data['msg']);
+						$('#img_captcha').attr('src', 'http://localhost/20170718/tp5/public/index/home/getCaptcha?' + Math.random());
+		            }
+		        }
+		    });
+		}, function (value) {
+			alert(value);
+			$('#img_captcha').attr('src', 'http://localhost/20170718/tp5/public/index/home/getCaptcha?' + Math.random());
+
+		})
+
 	},
-	
+
 	do_edit: function() {
 	    var fd = new FormData();
 	    fd.append('uid', localStorage.getItem('uid'));
@@ -96,7 +120,7 @@ window.user = {
 	        }
 	    });
 	},
-	
+
 	// 编辑文本类微博
 	do_edit_weibo: function() {
 	    $.ajax({
@@ -117,8 +141,8 @@ window.user = {
 	            }
 	        }
 	    });
-	}, 
-	
+	},
+
 	//用户主页菜单选择
 	menu_select: function(index) {
 		var menu = $('.menu ul li');

@@ -301,3 +301,8 @@ function search_music(this_elm) {
         $(".search_list").html('');
     }
 }
+
+// 验证码改变
+function changeCaptcha (this_elm) {
+    $(this_elm).attr('src', 'http://localhost/20170718/tp5/public/index/home/getCaptcha?' + Math.random());
+}
