@@ -311,5 +311,5 @@ function search_music(this_elm) {
 
 // 验证码改变
 function changeCaptcha (this_elm) {
-    $(this_elm).attr('src', 'http://localhost/20170718/tp5/public/index/home/getCaptcha?' + Math.random());
+    $(this_elm).attr('src', '../qing_weibo_tp5/public/index/home/getCaptcha?' + Math.random());
 }

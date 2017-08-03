@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-03 00:56:14
+/* Smarty version 3.1.30, created on 2017-08-03 13:05:13
   from "C:\wamp64\www\qing_weibo\view\common\head.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_598274ae336564_85967160',
+  'unifunc' => 'content_59831f89629ce3_38252242',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4ea091ebfb237090a672f5e3d461396e33fe0e2f' => 
     array (
       0 => 'C:\\wamp64\\www\\qing_weibo\\view\\common\\head.html',
-      1 => 1501721770,
+      1 => 1501765505,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_598274ae336564_85967160 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59831f89629ce3_38252242 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,6 +121,15 @@ function content_598274ae336564_85967160 (Smarty_Internal_Template $_smarty_tpl)
                                         <label for="login_user_pwd" class="col-lg-2 control-label">密码</label>
                                         <div class="col-lg-10">
                                             <input type="password" name="" value="" class="form-control" id="login_user_pwd"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-lg-2 control-label">验证码</label>
+                                        <div class="col-lg-7">
+                                            <input type="text" name="captcha" class="form-control">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <img src="../qing_weibo_tp5/public/index/home/getCaptcha" alt="" onclick="changeCaptcha(this)" id="img_captcha">
+                                        </div>
                                     </div>
                                 </form>
                             </div>
