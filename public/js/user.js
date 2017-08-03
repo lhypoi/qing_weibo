@@ -49,7 +49,7 @@ window.user = {
 	            data = $.parseJSON(data);
 	            if (data['status'] == 1) {
 	                localStorage.removeItem('uid');
-	                location.reload();
+	                location.href= "index.php";
 	            }
 	        }
 	    });
@@ -193,5 +193,56 @@ window.user = {
 		menu.eq(index).children('span').addClass('active');
 		list.eq(index).show(500);
 		$('#menu').val(index);
+	},
+	
+	//修改个人信息
+	change_info: function(_this) {
+		var _nickname = _this.eq(0).children('.form-box').children('input');
+		var _pwd = _this.eq(1).children('.form-box').children('input');
+		var _pwd_confirm = _this.eq(2).children('.form-box').children('input');
+		var nickname = _nickname.val();
+    	var pwd = _pwd.val();
+    	var pwd_confirm = _pwd_confirm.val();
+    	var info = _this.eq(3).children('.form-box').children('textarea').val();
+    	var send = true;
+		if(nickname == '') {
+			_nickname.next('b').css('color', '#f00');
+			send = false;
+		}else{
+			_nickname.next('b').css('color', '#fff');
+			send = true;
+		}
+		if(pwd == '') {
+			_pwd.next('b').css('color', '#f00');
+			send = false;
+		}else{
+			_pwd.next('b').css('color', '#fff');
+			send = true;
+		}
+		if(pwd != pwd_confirm) {
+			_pwd_confirm.next('b').css('color', '#f00');
+			send = false;
+		}else{
+			_pwd_confirm.next('b').css('color', '#fff');
+			send = true;
+		}
+		if(send) {
+			$.ajax({
+				url: "index.php?control=user&action=changeInfo",
+		        type: "POST",
+		        data: {
+		        	nickname, 
+		        	pwd, 
+		        	info
+		        },
+		        success: function(data) {
+		            data = $.parseJSON(data);
+		            if (data['status'] == 1) {
+		                alert(data['msg']);
+		                location.reload();
+		            }
+		        }
+			})
+		}
 	}
 }

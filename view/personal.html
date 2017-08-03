@@ -6,8 +6,14 @@
 			<img src="{$weibo_data[0].user_data.user_pic|default:'./public/img/default.png'}" />
 		</a>
 	</div>
-	<h4>{$weibo_data[0].user_data.user_nickname}</h4>
-	<span>这个人很懒，什么都没写</span>
+	<h4>{$user.user_nickname}</h4>
+	<span>
+		{if $user.brief == ''}
+			这个人很懒，什么都没留下
+		{else}
+			{$user.brief}
+		{/if}
+	</span>
 </div>
 <div class="menu">
 	<ul class="clearfix">
@@ -117,7 +123,7 @@
 			</ul>
 		</div>
 		<div class="col-lg-9" style="display:none;">
-			<form class="info">
+			<form class="info" id="info-form">
 			</form>
 		</div>
 		<div class="col-lg-9" style="display:none;">账号管理</div>

@@ -115,10 +115,21 @@ ul.photo_list li a{
 	margin-right: 10%;
 	text-align: right;
 }
-.info .row .text{
+.info .row .form-box{
+	float: left;
 	width: 50%;
+}
+.info .row .text{
+	width: 100%;
 	float: left;
 	resize: none;
+}
+.info .row b{
+	width: 100%;
+	float: left;
+	color: #fff;
+	font-size: 12px;
+	text-align: right;
 }
 
 /*

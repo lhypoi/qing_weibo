@@ -33,6 +33,11 @@ class user extends pdoClass{
         $result = $this->select('select id from weibo_user order by rand() limit 1');
         return $result[0]['id'];
     }
+    
+    //修改个人信息
+    public function edit_info($post) {
+        return $this->updateInfo('weibo_user', $post, array('id'=>$_SESSION['uid']));
+    }
 }
 
 ?>

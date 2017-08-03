@@ -12,7 +12,7 @@ class userControl extends baseControl{
                 $_SESSION['uid'] =$uid;
                 returnjson(1, "注册成功","","",$uid);
             } else {
-                returnjson(1, "注册失败");
+                returnjson(0, "注册失败", "", "", $result);
             }
         }
     }
@@ -66,13 +66,14 @@ class userControl extends baseControl{
         $weibo = $this->model('weibo');
         $tag = $this->model('tag');
         $weibo_data = $weibo->getWeiboByUser($_REQUEST['id']);
+        $user = $this->model("user")->getUserLog($_REQUEST['id']);
 
         foreach ($weibo_data as $key => $value) {
             $weibo_data[$key]['user_data'] = $tag->getWeiboUser($value['user_id']);
             $weibo_data[$key]['commet_data'] = $tag->getWeiboCommentTotal($value['id']);
             $weibo_data[$key]['tag_data'] = $tag->getTagbyWeiboid($value['id']);
         }
-
+        $this->assign("user", $user);
         $this->assign("weibo_data", $weibo_data);
         $this->display("personal.html");
     }
@@ -99,6 +100,17 @@ class userControl extends baseControl{
         $this->assign("item", $result);
         $html = $this->fetch("user_manage.html");
         returnjson(1, "获取信息成功", $html);
+    }
+    
+    //修改个人信息
+    public function changeInfo() {
+        $post['user_nickname'] = $_POST['nickname'];
+        $post['user_pwd'] = $_POST['pwd'];
+        $post['brief'] = $_POST['info'];
+        $result = $this->model("user")->edit_info($post);
+        if ($result == 1) {
+            returnjson(1, "修改成功");
+        }
     }
 }
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-03 07:44:14
+/* Smarty version 3.1.30, created on 2017-08-03 11:58:51
   from "C:\wamp64\www\qing_weibo\view\personal.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5982d44ed4b782_05583636',
+  'unifunc' => 'content_59830ffbe73835_35364842',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d36de527cef066a8018288c2953b5611885b919' => 
     array (
       0 => 'C:\\wamp64\\www\\qing_weibo\\view\\personal.html',
-      1 => 1501744126,
+      1 => 1501761436,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_5982d44ed4b782_05583636 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59830ffbe73835_35364842 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -34,9 +34,16 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
 " />
 		</a>
 	</div>
-	<h4><?php echo $_smarty_tpl->tpl_vars['weibo_data']->value[0]['user_data']['user_nickname'];?>
+	<h4><?php echo $_smarty_tpl->tpl_vars['user']->value['user_nickname'];?>
 </h4>
-	<span>这个人很懒，什么都没写</span>
+	<span>
+		<?php if ($_smarty_tpl->tpl_vars['user']->value['brief'] == '') {?>
+			这个人很懒，什么都没留下
+		<?php } else { ?>
+			<?php echo $_smarty_tpl->tpl_vars['user']->value['brief'];?>
+
+		<?php }?>
+	</span>
 </div>
 <div class="menu">
 	<ul class="clearfix">
@@ -185,7 +192,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 			</ul>
 		</div>
 		<div class="col-lg-9" style="display:none;">
-			<form class="info">
+			<form class="info" id="info-form">
 			</form>
 		</div>
 		<div class="col-lg-9" style="display:none;">账号管理</div>
