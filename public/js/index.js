@@ -56,7 +56,7 @@ $(function() {
     //     // 评论下拉框
     //     if (this_elm.hasClass('commet_btn')) {
     //         comment.getComment(this_elm);
-            
+
     //     }else if (this_elm.hasClass('commet_send')) {
     //         comment.addComment();
     //     }else if (this_elm.hasClass('edit_weibo')) {
@@ -65,7 +65,7 @@ $(function() {
     //         comment.load();
     //     }
     // })
-    
+
 
     // 事件委托绑定评论下拉框，评论增删功能
     $('.weibo_list').click(function(event) {
@@ -213,7 +213,7 @@ $(function() {
     			 }
             });
     	},400);
-    	
+
     }).on("mouseleave",'.tags_box', function() {
         clearTimeout(timer_enter);
         timer_leave = setTimeout(function() {   infoTarget.siblings('.tag_info_box').hide(500)}, 400);
@@ -277,11 +277,18 @@ $(function() {
     		$(this).val('');
     	}
     })
+    
+    //修改个人信息
+    $('#info-form').on('submit', function(e) {
+    	e.preventDefault();
+    	var _this = $(e.target).children();
+    	user.change_info(_this);
+    })
 })
 
 
 
-// 搜索音乐
+// 搜索音乐lll
 function search_music(this_elm) {
     if ($(this_elm).val().trim().length != 0) {
         $.getJSON("http://s.music.163.com/search/get/?version=1&src=lofter&type=1&filterDj=false&s=" + $(this_elm).val() + "&limit=8&offset=0&callback=?", function(rtnData) {
@@ -300,4 +307,9 @@ function search_music(this_elm) {
     } else {
         $(".search_list").html('');
     }
+}
+
+// 验证码改变
+function changeCaptcha (this_elm) {
+    $(this_elm).attr('src', '../qing_weibo_tp5/public/index/home/getCaptcha?' + Math.random());
 }

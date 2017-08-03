@@ -1,12 +1,12 @@
 /**
- * 
+ *
  */
 
 window.user = {
 	photoList: 0,
 	lock_photo: true,
 	photo_page: 1,
-	
+
 	// 判断是否登录
 	haslogin: function() {
 	    if (localStorage.getItem('uid') > 0) {
@@ -36,11 +36,11 @@ window.user = {
 	            } else {
 	                alert(data['msg']);
 	            }
-	
+
 	        }
 	    });
 	},
-	
+
 	do_quit :function() {
 	    $.ajax({
 	        url: "index.php?control=user&action=logout",
@@ -49,33 +49,57 @@ window.user = {
 	            data = $.parseJSON(data);
 	            if (data['status'] == 1) {
 	                localStorage.removeItem('uid');
-	                location.reload();
+	                location.href= "index.php";
 	            }
 	        }
 	    });
 	},
-	
+
 	do_login: function() {
-	    $.ajax({
-	        url: "index.php?control=user&action=log",
-	        type: "POST",
-	        data: {
-	            user_name: $('#login_user_name').val(),
-	            user_pwd: $('#login_user_pwd').val(),
-	            type: 'login'
-	        },
-	        success: function(data) {
-	            data = $.parseJSON(data);
-	            if (data['status'] == 1) {
-	                localStorage.setItem("uid", data['other']);
-	                location.reload();
-	            } else {
-	                alert(data['msg']);
-	            }
-	        }
-	    });
+
+		var promise = new Promise(function (resolve, reject) {
+			$.ajax({
+				url: "http://localhost/20170718/tp5/public/index/home/checkCaptcha",
+				type: "POST",
+				data: {captcha: $('input[name=captcha]').val()},
+				success: function (data) {
+					if (data.status == 1) {
+						resolve();
+					} else {
+						reject(data.msg);
+					}
+				}
+			})
+		});
+
+		promise.then(function () {
+		    $.ajax({
+		        url: "index.php?control=user&action=log",
+		        type: "POST",
+		        data: {
+		            user_name: $('#login_user_name').val(),
+		            user_pwd: $('#login_user_pwd').val(),
+		            type: 'login'
+		        },
+		        success: function(data) {
+		            data = $.parseJSON(data);
+		            if (data['status'] == 1) {
+		                localStorage.setItem("uid", data['other']);
+		                location.reload();
+		            } else {
+		                alert(data['msg']);
+						$('#img_captcha').attr('src', 'http://localhost/20170718/tp5/public/index/home/getCaptcha?' + Math.random());
+		            }
+		        }
+		    });
+		}, function (value) {
+			alert(value);
+			$('#img_captcha').attr('src', 'http://localhost/20170718/tp5/public/index/home/getCaptcha?' + Math.random());
+
+		})
+
 	},
-	
+
 	do_edit: function() {
 	    var fd = new FormData();
 	    fd.append('uid', localStorage.getItem('uid'));
@@ -96,7 +120,7 @@ window.user = {
 	        }
 	    });
 	},
-	
+
 	// 编辑文本类微博
 	do_edit_weibo: function() {
 	    $.ajax({
@@ -117,8 +141,8 @@ window.user = {
 	            }
 	        }
 	    });
-	}, 
-	
+	},
+
 	//用户主页菜单选择
 	menu_select: function(index) {
 		var menu = $('.menu ul li');
@@ -169,5 +193,56 @@ window.user = {
 		menu.eq(index).children('span').addClass('active');
 		list.eq(index).show(500);
 		$('#menu').val(index);
+	},
+	
+	//修改个人信息
+	change_info: function(_this) {
+		var _nickname = _this.eq(0).children('.form-box').children('input');
+		var _pwd = _this.eq(1).children('.form-box').children('input');
+		var _pwd_confirm = _this.eq(2).children('.form-box').children('input');
+		var nickname = _nickname.val();
+    	var pwd = _pwd.val();
+    	var pwd_confirm = _pwd_confirm.val();
+    	var info = _this.eq(3).children('.form-box').children('textarea').val();
+    	var send = true;
+		if(nickname == '') {
+			_nickname.next('b').css('color', '#f00');
+			send = false;
+		}else{
+			_nickname.next('b').css('color', '#fff');
+			send = true;
+		}
+		if(pwd == '') {
+			_pwd.next('b').css('color', '#f00');
+			send = false;
+		}else{
+			_pwd.next('b').css('color', '#fff');
+			send = true;
+		}
+		if(pwd != pwd_confirm) {
+			_pwd_confirm.next('b').css('color', '#f00');
+			send = false;
+		}else{
+			_pwd_confirm.next('b').css('color', '#fff');
+			send = true;
+		}
+		if(send) {
+			$.ajax({
+				url: "index.php?control=user&action=changeInfo",
+		        type: "POST",
+		        data: {
+		        	nickname, 
+		        	pwd, 
+		        	info
+		        },
+		        success: function(data) {
+		            data = $.parseJSON(data);
+		            if (data['status'] == 1) {
+		                alert(data['msg']);
+		                location.reload();
+		            }
+		        }
+			})
+		}
 	}
 }

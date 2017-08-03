@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-01 21:19:31
+/* Smarty version 3.1.30, created on 2017-08-03 19:33:35
   from "D:\wamp64\www\20170718\lesson9\view\personal.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59807fe3dc3814_07512287',
+  'unifunc' => 'content_59830a0f9c8e54_28374666',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b6de58b22cecfe481731b6f998568f2a09830a04' => 
     array (
       0 => 'D:\\wamp64\\www\\20170718\\lesson9\\view\\personal.html',
-      1 => 1501593492,
+      1 => 1501759896,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:view/common/foot.html' => 1,
   ),
 ),false)) {
-function content_59807fe3dc3814_07512287 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59830a0f9c8e54_28374666 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -30,17 +30,31 @@ $_smarty_tpl->_subTemplateRender("file:view/common/head.html", $_smarty_tpl->cac
 <div class="head_img_box">
 	<div class="head_img">
 		<a>
-			<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
+			<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['weibo_data']->value[0]['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " />
 		</a>
 	</div>
-	<h4>用户名</h4>
+	<h4><?php echo $_smarty_tpl->tpl_vars['weibo_data']->value[0]['user_data']['user_nickname'];?>
+</h4>
 	<span>这个人很懒，什么都没写</span>
+</div>
+<div class="menu">
+	<ul class="clearfix">
+		<input type="hidden" id="menu" value="0" />
+		<li><span class="active" onclick="user.menu_select(0)">我的微博</span></li>
+		<li><span onclick="user.menu_select(1)">我的相册</span></li>
+		<li><span onclick="user.menu_select(2)">账号管理</span></li>
+	</ul>
 </div>
 <div class="weibo_list">
 	<div class="row">
 		<div class="col-lg-9">
 			<ul class="weibo_box">
+				<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['weibo_data']->value, 'item', false, 'key');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
+?>
 				<li weibo-id="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 " class="animated slideInDown list_<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 ">
@@ -157,37 +171,29 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 				        </div>
 				    </div>
 				</li>
+				<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
 			</ul>
 		</div>
+		<div class="col-lg-9" style="display:none;">
+			<ul class="photo_list clearfix">
+				
+			</ul>
+		</div>
+		<div class="col-lg-9" style="display:none;">
+			<form class="info">
+			</form>
+		</div>
+		<div class="col-lg-9" style="display:none;">账号管理</div>
 		<div class="col-lg-3">
             <div class="side_box follow_box">
             	<h5>关注</h5>
             	<ul class="clearfix">
             		<li>
-	            		<a>
-							<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" />
-						</a>
-					</li>
-					<li>
-	            		<a>
-							<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" />
-						</a>
-					</li>
-					<li>
-	            		<a>
-							<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" />
-						</a>
-					</li>
-					<li>
-	            		<a>
-							<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
-" />
-						</a>
-					</li>
-					<li>
 	            		<a>
 							<img src="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['item']->value['user_data']['user_pic'])===null||$tmp==='' ? './public/img/default.png' : $tmp);?>
 " />
@@ -209,6 +215,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
         </div>
     </div>
 </div>
+<div id="page-mark" data-page="home"></div>
+<?php echo '<script'; ?>
+ type="text/javascript" src="./public/js/load.js"><?php echo '</script'; ?>
+>
 <?php $_smarty_tpl->_subTemplateRender("file:view/common/foot.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }
 }
